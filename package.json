@@ -6,14 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "prebuild": "node scripts/upload-images.js",
+    "upload-images": "node scripts/upload-images.js"
   },
   "dependencies": {
     "next": "13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-intersection-observer": "^9.5.3",
-    "react-icons": "^4.12.0"
+    "react-icons": "^4.12.0",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.12"
   },
   "devDependencies": {
     "autoprefixer": "10.4.16",

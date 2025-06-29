@@ -12,7 +12,7 @@ export default function Document() {
         <meta name="author" content="John Li" />
 
         {/* Favicon */}
-        <link rel="icon" href="/assets/images/icogo150.png" />
+        <link rel="icon" href="/media/icogo150.png" />
 
         {/* Google Fonts */}
         <link

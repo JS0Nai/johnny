@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import { TbBrain, TbServer } from "react-icons/tb";
+import CloudflareImage from "../components/CloudflareImage";
 import {
   SiAdobe,
   SiGoogle,
@@ -108,12 +109,12 @@ function HomePage() {
   }, [portfolioInView]);
 
   const topSliderImages = [
-    "/assets/images/artdoll.png",
-    "/assets/images/redmoonwitch.png",
-    "/assets/images/dolly01.png",
-    "/assets/images/artgirl.png",
-    "/assets/images/artgirl2.png",
-    "/assets/images/oceanwitch.png",
+    "artdoll",
+    "redmoonwitch",
+    "dolly01",
+    "artgirl",
+    "artgirl2",
+    "oceanwitch",
   ];
 
   const handleSlideChange = (direction) => {
@@ -180,8 +181,8 @@ function HomePage() {
               <div className="flex justify-between items-center h-20">
                 <Link href="/">
                   <div className="cursor-pointer">
-                    <img
-                      src="/assets/images/icogo150.png"
+                    <CloudflareImage
+                      src="icogo150"
                       alt="Monarkh Logo"
                       width={150}
                       height={150}
@@ -272,8 +273,8 @@ function HomePage() {
       <div>
         <div className="flex justify-center items-center pt-24 pb-8">
           <div className="relative w-full max-w-2xl mx-auto px-4">
-            <img
-              src="/assets/images/jli-signature1000.png"
+            <CloudflareImage
+              src="jli-signature1000"
               alt="JLi Signature"
               width={1200}
               height={1000}
@@ -365,9 +366,11 @@ function HomePage() {
                       key={`${set}-${index}`}
                       className="flex-none w-72 h-96"
                     >
-                      <img
+                      <CloudflareImage
                         src={img}
                         alt={`Portfolio ${index + 1}`}
+                        width={288}
+                        height={384}
                         className="slider-image w-full h-full object-cover rounded-lg"
                       />
                     </div>

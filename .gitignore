@@ -36,3 +36,18 @@ next-env.d.ts
 package-lock.json
 
 /archive
+
+# Exclude image files from git, they'll be managed by Cloudflare Images
+media/*.png
+media/*.jpg
+media/*.jpeg
+media/*.gif
+media/*.webp
+media/*.svg
+
+# Cloudflare image config
+.cloudflare-images.json
+
+# Environment files
+.env
+johnny.code-workspace

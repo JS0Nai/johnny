@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
+import CloudflareImage from "../components/CloudflareImage";
 import {
   SiAdobe,
   SiGoogle,
@@ -196,8 +197,8 @@ function AboutPage() {
             <div className="flex justify-between items-center h-20">
               <Link href="/">
                 <div className="cursor-pointer">
-                  <img
-                    src="/assets/images/icogo150.png"
+                  <CloudflareImage
+                    src="icogo150"
                     alt="Monarkh Logo"
                     width={150}
                     height={150}
@@ -320,9 +321,11 @@ function AboutPage() {
             className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "600ms" }}
           >
-            <img
-              src="/assets/images/jli-signature1000.png"
+            <CloudflareImage
+              src="jli-signature1000"
               alt="John Li"
+              width={400}
+              height={400}
               className="w-full h-full object-cover"
             />
           </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import { TbBrain, TbServer } from "react-icons/tb";
+import CloudflareImage from "../components/CloudflareImage";
 import {
   SiAdobe,
   SiGoogle,
@@ -75,7 +76,7 @@ function PortfolioPage() {
       id: 1,
       title: "Fantasy Scene",
       category: "fantasy",
-      image: "/assets/images/fantasyscene.png",
+      image: "fantasyscene",
       description: "A fantasy landscape exploring magical themes",
       tools: ["Midjourney", "Photoshop"],
     },
@@ -83,7 +84,7 @@ function PortfolioPage() {
       id: 2,
       title: "Ocean Witch",
       category: "character",
-      image: "/assets/images/oceanwitch.png",
+      image: "oceanwitch",
       description: "Character design of a sea-dwelling sorceress",
       tools: ["Stable Diffusion", "DALL-E"],
     },
@@ -91,7 +92,7 @@ function PortfolioPage() {
       id: 3,
       title: "Art Doll",
       category: "stylized",
-      image: "/assets/images/artdoll.png",
+      image: "artdoll",
       description: "Stylized digital doll design with artistic elements",
       tools: ["DALL-E", "Photoshop"],
     },
@@ -99,7 +100,7 @@ function PortfolioPage() {
       id: 4,
       title: "Red Moon Witch",
       category: "character",
-      image: "/assets/images/redmoonwitch.png",
+      image: "redmoonwitch",
       description: "Character concept with red moon motif",
       tools: ["Midjourney", "Photoshop"],
     },
@@ -107,7 +108,7 @@ function PortfolioPage() {
       id: 5,
       title: "Art Girl",
       category: "character",
-      image: "/assets/images/artgirl.png",
+      image: "artgirl",
       description: "Stylized female character with artistic elements",
       tools: ["DALL-E", "Photoshop"],
     },
@@ -115,7 +116,7 @@ function PortfolioPage() {
       id: 6,
       title: "Stylized Portrait",
       category: "character",
-      image: "/assets/images/artgirl2.png",
+      image: "artgirl2",
       description: "Character portrait in vibrant style",
       tools: ["Midjourney", "Photoshop"],
     },
@@ -123,7 +124,7 @@ function PortfolioPage() {
       id: 7,
       title: "Doll Portrait",
       category: "stylized",
-      image: "/assets/images/dolly01.png",
+      image: "dolly01",
       description: "Detailed doll character with stylized elements",
       tools: ["Stable Diffusion", "Photoshop"],
     },
@@ -131,7 +132,7 @@ function PortfolioPage() {
       id: 8,
       title: "Eye Study",
       category: "stylized",
-      image: "/assets/images/eye.png",
+      image: "eye",
       description: "Detailed study of eye design and lighting",
       tools: ["DALL-E", "Photoshop"],
     },
@@ -215,8 +216,8 @@ function PortfolioPage() {
             <div className="flex justify-between items-center h-20">
               <Link href="/">
                 <div className="cursor-pointer">
-                  <img
-                    src="/assets/images/icogo150.png"
+                  <CloudflareImage
+                    src="icogo150"
                     alt="Monarkh Logo"
                     width={150}
                     height={150}
@@ -368,9 +369,11 @@ function PortfolioPage() {
                   className="relative overflow-hidden group cursor-pointer"
                   onClick={() => openLightbox(item)}
                 >
-                  <img
+                  <CloudflareImage
                     src={item.image}
                     alt={item.title}
+                    width={300}
+                    height={256}
                     className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
@@ -644,9 +647,11 @@ function PortfolioPage() {
               className="relative bg-gray-800 rounded-lg overflow-hidden max-w-5xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <CloudflareImage
                 src={selectedImage.image}
                 alt={selectedImage.title}
+                width={1200}
+                height={800}
                 className="w-full max-h-[80vh] object-contain"
               />
 
