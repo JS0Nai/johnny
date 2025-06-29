@@ -24,7 +24,7 @@ export default function CloudflareImage({
   ...props 
 }) {
   const isDevelopment = process.env.NODE_ENV === 'development';
-  const cloudflareAccountHash = '97af56fe1b421ea97a8f401fab7e5cc2';
+  const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
   const variant = 'public';
   
   // Extract the image ID (filename without path or extension)
