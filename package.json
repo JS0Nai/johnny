@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "echo 'Static export handled by next.config.js'",
     "prebuild": "node scripts/upload-images.js",
     "upload-images": "node scripts/upload-images.js"
   },
