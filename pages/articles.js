@@ -146,10 +146,18 @@ function ArticlesPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/newsletter", {
+      const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "John Li <johnny@johnny.ae>",
+          to: email,
+          subject: "Newsletter Subscription",
+          html: "<p>Thank you for subscribing to our newsletter!</p>",
+        }),
       });
 
       if (response.ok) {
