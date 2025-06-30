@@ -164,18 +164,10 @@ function PortfolioPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.resend.com/emails", {
+      const response = await fetch("/api/newsletter", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "John Li <working@monarkh.net>",
-          to: email,
-          subject: "Newsletter Subscription",
-          html: "<p>Thank you for subscribing to our newsletter!</p>",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
       if (response.ok) {

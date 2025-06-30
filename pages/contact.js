@@ -146,30 +146,10 @@ function ContactPage() {
     e.preventDefault();
     setIsContactSubmitting(true);
     try {
-      const response = await fetch("https://api.resend.com/emails", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "John Li <working@monarkh.net>",
-          to: "hi@johnny.ae",
-          subject: `Contact Form: ${contactForm.subject}`,
-          html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${contactForm.name}</p>
-            <p><strong>Email:</strong> ${contactForm.email}</p>
-            <p><strong>Project Type:</strong> ${contactForm.projectType}</p>
-            <p><strong>Subject:</strong> ${contactForm.subject}</p>
-            <p><strong>Message:</strong></p>
-            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
-              ${contactForm.message.replace(/\n/g, '<br>')}
-            </div>
-            <br>
-            <p><em>Reply to: ${contactForm.email}</em></p>
-          `,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactForm),
       });
 
       if (response.ok) {
