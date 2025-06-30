@@ -3,7 +3,6 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      unoptimized: true, // Must be true when using output: 'export'
       domains: ['imagedelivery.net'],
       remotePatterns: [
         {
