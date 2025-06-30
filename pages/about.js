@@ -322,8 +322,8 @@ function AboutPage() {
             style={{ transitionDelay: "600ms" }}
           >
             <CloudflareImage
-              src="jli-signature1000"
-              alt="John Li"
+              src="profilepicjaison"
+              alt="Jaison Li"
               width={400}
               height={400}
               className="w-full h-full object-cover"

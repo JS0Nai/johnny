@@ -86,7 +86,7 @@ function PortfolioPage() {
       category: "character",
       image: "oceanwitch",
       description: "Character design of a sea-dwelling sorceress",
-      tools: ["Stable Diffusion", "DALL-E"],
+      tools: ["Midjourney", "Photoshop"],
     },
     {
       id: 3,
@@ -94,7 +94,7 @@ function PortfolioPage() {
       category: "stylized",
       image: "artdoll",
       description: "Stylized digital doll design with artistic elements",
-      tools: ["DALL-E", "Photoshop"],
+      tools: ["Midjourney", "Photoshop"],
     },
     {
       id: 4,
@@ -110,7 +110,7 @@ function PortfolioPage() {
       category: "character",
       image: "artgirl",
       description: "Stylized female character with artistic elements",
-      tools: ["DALL-E", "Photoshop"],
+      tools: ["Midjourney", "Photoshop"],
     },
     {
       id: 6,
@@ -126,7 +126,7 @@ function PortfolioPage() {
       category: "stylized",
       image: "dolly01",
       description: "Detailed doll character with stylized elements",
-      tools: ["Stable Diffusion", "Photoshop"],
+      tools: ["Midjourney", "Photoshop"],
     },
     {
       id: 8,
@@ -134,7 +134,7 @@ function PortfolioPage() {
       category: "stylized",
       image: "eye",
       description: "Detailed study of eye design and lighting",
-      tools: ["DALL-E", "Photoshop"],
+      tools: ["Midjourney", "Photoshop"],
     },
   ];
 
