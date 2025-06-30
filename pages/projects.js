@@ -20,9 +20,9 @@ function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [projectsRef, projectsInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [projectsRef, projectsInView] = useInView({ threshold: 0.05, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },
@@ -731,12 +731,12 @@ function ProjectsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-200">📞</span>
-                <a
-                  href="tel:054-376-2321"
+                <Link
+                  href="/contact"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  054 376 2321
-                </a>
+                  Request Callback
+                </Link>
               </div>
             </div>
           </div>

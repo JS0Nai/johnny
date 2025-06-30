@@ -681,12 +681,12 @@ function AboutPage() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-200">📞</span>
-                <a
-                  href="tel:054-376-2321"
+                <Link
+                  href="/contact"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  054 376 2321
-                </a>
+                  Request Callback
+                </Link>
               </div>
             </div>
           </div>
