@@ -132,6 +132,13 @@ async function uploadImage(filePath) {
       console.log(`✅ Successfully uploaded ${imageId}`);
       return true;
     } else {
+      // Check if the error is because the image already exists
+      const alreadyExistsError = data.errors?.some(err => err.code === 5409);
+      if (alreadyExistsError) {
+        console.log(`ℹ️ Image ${imageId} already exists on Cloudflare. Skipping.`);
+        return true; // Treat as success to not fail the build
+      }
+      
       console.error(`❌ Failed to upload ${imageId}: ${JSON.stringify(data.errors)}`);
       return false;
     }
