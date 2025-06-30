@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
-import { TbBrain, TbServer } from "react-icons/tb";
+
 import CloudflareImage from "../components/CloudflareImage";
 
 
