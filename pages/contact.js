@@ -58,7 +58,7 @@ function ContactPage() {
     {
       title: "AI Development & Integration",
       description:
-        "Custom AI solutions for educational institutions and government organizations with focus on safety and compliance.",
+        "Custom AI solutions for educational institutions, business, and government organizations with focus on safety and compliance.",
       features: [
         "Custom AI Development",
         "AI Safety Implementation",
@@ -91,7 +91,7 @@ function ContactPage() {
     {
       title: "Training & Education",
       description:
-        "Educational programs and workshops on responsible AI development, safety standards, and best practices.",
+        "Educational programs and discussions on responsible AI development, safety standards, and best practices.",
       features: [
         "AI Safety Training",
         "Compliance Workshops",
@@ -111,7 +111,7 @@ function ContactPage() {
     },
     {
       title: "Phone",
-      value: "Request Callback",
+      value: "Request Callback Below",
       icon: "📞",
       link: "/contact",
       description: "Available during UAE business hours",

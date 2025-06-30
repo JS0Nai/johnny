@@ -75,6 +75,13 @@ function AboutPage() {
         "Stable Diffusion",
         "ChatGPT",
         "Claude",
+        "RunwayML",
+        "OpenAI API",
+        "Hugging Face",
+        "Google AI",
+        "IBM Watson",
+        "Meta AI",
+        "Custom AI Models"
       ],
     },
     {
@@ -100,11 +107,11 @@ function AboutPage() {
     },
     {
       category: "Cloud & DevOps",
-      items: ["AWS", "Firebase", "Docker", "Git", "CI/CD", "Cloudflare"],
+      items: ["Google Workspace", "Firebase", "Docker", "Git", "CI/CD", "Cloudflare"],
     },
     {
       category: "Databases",
-      items: ["MongoDB", "MySQL", "PostgreSQL", "Redis"],
+      items: ["QDrant", "ChromaDB", "MongoDB", "MySQL", "PostgreSQL", "Redis"],
     },
     {
       category: "Photography",
@@ -121,7 +128,7 @@ function AboutPage() {
     {
       period: "2020 - Present",
       title: "Creative Technologist & AI Specialist",
-      company: "Freelance / Monarkh",
+      company: "Freelance",
       location: "Abu Dhabi, UAE",
       description:
         "Leading creative projects combining AI technology with traditional design. Specializing in generative AI, custom development, and innovative digital solutions.",
@@ -133,9 +140,9 @@ function AboutPage() {
       ],
     },
     {
-      period: "2018 - 2020",
+      period: "2018 - 2022",
       title: "Full Stack Developer",
-      company: "Previous Company",
+      company: "Freelance and Collaboration",
       location: "Remote",
       description:
         "Developed web applications and digital solutions with focus on user experience and performance optimization.",
@@ -147,7 +154,7 @@ function AboutPage() {
       ],
     },
     {
-      period: "2016 - 2018",
+      period: "2005 - 2018",
       title: "Digital Designer",
       company: "Design Agency",
       location: "UAE",
@@ -155,7 +162,7 @@ function AboutPage() {
         "Created digital designs and visual identities for various clients across different industries.",
       achievements: [
         "Designed 200+ digital assets",
-        "Worked with Fortune 500 companies",
+        "Worked with large brands and startups",
         "Increased client satisfaction by 35%",
         "Mentored junior designers",
       ],

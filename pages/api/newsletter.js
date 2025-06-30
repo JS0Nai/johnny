@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         from: 'Johnny <johnny@johnny.ae>',
         to: email,
         subject: 'Newsletter Subscription Confirmed',
-        html: '<p>Thank you for subscribing to our newsletter!</p>',
+        html: '<p>Thank you for subscribing to the newsletter!</p>',
       });
 
       return res.status(200).json({ message: 'Successfully subscribed!' });
