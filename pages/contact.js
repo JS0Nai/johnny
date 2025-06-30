@@ -153,7 +153,7 @@ function ContactPage() {
           "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "John Li <johnny@johnny.ae>",
+          from: "John Li <working@monarkh.net>",
           to: "hi@johnny.ae",
           subject: `Contact Form: ${contactForm.subject}`,
           html: `

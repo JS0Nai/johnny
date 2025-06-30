@@ -323,7 +323,7 @@ function ProjectsPage() {
           "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "John Li <johnny@johnny.ae>",
+          from: "John Li <working@monarkh.net>",
           to: email,
           subject: "Newsletter Subscription",
           html: "<p>Thank you for subscribing to our newsletter!</p>",
