@@ -6,7 +6,6 @@ export default function Document() {
       <Head>
         {/* Meta tags for SEO and responsive design */}
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Creative freedom and the pursuit of improving how things work." />
         <meta name="keywords" content="portfolio, AI, generative art, development, coding, projects" />
         <meta name="author" content="John Li" />

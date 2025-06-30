@@ -591,6 +591,15 @@ function ArticlesPage() {
                   hi@johnny.ae
                 </a>
               </div>
+              <div className="flex items-center gap-2">
+                <span className="text-orange-200">📞</span>
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Request Callback
+                </Link>
+              </div>
             </div>
           </div>
 
