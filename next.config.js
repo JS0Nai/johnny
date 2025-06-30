@@ -2,7 +2,6 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    output: 'export',
     images: {
       unoptimized: true, // Must be true when using output: 'export'
       domains: ['imagedelivery.net'],
