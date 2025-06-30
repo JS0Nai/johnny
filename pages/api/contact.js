@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     try {
       await sgMail.send({
         from: 'Johnny <johnny@johnny.ae>',
-        to: 'johnli8@icloud.com',
+        to: 'johnny@johnny.ae',
         replyTo: email,
         subject: `Contact Form: ${subject}`,
         html: `

@@ -104,9 +104,9 @@ function ContactPage() {
   const contactMethods = [
     {
       title: "Email",
-      value: "johnli8@icloud.com",
+      value: "johnny@johnny.ae",
       icon: "✉",
-      link: "mailto:johnli8@icloud.com",
+      link: "mailto:johnny@johnny.ae",
       description: "For general inquiries and project discussions",
     },
     {
@@ -177,18 +177,10 @@ function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.resend.com/emails", {
+      const response = await fetch("/api/newsletter", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "John Li <johnny@johnny.ae>",
-          to: email,
-          subject: "Newsletter Subscription",
-          html: "<p>Thank you for subscribing to our newsletter!</p>",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
       if (response.ok) {
@@ -614,10 +606,10 @@ function ContactPage() {
               <div className="flex items-center gap-2">
                 <span className="text-orange-200">✉</span>
                 <a
-                  href="mailto:johnli8@icloud.com"
+                  href="mailto:johnny@johnny.ae"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  johnli8@icloud.com
+                  johnny@johnny.ae
                 </a>
               </div>
               <div className="flex items-center gap-2">
