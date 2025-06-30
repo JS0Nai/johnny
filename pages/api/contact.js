@@ -1,6 +1,6 @@
-import { Resend } from 'resend';
+import sgMail from '@sendgrid/mail';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -11,9 +11,10 @@ export default async function handler(req, res) {
     }
 
     try {
-      await resend.emails.send({
-        from: 'John Li <working@monarkh.net>',
+      await sgMail.send({
+        from: 'Johnny <johnny@johnny.ae>',
         to: 'hi@johnny.ae',
+        replyTo: email,
         subject: `Contact Form: ${subject}`,
         html: `
           <h2>New Contact Form Submission</h2>
