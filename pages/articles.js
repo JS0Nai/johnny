@@ -3,30 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
-import {
-  SiAdobe,
-  SiGoogle,
-  SiOpenai,
-  SiIbm,
-  SiMeta,
-  SiApple,
-  SiAmazonaws,
-  SiFirebase,
-  SiCloudflare,
-  SiMongodb,
-  SiMysql,
-  SiDocker,
-  SiGithub,
-  SiVisualstudiocode,
-  SiInstagram,
-  SiMicrosoft,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiPython,
-  SiJavascript,
-} from "react-icons/si";
+
 
 function ArticlesPage() {
   const router = useRouter();
@@ -505,84 +482,7 @@ function ArticlesPage() {
         </div>
       </div>
 
-      {/* Tools & Technologies Banner */}
-      <div className="relative py-16 bg-gray-900">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-light text-white mb-4">
-            Tools & <span className="text-orange-200">Technologies</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            A selection of the platforms and tools I work with daily
-          </p>
-        </div>
-
-        <div className="relative overflow-hidden">
-          <div className="flex animate-scroll-left">
-            <div className="flex items-center py-4 min-w-max">
-              {[
-                SiOpenai,
-                SiAdobe,
-                SiGoogle,
-                SiIbm,
-                SiMeta,
-                SiApple,
-                SiReact,
-                SiNextdotjs,
-                SiTailwindcss,
-                SiNodedotjs,
-                SiPython,
-                SiJavascript,
-                SiAmazonaws,
-                SiFirebase,
-                SiCloudflare,
-                SiMongodb,
-                SiMysql,
-                SiDocker,
-                SiGithub,
-                SiVisualstudiocode,
-                SiInstagram,
-                SiMicrosoft,
-              ].map((Icon, index) => (
-                <Icon
-                  key={index}
-                  className="text-gray-400 hover:text-orange-200 transition-colors w-8 h-8 mx-6"
-                />
-              ))}
-            </div>
-            <div className="flex items-center py-4 min-w-max">
-              {[
-                SiOpenai,
-                SiAdobe,
-                SiGoogle,
-                SiIbm,
-                SiMeta,
-                SiApple,
-                SiReact,
-                SiNextdotjs,
-                SiTailwindcss,
-                SiNodedotjs,
-                SiPython,
-                SiJavascript,
-                SiAmazonaws,
-                SiFirebase,
-                SiCloudflare,
-                SiMongodb,
-                SiMysql,
-                SiDocker,
-                SiGithub,
-                SiVisualstudiocode,
-                SiInstagram,
-                SiMicrosoft,
-              ].map((Icon, index) => (
-                <Icon
-                  key={`dup-${index}`}
-                  className="text-gray-400 hover:text-orange-200 transition-colors w-8 h-8 mx-6"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Newsletter Section */}
       <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">

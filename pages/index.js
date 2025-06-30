@@ -4,30 +4,28 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import { TbBrain, TbServer } from "react-icons/tb";
 import CloudflareImage from "../components/CloudflareImage";
-import {
-  SiAdobe,
-  SiGoogle,
-  SiOpenai,
-  SiIbm,
-  SiMeta,
-  SiApple,
-  SiAmazonaws,
-  SiFirebase,
-  SiCloudflare,
-  SiMongodb,
-  SiMysql,
-  SiDocker,
-  SiGithub,
-  SiVisualstudiocode,
-  SiInstagram,
-  SiMicrosoft,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiPython,
-  SiJavascript,
-} from "react-icons/si";
+import { SiAdobe } from "react-icons/si";
+import { SiGoogle } from "react-icons/si";
+import { SiOpenai } from "react-icons/si";
+import { SiIbm } from "react-icons/si";
+import { SiMeta } from "react-icons/si";
+import { SiApple } from "react-icons/si";
+import { SiAmazonaws } from "react-icons/si";
+import { SiFirebase } from "react-icons/si";
+import { SiCloudflare } from "react-icons/si";
+import { SiMongodb } from "react-icons/si";
+import { SiMysql } from "react-icons/si";
+import { SiDocker } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
+import { SiVisualstudiocode } from "react-icons/si";
+import { SiInstagram } from "react-icons/si";
+import { SiMicrosoft } from "react-icons/si";
+import { SiReact } from "react-icons/si";
+import { SiNextdotjs } from "react-icons/si";
+import { SiTailwindcss } from "react-icons/si";
+import { SiNodedotjs } from "react-icons/si";
+import { SiPython } from "react-icons/si";
+import { SiJavascript } from "react-icons/si";
 
 function HomePage() {
   const router = useRouter();
