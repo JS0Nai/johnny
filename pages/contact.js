@@ -104,9 +104,9 @@ function ContactPage() {
   const contactMethods = [
     {
       title: "Email",
-      value: "johnny@johnny.ae",
+      value: "johnli8@icloud.com",
       icon: "✉",
-      link: "mailto:johnny@johnny.ae",
+      link: "mailto:johnli8@icloud.com",
       description: "For general inquiries and project discussions",
     },
     {
@@ -614,10 +614,10 @@ function ContactPage() {
               <div className="flex items-center gap-2">
                 <span className="text-orange-200">✉</span>
                 <a
-                  href="mailto:johnny@johnny.ae"
+                  href="mailto:johnli8@icloud.com"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  johnny@johnny.ae
+                  johnli8@icloud.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
