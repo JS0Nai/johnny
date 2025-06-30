@@ -730,15 +730,6 @@ function HomePage() {
                   hi@johnny.ae
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-orange-200">📞</span>
-                <a
-                  href="tel:054-376-2321"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  054 376 2321
-                </a>
-              </div>
             </div>
           </div>
 
