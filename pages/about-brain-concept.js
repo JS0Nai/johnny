@@ -22,8 +22,7 @@ function AboutPage() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const [selectedBrainSide, setSelectedBrainSide] = useState(null); // null, 'left', or 'right'
-  const [hoveredSide, setHoveredSide] = useState(null);
+  const [selectedBrainSide, setSelectedBrainSide] = useState('left'); // 'left' or 'right'
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2 });
@@ -245,129 +244,74 @@ function AboutPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
             <div className="relative inline-block">
-              {/* Brain Container */}
-              <div className="relative w-80 h-80 mx-auto">
-                {/* Left Brain (Technical) */}
-                <div
-                  className={`absolute left-0 top-0 w-40 h-80 cursor-pointer transition-all duration-500 ${
-                    hoveredSide === 'left' ? 'scale-105' : ''
-                  } ${selectedBrainSide === 'left' ? 'z-20' : 'z-10'}`}
-                  onClick={() => setSelectedBrainSide('left')}
-                  onMouseEnter={() => setHoveredSide('left')}
-                  onMouseLeave={() => setHoveredSide(null)}
-                >
-                  <svg
-                    viewBox="0 0 200 400"
-                    className="w-full h-full"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <defs>
-                      <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#1E40AF" stopOpacity="0.9" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M 200 200 C 200 100, 150 50, 100 50 C 50 50, 0 100, 0 200 C 0 300, 50 350, 100 350 C 150 350, 200 300, 200 200"
-                      fill="url(#techGradient)"
-                      stroke="#60A5FA"
-                      strokeWidth="2"
-                      className={`transition-all duration-500 ${
-                        hoveredSide === 'left' || selectedBrainSide === 'left' 
-                          ? 'drop-shadow-[0_0_30px_rgba(59,130,246,0.8)]' 
-                          : 'drop-shadow-[0_0_10px_rgba(59,130,246,0.3)]'
-                      }`}
-                    />
-                    {/* Circuit patterns for tech side */}
-                    <g opacity="0.3">
-                      <line x1="50" y1="100" x2="150" y2="100" stroke="#60A5FA" strokeWidth="1" />
-                      <line x1="50" y1="150" x2="150" y2="150" stroke="#60A5FA" strokeWidth="1" />
-                      <line x1="50" y1="200" x2="150" y2="200" stroke="#60A5FA" strokeWidth="1" />
-                      <circle cx="50" cy="100" r="3" fill="#60A5FA" />
-                      <circle cx="150" cy="150" r="3" fill="#60A5FA" />
-                      <circle cx="100" cy="200" r="3" fill="#60A5FA" />
-                    </g>
-                  </svg>
-                </div>
+              {/* Brain Container with 3D Rotation */}
+              <div className="perspective-container">
+                <div className="relative w-96 h-96 mx-auto">
+                  <div className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}>
+                    {/* Technical Brain (Front) */}
+                    <div className="brain-side">
+                      <CloudflareImage
+                        src="brain-tech-blue"
+                        alt="Technical Mind"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-contain"
+                      />
+                      {/* Blue glow effect */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute inset-0 bg-blue-400/5 rounded-full blur-3xl scale-90"></div>
+                      </div>
+                    </div>
 
-                {/* Right Brain (Creative) */}
-                <div
-                  className={`absolute right-0 top-0 w-40 h-80 cursor-pointer transition-all duration-500 ${
-                    hoveredSide === 'right' ? 'scale-105' : ''
-                  } ${selectedBrainSide === 'right' ? 'z-20' : 'z-10'}`}
-                  onClick={() => setSelectedBrainSide('right')}
-                  onMouseEnter={() => setHoveredSide('right')}
-                  onMouseLeave={() => setHoveredSide(null)}
-                >
-                  <svg
-                    viewBox="0 0 200 400"
-                    className="w-full h-full"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <defs>
-                      <linearGradient id="creativeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#EC4899" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#BE185D" stopOpacity="0.9" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M 0 200 C 0 100, 50 50, 100 50 C 150 50, 200 100, 200 200 C 200 300, 150 350, 100 350 C 50 350, 0 300, 0 200"
-                      fill="url(#creativeGradient)"
-                      stroke="#F472B6"
-                      strokeWidth="2"
-                      className={`transition-all duration-500 ${
-                        hoveredSide === 'right' || selectedBrainSide === 'right' 
-                          ? 'drop-shadow-[0_0_30px_rgba(236,72,153,0.8)]' 
-                          : 'drop-shadow-[0_0_10px_rgba(236,72,153,0.3)]'
-                      }`}
-                    />
-                    {/* Creative swirls for creative side */}
-                    <g opacity="0.3">
-                      <path d="M 50 150 Q 100 100, 150 150 T 50 250" fill="none" stroke="#F472B6" strokeWidth="2" />
-                      <circle cx="80" cy="120" r="5" fill="#F472B6" />
-                      <circle cx="120" cy="180" r="4" fill="#F472B6" />
-                      <circle cx="100" cy="250" r="6" fill="#F472B6" />
-                    </g>
-                  </svg>
+                    {/* Creative Brain (Back - flipped) */}
+                    <div className="brain-side brain-back">
+                      <CloudflareImage
+                        src="brain-creative-pink"
+                        alt="Creative Soul"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-contain transform scale-x-[-1]"
+                      />
+                      {/* Pink glow effect */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute inset-0 bg-pink-400/5 rounded-full blur-3xl scale-90"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Center divider */}
-                <div className="absolute left-1/2 top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-gray-600 to-transparent transform -translate-x-1/2"></div>
               </div>
 
-              {/* Labels */}
-              <div className="flex justify-between mt-8 text-lg">
-                <div className={`flex-1 text-center transition-all duration-300 ${
-                  hoveredSide === 'left' ? 'text-blue-400 scale-110' : 'text-gray-400'
-                }`}>
-                  <TbCode className="w-8 h-8 mx-auto mb-2" />
+              {/* Labels with click functionality */}
+              <div className="flex justify-between mt-12 text-lg max-w-md mx-auto">
+                <button
+                  onClick={() => setSelectedBrainSide('left')}
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
+                    selectedBrainSide === 'left' ? 'text-blue-400 scale-110' : 'text-gray-400 hover:text-blue-300'
+                  }`}
+                >
+                  <TbCode className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                   <span className="font-light">Technical Mind</span>
-                </div>
-                <div className={`flex-1 text-center transition-all duration-300 ${
-                  hoveredSide === 'right' ? 'text-pink-400 scale-110' : 'text-gray-400'
-                }`}>
-                  <TbPalette className="w-8 h-8 mx-auto mb-2" />
+                </button>
+                <button
+                  onClick={() => setSelectedBrainSide('right')}
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
+                    selectedBrainSide === 'right' ? 'text-pink-400 scale-110' : 'text-gray-400 hover:text-pink-300'
+                  }`}
+                >
+                  <TbPalette className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                   <span className="font-light">Creative Soul</span>
-                </div>
+                </button>
               </div>
             </div>
 
             {/* Instructions */}
-            <p className="text-gray-400 mt-8 text-sm">
-              Click on either side to explore that aspect of my expertise
+            <p className="text-gray-400 mt-8 text-sm animate-pulse">
+              Click either label to flip between technical and creative perspectives
             </p>
           </div>
 
           {/* Content Display based on selection */}
           <div ref={contentRef} className="mt-16">
-            {selectedBrainSide === null && (
-              <div className={`text-center py-16 scroll-animate ${contentInView ? "fade-in" : ""}`}>
-                <p className="text-2xl text-gray-400 font-light">
-                  Select a hemisphere to discover more
-                </p>
-              </div>
-            )}
-
             {selectedBrainSide === 'left' && (
               <div className={`scroll-animate ${contentInView ? "fade-in" : ""}`}>
                 <h3 className="text-4xl font-extralight text-center mb-4 text-blue-400"
@@ -719,6 +663,31 @@ function AboutPage() {
         .fade-in {
           opacity: 1;
           transform: translate(0);
+        }
+
+        .perspective-container {
+          perspective: 1000px;
+        }
+
+        .rotate-container {
+          transform-style: preserve-3d;
+          transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rotate-container.rotated {
+          transform: rotateY(180deg);
+        }
+
+        .brain-side {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .brain-back {
+          transform: rotateY(180deg);
         }
       `}</style>
     </div>
