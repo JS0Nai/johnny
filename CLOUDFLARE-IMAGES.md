@@ -33,6 +33,9 @@ npm install
    ```bash
    cp my-new-image.png media/
    ```
+2.5 run -> node scripts/upload-images.js
+
+or ?
 
 2. Use the CloudflareImage component in your React components:
    ```jsx
