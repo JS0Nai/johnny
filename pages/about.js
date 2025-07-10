@@ -183,17 +183,81 @@ function AboutPage() {
 
   const experiences = [
     {
-      period: "2020 - Present",
-      title: "Creative Technologist & AI Specialist",
-      company: "Freelance",
-      location: "Abu Dhabi, UAE",
+      period: "1979",
+      title: "The Writing Journey Begins",
+      image: "typewriter-green",
+      imageCaption: "Writing journey begins.",
+      description: "Started my creative journey with a typewriter, discovering the power of written expression.",
+      achievements: [],
+    },
+    {
+      period: "1983",
+      title: "TRS-80 Model 4",
+      image: "trs80-computer",
+      imageCaption: "TRS-80 (1983)\n- Model 4 (Tandy/RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives",
+      description: "First computer experience with the TRS-80, learning BASIC programming and discovering the digital world.",
+      achievements: [],
+    },
+    {
+      period: "1985",
+      title: "Commodore VIC-20",
+      image: "vic20-computer",
+      imageCaption: "Vic 20\n- The best worst video games ever!",
+      description: "Gaming and programming on the VIC-20, exploring early home computing.",
+      achievements: [],
+    },
+    {
+      period: "1986",
+      title: "TV/Gaming Era",
+      image: "tv-gaming",
+      imageOnly: true,
+      description: "The evolution of gaming and display technology.",
+      achievements: [],
+    },
+    {
+      period: "1988",
+      title: "Electronic Typewriter",
+      image: "electronic-typewriter",
+      imageCaption: "Electronic typewriter - much better for night writing.",
+      description: "Upgraded to electronic typewriting, bridging analog and digital writing.",
+      achievements: [],
+    },
+    {
+      period: "1989",
+      title: "Connectivity Component",
+      image: "connector-device",
+      imageOnly: true,
+      description: "Early connectivity and networking components.",
+      achievements: [],
+    },
+    {
+      period: "1990",
+      title: "Commodore 64",
+      image: "commodore64-setup",
+      imageCaption: "Commodore 64\n- Big power up!",
+      description: "Major upgrade to the Commodore 64, unlocking new creative and technical possibilities.",
+      achievements: [],
+    },
+    {
+      period: "1995",
+      title: "Network Infrastructure",
+      image: "ethernet-wiring",
+      imageCaption: "Multi-floor ethernet wiring - before WIFI ...",
+      description: "Building network infrastructure, laying ethernet cables across multiple floors in the pre-WiFi era.",
+      achievements: [],
+    },
+    {
+      period: "2005 - 2018",
+      title: "Digital Designer",
+      company: "Design Agency",
+      location: "UAE",
       description:
-        "Leading creative projects combining AI technology with traditional design. Specializing in generative AI, custom development, and innovative digital solutions.",
+        "Created digital designs and visual identities for various clients across different industries.",
       achievements: [
-        "Generated 13K+ AI images using various platforms",
-        "Built 100+ commercial projects with custom coding",
-        "Licensed 10K+ image assets for commercial use",
-        "Developed 50K+ photography collection",
+        "Designed 200+ digital assets",
+        "Worked with large brands and startups",
+        "Increased client satisfaction by 35%",
+        "Mentored junior designers",
       ],
     },
     {
@@ -211,17 +275,17 @@ function AboutPage() {
       ],
     },
     {
-      period: "2005 - 2018",
-      title: "Digital Designer",
-      company: "Design Agency",
-      location: "UAE",
+      period: "2020 - Present",
+      title: "Creative Technologist & AI Specialist",
+      company: "Freelance",
+      location: "Abu Dhabi, UAE",
       description:
-        "Created digital designs and visual identities for various clients across different industries.",
+        "Leading creative projects combining AI technology with traditional design. Specializing in generative AI, custom development, and innovative digital solutions.",
       achievements: [
-        "Designed 200+ digital assets",
-        "Worked with large brands and startups",
-        "Increased client satisfaction by 35%",
-        "Mentored junior designers",
+        "Generated 13K+ AI images using various platforms",
+        "Built 100+ commercial projects with custom coding",
+        "Licensed 10K+ image assets for commercial use",
+        "Developed 50K+ photography collection",
       ],
     },
   ];
@@ -624,39 +688,73 @@ function AboutPage() {
             </h2>
           </div>
 
-          <div className="space-y-12">
+          <div className="relative">
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`flex flex-col lg:flex-row gap-8 border-l-2 border-gray-700 pl-8 scroll-animate ${experienceInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${index * 200}ms` }}
+                className={`flex flex-col lg:flex-row gap-8 mb-16 scroll-animate ${experienceInView ? "fade-in" : ""}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="lg:w-1/4">
+                {/* Left side - Image */}
+                <div className="lg:w-1/3 flex justify-center lg:justify-end">
+                  {exp.image && (
+                    <div className="relative">
+                      <CloudflareImage
+                        src={exp.image}
+                        alt={exp.title}
+                        width={300}
+                        height={200}
+                        className="rounded-lg object-cover"
+                      />
+                      {exp.imageCaption && !exp.imageOnly && (
+                        <div className="mt-2 text-sm text-gray-400 whitespace-pre-line">
+                          {exp.imageCaption}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Timeline line */}
+                <div className="hidden lg:block w-px bg-gray-700 relative">
+                  <div className="absolute -left-2 -top-2 w-5 h-5 bg-orange-200 rounded-full border-4 border-gray-900"></div>
+                </div>
+
+                {/* Right side - Content */}
+                <div className="lg:w-2/3 lg:pl-8">
                   <div className="text-orange-200 font-medium mb-2">
                     {exp.period}
                   </div>
-                  <div className="text-gray-400 text-sm">{exp.location}</div>
-                </div>
+                  
+                  {!exp.imageOnly && (
+                    <>
+                      <h3 className="text-2xl font-medium text-white mb-2">
+                        {exp.title}
+                      </h3>
+                      {exp.company && (
+                        <div className="text-orange-200/80 mb-4">{exp.company}</div>
+                      )}
+                      {exp.location && (
+                        <div className="text-gray-400 text-sm mb-4">{exp.location}</div>
+                      )}
+                      <p className="text-gray-300 mb-6 leading-relaxed">
+                        {exp.description}
+                      </p>
 
-                <div className="lg:w-3/4">
-                  <h3 className="text-2xl font-medium text-white mb-2">
-                    {exp.title}
-                  </h3>
-                  <div className="text-orange-200/80 mb-4">{exp.company}</div>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    {exp.achievements.map((achievement, achIndex) => (
-                      <div key={achIndex} className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-orange-200 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-400 text-sm">
-                          {achievement}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                      {exp.achievements.length > 0 && (
+                        <div className="space-y-2">
+                          {exp.achievements.map((achievement, achIndex) => (
+                            <div key={achIndex} className="flex items-start">
+                              <div className="w-1.5 h-1.5 bg-orange-200 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                              <span className="text-gray-400 text-sm">
+                                {achievement}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             ))}
