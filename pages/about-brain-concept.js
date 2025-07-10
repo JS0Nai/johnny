@@ -23,6 +23,7 @@ function AboutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [selectedBrainSide, setSelectedBrainSide] = useState('left'); // 'left' or 'right'
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2 });
@@ -47,6 +48,10 @@ function AboutPage() {
       setTimeout(() => setShowHeader(true), 1000),
       setTimeout(() => setShowSubheader(true), 1500),
     ];
+    
+    // Check if device supports touch
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    
     return () => timers.forEach((timer) => clearTimeout(timer));
   }, []);
 
@@ -240,42 +245,38 @@ function AboutPage() {
       </div>
 
       {/* Interactive Brain Section */}
-      <div ref={brainRef} className="py-16">
+      <div ref={brainRef} className="py-16 px-8">
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
-            <div className="relative inline-block">
+            <div className="relative inline-block p-8">
               {/* Brain Container with 3D Rotation */}
               <div className="perspective-container">
-                <div className="relative w-96 h-96 mx-auto">
-                  <div className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}>
+                <div className="relative w-96 h-96 mx-auto cursor-pointer">
+                  <div 
+                    className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}
+                    onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
+                    onClick={() => setSelectedBrainSide(selectedBrainSide === 'left' ? 'right' : 'left')}
+                  >
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
-                      <img
-                        src="/media/brain-tech-blue.png"
+                      <CloudflareImage
+                        src="brain-tech-blue"
                         alt="Technical Mind"
                         width={400}
                         height={400}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]"
                       />
-                      {/* Blue glow effect */}
-                      <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute inset-0 bg-blue-400/5 rounded-full blur-3xl scale-90"></div>
-                      </div>
                     </div>
 
                     {/* Creative Brain (Back - flipped) */}
                     <div className="brain-side brain-back">
-                      <img
-                        src="/media/brain-creative-pink.png"
+                      <CloudflareImage
+                        src="brain-creative-pink"
                         alt="Creative Soul"
                         width={400}
                         height={400}
-                        className="w-full h-full object-contain transform scale-x-[-1]"
+                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)] transform scale-x-[-1]"
                       />
-                      {/* Pink glow effect */}
-                      <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute inset-0 bg-pink-400/5 rounded-full blur-3xl scale-90"></div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -306,7 +307,10 @@ function AboutPage() {
 
             {/* Instructions */}
             <p className="text-gray-400 mt-8 text-sm animate-pulse">
-              Click either label to flip between technical and creative perspectives
+              {isTouchDevice 
+                ? "Tap the brain or labels to switch perspectives"
+                : "Hover over the brain to toggle sides • Click labels to select"
+              }
             </p>
           </div>
 
@@ -629,6 +633,19 @@ function AboutPage() {
           }
         }
 
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .float-animation {
+          animation: float 4s ease-in-out infinite;
+        }
+
         .animate-scroll-left {
           animation: scrollLeft 20s linear infinite;
         }
@@ -674,7 +691,7 @@ function AboutPage() {
           width: 100%;
           height: 100%;
           transform-style: preserve-3d;
-          transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rotate-container.rotated {

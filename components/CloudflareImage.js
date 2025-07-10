@@ -23,7 +23,7 @@ export default function CloudflareImage({
   objectFit = "cover",
   ...props 
 }) {
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
   const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
   const variant = 'public';
   
