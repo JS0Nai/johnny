@@ -260,7 +260,7 @@ function AboutPage() {
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
                       <CloudflareImage
-                        src="brain-tech-blue"
+                        src="brain-tekie-blue"
                         alt="Technical Mind"
                         width={400}
                         height={400}
