@@ -250,8 +250,8 @@ function AboutPage() {
                   <div className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}>
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
-                      <CloudflareImage
-                        src="brain-tech-blue"
+                      <img
+                        src="/media/brain-tech-blue.png"
                         alt="Technical Mind"
                         width={400}
                         height={400}
@@ -265,8 +265,8 @@ function AboutPage() {
 
                     {/* Creative Brain (Back - flipped) */}
                     <div className="brain-side brain-back">
-                      <CloudflareImage
-                        src="brain-creative-pink"
+                      <img
+                        src="/media/brain-creative-pink.png"
                         alt="Creative Soul"
                         width={400}
                         height={400}
@@ -670,6 +670,9 @@ function AboutPage() {
         }
 
         .rotate-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
           transform-style: preserve-3d;
           transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
