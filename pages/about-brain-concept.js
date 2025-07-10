@@ -57,7 +57,7 @@ function AboutPage() {
 
   // Technical skills (Left Brain)
   const technicalSkills = {
-    category: "Technical Mind",
+    category: "Left Brain",
     description: "The analytical side: algorithms, systems, and logic",
     subcategories: [
       {
@@ -81,7 +81,7 @@ function AboutPage() {
 
   // Creative skills (Right Brain)
   const creativeSkills = {
-    category: "Creative Soul",
+    category: "Right Brain",
     description: "The artistic side: imagination, aesthetics, and expression",
     subcategories: [
       {
@@ -239,7 +239,9 @@ function AboutPage() {
             className={`text-white text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
-            Where logic meets imagination, and code becomes art
+            
+            
+            Logic meets imagination. Code becomes art.
           </h2>
         </div>
       </div>
@@ -261,10 +263,11 @@ function AboutPage() {
                     <div className="brain-side">
                       <CloudflareImage
                         src="brain-tekie-blue"
-                        alt="Technical Mind"
+                        alt="TEKKIE"
                         width={400}
                         height={400}
                         className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                        style={{ transform: 'scale(0.9)' }}
                       />
                     </div>
 
@@ -272,19 +275,27 @@ function AboutPage() {
                     <div className="brain-side brain-back">
                       <CloudflareImage
                         src="brain-creative-pink"
-                        alt="Creative Soul"
+                        alt="PANTSER"
                         width={400}
                         height={400}
                         className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]"
-                        style={{ transform: 'scaleX(-1)' }}
+                        style={{ transform: 'scaleX(-1) scale(0.9)' }}
                       />
                     </div>
                   </div>
                 </div>
               </div>
 
+              {/* Instructions */}
+              <p className="text-gray-400 mt-8 text-sm animate-pulse">
+                {isTouchDevice 
+                  ? "Tap the brain or labels to switch perspectives"
+                  : "Hover over the brain to toggle sides or Click below to select."
+                }
+              </p>
+
               {/* Labels with click functionality */}
-              <div className="flex justify-between mt-12 text-lg max-w-md mx-auto">
+              <div className="flex justify-between mt-8 text-lg max-w-md mx-auto">
                 <button
                   onClick={() => setSelectedBrainSide('left')}
                   className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
@@ -292,7 +303,7 @@ function AboutPage() {
                   }`}
                 >
                   <TbCode className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="font-light">Technical Mind</span>
+                  <span className="font-light">Tekkie</span>
                 </button>
                 <button
                   onClick={() => setSelectedBrainSide('right')}
@@ -301,18 +312,10 @@ function AboutPage() {
                   }`}
                 >
                   <TbPalette className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="font-light">Creative Soul</span>
+                  <span className="font-light">Pantser</span>
                 </button>
               </div>
             </div>
-
-            {/* Instructions */}
-            <p className="text-gray-400 mt-8 text-sm animate-pulse">
-              {isTouchDevice 
-                ? "Tap the brain or labels to switch perspectives"
-                : "Hover over the brain to toggle sides • Click labels to select"
-              }
-            </p>
           </div>
 
           {/* Content Display based on selection */}
