@@ -251,7 +251,7 @@ function AboutPage() {
             <div className="relative inline-block p-8">
               {/* Brain Container with 3D Rotation */}
               <div className="perspective-container">
-                <div className="relative w-[450px] h-[450px] mx-auto cursor-pointer">
+                <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] mx-auto cursor-pointer">
                   <div 
                     className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}
                     onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
@@ -275,7 +275,8 @@ function AboutPage() {
                         alt="Creative Soul"
                         width={400}
                         height={400}
-                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)] transform scale-x-[-1]"
+                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]"
+                        style={{ transform: 'scaleX(-1)' }}
                       />
                     </div>
                   </div>
