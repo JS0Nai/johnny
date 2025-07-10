@@ -25,6 +25,7 @@ import { SiTailwindcss } from "react-icons/si";
 import { SiNodedotjs } from "react-icons/si";
 import { SiPython } from "react-icons/si";
 import { SiJavascript } from "react-icons/si";
+import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
 
 function AboutPage() {
   const router = useRouter();
@@ -38,11 +39,15 @@ function AboutPage() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [selectedBrainSide, setSelectedBrainSide] = useState('left'); // 'left' or 'right'
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2 });
   const [storyRef, storyInView] = useInView({ threshold: 0.2 });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.2 });
+  const [brainRef, brainInView] = useInView({ threshold: 0.2 });
+  const [contentRef, contentInView] = useInView({ threshold: 0.2 });
   const [experienceRef, experienceInView] = useInView({ threshold: 0.2 });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
 
@@ -62,6 +67,10 @@ function AboutPage() {
       setTimeout(() => setShowHeader(true), 1000),
       setTimeout(() => setShowSubheader(true), 1500),
     ];
+    
+    // Check if device supports touch
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    
     return () => timers.forEach((timer) => clearTimeout(timer));
   }, []);
 
@@ -123,6 +132,54 @@ function AboutPage() {
       ],
     },
   ];
+
+  // Technical skills (Left Brain)
+  const technicalSkills = {
+    category: "Left Brain",
+    description: "The analytical side: algorithms, systems, and logic",
+    subcategories: [
+      {
+        title: "AI & Machine Learning",
+        items: ["OpenAI API", "Hugging Face", "LangChain", "Custom AI Models", "Google AI", "IBM Watson"],
+      },
+      {
+        title: "Development",
+        items: ["Python", "JavaScript", "React", "Next.js", "Node.js", "FastAPI"],
+      },
+      {
+        title: "Cloud & DevOps",
+        items: ["AWS", "Docker", "Firebase", "Cloudflare", "Git", "CI/CD"],
+      },
+      {
+        title: "Data & Systems",
+        items: ["MongoDB", "MySQL", "Elasticsearch", "QDrant", "ChromaDB", "System Architecture"],
+      },
+    ],
+  };
+
+  // Creative skills (Right Brain)
+  const creativeSkills = {
+    category: "Right Brain",
+    description: "The artistic side: imagination, aesthetics, and expression",
+    subcategories: [
+      {
+        title: "AI Art & Generation",
+        items: ["Midjourney", "DALL-E", "Stable Diffusion", "RunwayML", "Custom Workflows"],
+      },
+      {
+        title: "Visual Design",
+        items: ["Adobe Creative Suite", "Figma", "Photography", "Video Production", "Brand Design"],
+      },
+      {
+        title: "Writing & Content",
+        items: ["Creative Writing", "English Literature", "Content Strategy", "Storytelling", "Technical Writing"],
+      },
+      {
+        title: "Digital Art",
+        items: ["Digital Painting", "3D Visualization", "Motion Graphics", "UI/UX Design", "Generative Art"],
+      },
+    ],
+  };
 
   const experiences = [
     {
@@ -412,38 +469,145 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* Skills Section */}
-      <div ref={skillsRef} className="py-24 bg-slate-900">
+      {/* Interactive Brain Section */}
+      <div ref={brainRef} className="py-16 px-8 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-5xl font-extralight mb-8 tracking-wide text-white scroll-animate ${skillsInView ? "fade-in" : ""}`}
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            >
-              Skills & <span className="text-orange-200/90">Expertise</span>
-            </h2>
+          <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
+            <div className="relative inline-block p-8">
+              {/* Brain Container with 3D Rotation */}
+              <div className="perspective-container">
+                <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] mx-auto cursor-pointer">
+                  <div 
+                    className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}
+                    onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
+                    onClick={() => setSelectedBrainSide(selectedBrainSide === 'left' ? 'right' : 'left')}
+                  >
+                    {/* Technical Brain (Front) */}
+                    <div className="brain-side">
+                      <CloudflareImage
+                        src="brain-tekie-blue"
+                        alt="TEKKIE"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                        style={{ transform: 'scale(0.9)' }}
+                      />
+                    </div>
+
+                    {/* Creative Brain (Back - flipped) */}
+                    <div className="brain-side brain-back">
+                      <CloudflareImage
+                        src="brain-creative-pink"
+                        alt="PANTSER"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]"
+                        style={{ transform: 'scaleX(-1) scale(0.9)' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instructions */}
+              <p className="text-gray-400 mt-8 text-sm animate-pulse">
+                {isTouchDevice 
+                  ? "Tap the brain or labels to switch perspectives"
+                  : "Hover over the brain to toggle sides or Click below to select."
+                }
+              </p>
+
+              {/* Labels with click functionality */}
+              <div className="flex justify-between mt-8 text-lg max-w-md mx-auto">
+                <button
+                  onClick={() => setSelectedBrainSide('left')}
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
+                    selectedBrainSide === 'left' ? 'text-blue-400 scale-110' : 'text-gray-400 hover:text-blue-300'
+                  }`}
+                >
+                  <TbCode className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <span className="font-light">Tekkie</span>
+                </button>
+                <button
+                  onClick={() => setSelectedBrainSide('right')}
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
+                    selectedBrainSide === 'right' ? 'text-pink-400 scale-110' : 'text-gray-400 hover:text-pink-300'
+                  }`}
+                >
+                  <TbPalette className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <span className="font-light">Pantser</span>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className={`bg-gray-800/40 p-6 rounded-lg scroll-animate ${skillsInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                <h3 className="text-xl font-medium text-white mb-4">
-                  {skillGroup.category}
+          {/* Content Display based on selection */}
+          <div ref={contentRef} className="mt-16">
+            {selectedBrainSide === 'left' && (
+              <div className={`scroll-animate ${contentInView ? "fade-in" : ""}`}>
+                <h3 className="text-4xl font-extralight text-center mb-4 text-blue-400"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  {technicalSkills.category}
                 </h3>
-                <div className="space-y-2">
-                  {skillGroup.items.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="flex items-center">
-                      <div className="w-2 h-2 bg-orange-200 rounded-full mr-3"></div>
-                      <span className="text-gray-300">{skill}</span>
+                <p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+                  {technicalSkills.description}
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {technicalSkills.subcategories.map((subcat, index) => (
+                    <div
+                      key={index}
+                      className="bg-blue-900/20 border border-blue-800/40 rounded-lg p-6"
+                    >
+                      <h4 className="text-xl font-medium text-blue-300 mb-4">
+                        {subcat.title}
+                      </h4>
+                      <div className="space-y-2">
+                        {subcat.items.map((item, itemIndex) => (
+                          <div key={itemIndex} className="flex items-center">
+                            <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                            <span className="text-gray-300">{item}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+            )}
+
+            {selectedBrainSide === 'right' && (
+              <div className={`scroll-animate ${contentInView ? "fade-in" : ""}`}>
+                <h3 className="text-4xl font-extralight text-center mb-4 text-pink-400"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  {creativeSkills.category}
+                </h3>
+                <p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+                  {creativeSkills.description}
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {creativeSkills.subcategories.map((subcat, index) => (
+                    <div
+                      key={index}
+                      className="bg-pink-900/20 border border-pink-800/40 rounded-lg p-6"
+                    >
+                      <h4 className="text-xl font-medium text-pink-300 mb-4">
+                        {subcat.title}
+                      </h4>
+                      <div className="space-y-2">
+                        {subcat.items.map((item, itemIndex) => (
+                          <div key={itemIndex} className="flex items-center">
+                            <div className="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                            <span className="text-gray-300">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -456,7 +620,7 @@ function AboutPage() {
               className={`text-5xl font-extralight mb-8 tracking-wide text-white scroll-animate ${experienceInView ? "fade-in" : ""}`}
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
-              Professional <span className="text-orange-200/90">Journey</span>
+              My <span className="text-orange-200/90">Journey</span>
             </h2>
           </div>
 
@@ -803,6 +967,47 @@ function AboutPage() {
         .fade-in {
           opacity: 1;
           transform: translate(0);
+        }
+
+        .perspective-container {
+          perspective: 1000px;
+        }
+
+        .rotate-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rotate-container.rotated {
+          transform: rotateY(180deg);
+        }
+
+        .brain-side {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .brain-back {
+          transform: rotateY(180deg);
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .float-animation {
+          animation: float 4s ease-in-out infinite;
         }
       `}</style>
     </div>

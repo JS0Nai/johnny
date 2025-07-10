@@ -52,3 +52,4 @@ media/*.svg
 .env
 johnny.code-workspace
 pages/test-images.js
+design/
