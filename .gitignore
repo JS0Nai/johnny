@@ -51,3 +51,4 @@ media/*.svg
 # Environment files
 .env
 johnny.code-workspace
+pages/test-images.js

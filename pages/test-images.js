@@ -7,13 +7,13 @@ export default function TestImages() {
       
       <div className="grid grid-cols-2 gap-8">
         <div>
-          <h2 className="text-white mb-4">Regular img tag - Brain Tech Blue</h2>
+          <h2 className="text-white mb-4">Regular img tag - Brain Tekie Blue</h2>
           <img 
-            src="/media/brain-tech-blue.png" 
-            alt="Brain Tech Blue"
+            src="/media/brain-tekie-blue.png" 
+            alt="Brain Tekie Blue"
             className="w-64 h-64 bg-gray-800 border border-gray-600"
           />
-          <p className="text-gray-400 mt-2">Path: /media/brain-tech-blue.png</p>
+          <p className="text-gray-400 mt-2">Path: /media/brain-tekie-blue.png</p>
         </div>
         
         <div>

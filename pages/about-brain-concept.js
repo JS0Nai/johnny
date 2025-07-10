@@ -251,7 +251,7 @@ function AboutPage() {
             <div className="relative inline-block p-8">
               {/* Brain Container with 3D Rotation */}
               <div className="perspective-container">
-                <div className="relative w-96 h-96 mx-auto cursor-pointer">
+                <div className="relative w-[450px] h-[450px] mx-auto cursor-pointer">
                   <div 
                     className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}
                     onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
