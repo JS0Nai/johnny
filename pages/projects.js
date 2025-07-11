@@ -262,8 +262,8 @@ function ProjectsPage() {
     },
     {
       id: 11,
-      title: "A New Model for Reading Development",
-      category: "education",
+      title: "The Science of Reading",
+      category: "education and research",
       status: "In Progress",
       year: "2023",
       description:
