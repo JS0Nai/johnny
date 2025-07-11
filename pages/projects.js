@@ -60,7 +60,7 @@ function ProjectsPage() {
         "Complex document understanding",
       ],
       image: "/assets/images/project-ide.png",
-      link: "https://github.com/JS0Nai/EDS-3",
+      link: null,
       github: "/contact",
     },
     {
@@ -84,7 +84,7 @@ function ProjectsPage() {
         "Massively parallel processing with intelligent batching",
       ],
       image: "/assets/images/project-firewood.png",
-      link: "https://github.com/JS0Nai/firewood",
+      link: null,
       github: "/contact",
     },
     {
@@ -108,7 +108,7 @@ function ProjectsPage() {
         "Comprehensive export options (.patch, text files)",
       ],
       image: "/assets/images/project-txt-ray.png",
-      link: "https://github.com/JS0Nai/tXt-ray",
+      link: null,
       github: "/contact",
     },
     {
@@ -127,7 +127,7 @@ function ProjectsPage() {
         "AI-powered semantic similarity using embeddings",
       ],
       image: "/assets/images/project-dupstep.png",
-      link: "https://github.com/JS0Nai/dupstep",
+      link: null,
       github: "/contact",
     },
     {
@@ -152,7 +152,7 @@ function ProjectsPage() {
         "YOLOv8 segmentation model with training toolkit",
       ],
       image: "/assets/images/project-seymour.png",
-      link: "https://github.com/JS0Nai/seymr",
+      link: null,
       github: "/contact",
     },
     {

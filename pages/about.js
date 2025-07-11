@@ -543,7 +543,7 @@ function AboutPage() {
       </div>
 
       {/* Interactive Brain Section */}
-      <div ref={brainRef} className="py-16 px-8 bg-slate-900">
+      <div ref={brainRef} className="py-16 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
             <div className="relative inline-block p-8">
@@ -698,10 +698,13 @@ function AboutPage() {
           </div>
 
           <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-4 lg:left-1/3 top-0 bottom-0 w-0.5 bg-gray-700"></div>
+            
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
+                className={`relative flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Mobile + Desktop - Image */}
