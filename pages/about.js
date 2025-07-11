@@ -183,27 +183,24 @@ function AboutPage() {
 
   const experiences = [
     {
-      period: "1979",
+      period: "Early '80s",
       title: "The Writing Journey Begins",
       image: "typewriter-green",
-      imageCaption: "Writing journey begins.",
-      description: "Started my creative journey with a typewriter, discovering the power of written expression.",
+      description: "\"If a story is in you, it has to come out.\" - William Faulkner",
       achievements: [],
     },
     {
-      period: "1983",
-      title: "TRS-80 Model 4",
+      period: "Early to Mid '80s",
+      title: "TRS-80",
       image: "trs80-computer",
-      imageCaption: "TRS-80 (1983)\n- Model 4 (Tandy/RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives",
-      description: "First computer experience with the TRS-80, learning BASIC programming and discovering the digital world.",
+      description: "Coding journey begins. Mostly creating ASCII boxing programs\n- Model 4 (RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives.",
       achievements: [],
     },
     {
-      period: "1985",
+      period: "Early to Mid '80s",
       title: "Commodore VIC-20",
       image: "vic20-computer",
-      imageCaption: "Vic 20\n- The best worst video games ever!",
-      description: "Gaming and programming on the VIC-20, exploring early home computing.",
+      description: "The best worst video games ever!",
       achievements: [],
     },
     {
@@ -215,11 +212,10 @@ function AboutPage() {
       achievements: [],
     },
     {
-      period: "1988",
+      period: "Mid to Late '80s",
       title: "Electronic Typewriter",
       image: "electronic-typewriter",
-      imageCaption: "Electronic typewriter - much better for night writing.",
-      description: "Upgraded to electronic typewriting, bridging analog and digital writing.",
+      description: "Electronic typewriter upgrade - much better for night writing.",
       achievements: [],
     },
     {
@@ -231,19 +227,32 @@ function AboutPage() {
       achievements: [],
     },
     {
-      period: "1990",
+      period: "Mid to Late '80s",
       title: "Commodore 64",
       image: "commodore64-setup",
-      imageCaption: "Commodore 64\n- Big power up!",
-      description: "Major upgrade to the Commodore 64, unlocking new creative and technical possibilities.",
+      description: "Big power up!",
       achievements: [],
     },
     {
-      period: "1995",
+      period: "Early '90s",
+      title: "ProWrite Document",
+      image: "prowrite-document",
+      imageOnly: true,
+      description: "Early word processing and document creation.",
+      achievements: [],
+    },
+    {
+      period: "Mid '90s",
       title: "Network Infrastructure",
       image: "ethernet-wiring",
-      imageCaption: "Multi-floor ethernet wiring - before WIFI ...",
-      description: "Building network infrastructure, laying ethernet cables across multiple floors in the pre-WiFi era.",
+      description: "Multi-floor ethernet wiring - before the WIFI ers.",
+      achievements: [],
+    },
+    {
+      period: "Late '90s",
+      title: "Tower Computing",
+      image: "desktop-computers",
+      description: "More towers more problems.",
       achievements: [],
     },
     {
@@ -692,61 +701,72 @@ function AboutPage() {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`flex flex-col lg:flex-row gap-8 mb-16 scroll-animate ${experienceInView ? "fade-in" : ""}`}
+                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16 scroll-animate ${experienceInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                {/* Left side - Image */}
-                <div className="lg:w-1/3 flex justify-center lg:justify-end">
+                {/* Mobile + Desktop - Image */}
+                <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
                   {exp.image && (
                     <div className="relative">
                       <CloudflareImage
                         src={exp.image}
                         alt={exp.title}
-                        width={300}
-                        height={200}
+                        width={
+                          exp.imageOnly ? 75 :  // Image-only: 50% smaller (75px)
+                          exp.image === 'ethernet-wiring' ? 150 :  // Ethernet: keep as is (150px)
+                          188  // All others: 25% larger (188px)
+                        }
+                        height={
+                          exp.imageOnly ? 50 :  // Image-only: 50% smaller (50px)
+                          exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
+                          125  // All others: 25% larger (125px)
+                        }
                         className="rounded-lg object-cover"
                       />
-                      {exp.imageCaption && !exp.imageOnly && (
-                        <div className="mt-2 text-sm text-gray-400 whitespace-pre-line">
-                          {exp.imageCaption}
-                        </div>
-                      )}
                     </div>
                   )}
                 </div>
 
-                {/* Timeline line */}
-                <div className="hidden lg:block w-px bg-gray-700 relative">
-                  <div className="absolute -left-2 -top-2 w-5 h-5 bg-orange-200 rounded-full border-4 border-gray-900"></div>
-                </div>
-
-                {/* Right side - Content */}
-                <div className="lg:w-2/3 lg:pl-8">
-                  <div className="text-orange-200 font-medium mb-2">
-                    {exp.period}
+                {/* Timeline line - only show for non-image-only entries on desktop */}
+                {!exp.imageOnly && (
+                  <div className="hidden lg:block w-px bg-gray-700 relative">
+                    <div className="absolute -left-2 -top-2 w-5 h-5 bg-orange-200 rounded-full border-4 border-gray-900"></div>
                   </div>
-                  
+                )}
+
+                {/* Mobile + Desktop - Content */}
+                <div className={`w-full ${exp.imageOnly ? 'lg:hidden' : 'lg:w-2/3 lg:pl-8'}`}>
                   {!exp.imageOnly && (
                     <>
-                      <h3 className="text-2xl font-medium text-white mb-2">
+                      <div className="text-orange-200 font-medium mb-2 text-center lg:text-left">
+                        {exp.period}
+                      </div>
+                      
+                      {exp.imageCaption && (
+                        <div className="text-sm text-gray-400 whitespace-pre-line mb-4 text-center lg:text-left">
+                          {exp.imageCaption}
+                        </div>
+                      )}
+                      
+                      <h3 className="text-xl lg:text-2xl font-medium text-white mb-2 text-center lg:text-left">
                         {exp.title}
                       </h3>
                       {exp.company && (
-                        <div className="text-orange-200/80 mb-4">{exp.company}</div>
+                        <div className="text-orange-200/80 mb-4 text-center lg:text-left">{exp.company}</div>
                       )}
                       {exp.location && (
-                        <div className="text-gray-400 text-sm mb-4">{exp.location}</div>
+                        <div className="text-gray-400 text-sm mb-4 text-center lg:text-left">{exp.location}</div>
                       )}
-                      <p className="text-gray-300 mb-6 leading-relaxed">
+                      <p className="text-gray-300 mb-6 leading-relaxed text-center lg:text-left">
                         {exp.description}
                       </p>
 
                       {exp.achievements.length > 0 && (
                         <div className="space-y-2">
                           {exp.achievements.map((achievement, achIndex) => (
-                            <div key={achIndex} className="flex items-start">
+                            <div key={achIndex} className="flex items-start justify-center lg:justify-start">
                               <div className="w-1.5 h-1.5 bg-orange-200 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-400 text-sm">
+                              <span className="text-gray-400 text-sm text-center lg:text-left">
                                 {achievement}
                               </span>
                             </div>
