@@ -46,7 +46,7 @@ function ProjectsPage() {
   const projects = [
     {
       id: 1,
-      title: "Intelligent Document Ecosystem (IDE)",
+      title: "Intelligent Document Ecosystem",
       category: "ai",
       status: "Active",
       year: "2025",
@@ -70,7 +70,7 @@ function ProjectsPage() {
       status: "Completed",
       year: "2025",
       description:
-        "Professional Chat & Document Processing Toolkit. A comprehensive, production-ready toolkit for processing chat logs and unstructured documents with AI-powered analysis, topic extraction, and intelligent cleaning.",
+        "Professional Chat & Document Processing Toolkit. A comprehensive, production-ready toolkit for processing structured and unstructured documents programmatically and with AI-powered analysis.",
       technologies: [
         "Python",
         "OpenAI GPT",
@@ -94,7 +94,7 @@ function ProjectsPage() {
       status: "Completed",
       year: "2025",
       description:
-        "A powerful browser-based text comparison tool with Git-like features, inline comments, blame view, and advanced search capabilities.",
+        "A simple but powerful browser-based text comparison tool with Git-like features, inline comments, blame view, and advanced search capabilities.",
       technologies: [
         "JavaScript",
         "Browser-based",
@@ -137,7 +137,7 @@ function ProjectsPage() {
       status: "Completed",
       year: "2025",
       description:
-        "Novel computer vision project that monitors food bowl volume via Reolink E1 Pro camera and controls media playbook based on eating behavior. Uses icon-based volume estimation and archives data for analysis.",
+        "Computer vision project involving vision machine learning algorithms. Volume estimation monitoring via Reolink E1 Pro camera - archiveing data for analysis.",
       technologies: [
         "Python",
         "YOLOv8",
@@ -179,7 +179,7 @@ function ProjectsPage() {
       title: "Repo-rt",
       category: "ai",
       status: "Completed",
-      year: "2024",
+      year: "2025",
       description:
         "Transform your code repositories into actionable insights for both human understanding and advanced AI analysis. A powerful Python-based toolkit designed to scan local repositories or directories.",
       technologies: [
@@ -246,7 +246,7 @@ function ProjectsPage() {
       title: "Digital Asset Management",
       category: "creative",
       status: "Completed",
-      year: "2023",
+      year: "2024",
       description:
         "A comprehensive digital asset management system for creative teams with AI-powered tagging and search capabilities.",
       technologies: ["React", "Express.js", "MongoDB", "AWS S3"],
@@ -265,7 +265,7 @@ function ProjectsPage() {
       title: "The Science of Reading",
       category: "education and research",
       status: "In Progress",
-      year: "2023",
+      year: "2025",
       description:
         "A research paper synthesizing findings from cognitive science, education, and vision science to create a comprehensive overview of how children aged 5-15 learn to read. It details eye movement mechanics, evidence-based teaching strategies, and examines obstacles like dyslexia, providing a holistic model for educators, clinicians, and parents.",
       technologies: ["Cognitive Science", "Vision Science", "Educational Research", "Neuroscience"],
