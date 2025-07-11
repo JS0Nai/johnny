@@ -686,11 +686,11 @@ function AboutPage() {
       </div>
 
       {/* Experience Section */}
-      <div ref={experienceRef} className="py-24 bg-gray-900">
+      <div ref={experienceRef} className="py-12 lg:py-24 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2
-              className={`text-5xl font-extralight mb-8 tracking-wide text-white scroll-animate ${experienceInView ? "fade-in" : ""}`}
+              className={`text-3xl lg:text-5xl font-extralight mb-8 tracking-wide text-white`}
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               My <span className="text-orange-200/90">Journey</span>
@@ -701,7 +701,7 @@ function AboutPage() {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16 scroll-animate ${experienceInView ? "fade-in" : ""}`}
+                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Mobile + Desktop - Image */}
@@ -715,7 +715,7 @@ function AboutPage() {
                           exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
                           exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
                           exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
-                          exp.image === 'prowrite-document' ? 101 :  // ProWrite: 35% bigger (101px)
+                          exp.image === 'prowrite-document' ? 113 :  // ProWrite: 50% bigger (113px)
                           exp.imageOnly ? 75 :  // Other image-only: 50% smaller (75px)
                           exp.image === 'ethernet-wiring' ? 150 :  // Ethernet: keep as is (150px)
                           188  // All others: 25% larger (188px)
@@ -724,7 +724,7 @@ function AboutPage() {
                           exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
                           exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
                           exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
-                          exp.image === 'prowrite-document' ? 68 :  // ProWrite: 35% bigger (68px)
+                          exp.image === 'prowrite-document' ? 75 :  // ProWrite: 50% bigger (75px)
                           exp.imageOnly ? 50 :  // Other image-only: 50% smaller (50px)
                           exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
                           125  // All others: 25% larger (125px)
