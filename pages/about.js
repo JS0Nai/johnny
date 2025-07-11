@@ -698,13 +698,10 @@ function AboutPage() {
           </div>
 
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-4 lg:left-1/3 top-0 bottom-0 w-0.5 bg-gray-700"></div>
-            
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`relative flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
+                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Mobile + Desktop - Image */}
@@ -718,7 +715,7 @@ function AboutPage() {
                           exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
                           exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
                           exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
-                          exp.image === 'prowrite-document' ? 113 :  // ProWrite: 50% bigger (113px)
+                          exp.image === 'prowrite-document' ? 225 :  // ProWrite: 50% bigger (225px)
                           exp.imageOnly ? 75 :  // Other image-only: 50% smaller (75px)
                           exp.image === 'ethernet-wiring' ? 150 :  // Ethernet: keep as is (150px)
                           188  // All others: 25% larger (188px)
@@ -727,7 +724,7 @@ function AboutPage() {
                           exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
                           exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
                           exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
-                          exp.image === 'prowrite-document' ? 75 :  // ProWrite: 50% bigger (75px)
+                          exp.image === 'prowrite-document' ? 150:  // ProWrite: 50% bigger (75px)
                           exp.imageOnly ? 50 :  // Other image-only: 50% smaller (50px)
                           exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
                           125  // All others: 25% larger (125px)
@@ -738,9 +735,9 @@ function AboutPage() {
                   )}
                 </div>
 
-                {/* Timeline line - only show for non-image-only entries on desktop */}
+                {/* Timeline line - show for non-image-only entries on all screens */}
                 {!exp.imageOnly && (
-                  <div className="hidden lg:block w-px bg-gray-700 relative">
+                  <div className="block w-px bg-gray-700 relative">
                     <div className="absolute -left-2 -top-2 w-5 h-5 bg-orange-200 rounded-full border-4 border-gray-900"></div>
                   </div>
                 )}
