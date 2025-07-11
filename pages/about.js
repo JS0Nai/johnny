@@ -193,7 +193,7 @@ function AboutPage() {
       period: "Early to Mid '80s",
       title: "TRS-80",
       image: "trs80-computer",
-      description: "Coding journey begins. Mostly creating ASCII boxing programs\n- Model 4 (RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives.",
+      description: "- Coding journey begins. Mostly creating ASCII boxing programs\n- Model 4 (RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives.",
       achievements: [],
     },
     {
@@ -245,14 +245,14 @@ function AboutPage() {
       period: "Mid '90s",
       title: "Network Infrastructure",
       image: "ethernet-wiring",
-      description: "Multi-floor ethernet wiring - before the WIFI ers.",
+      description: "Multi-floor ethernet wiring - before the WIFI era.",
       achievements: [],
     },
     {
       period: "Late '90s",
       title: "Tower Computing",
       image: "desktop-computers",
-      description: "More towers more problems.",
+      description: "You can never have too many towers.",
       achievements: [],
     },
     {
@@ -712,12 +712,20 @@ function AboutPage() {
                         src={exp.image}
                         alt={exp.title}
                         width={
-                          exp.imageOnly ? 75 :  // Image-only: 50% smaller (75px)
+                          exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
+                          exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
+                          exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
+                          exp.image === 'prowrite-document' ? 101 :  // ProWrite: 35% bigger (101px)
+                          exp.imageOnly ? 75 :  // Other image-only: 50% smaller (75px)
                           exp.image === 'ethernet-wiring' ? 150 :  // Ethernet: keep as is (150px)
                           188  // All others: 25% larger (188px)
                         }
                         height={
-                          exp.imageOnly ? 50 :  // Image-only: 50% smaller (50px)
+                          exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
+                          exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
+                          exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
+                          exp.image === 'prowrite-document' ? 68 :  // ProWrite: 35% bigger (68px)
+                          exp.imageOnly ? 50 :  // Other image-only: 50% smaller (50px)
                           exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
                           125  // All others: 25% larger (125px)
                         }
