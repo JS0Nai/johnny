@@ -1,81 +1,175 @@
 # Cloudflare Images Integration
 
-This project now includes Cloudflare Images integration for optimized image delivery and management.
+Complete setup guide for integrating Cloudflare Images in Next.js projects.
 
-## How It Works
+## Overview
 
-- **Development**: Images load from local `/media` folder for better developer experience
-- **Production**: Images are served from Cloudflare's global CDN for optimal performance
-- **Automatic Upload**: Images are automatically uploaded to Cloudflare during builds
+- **Development**: Images load from local `/public/media` folder
+- **Production**: Images are served from Cloudflare's global CDN
+- **Smart Component**: Automatically switches between local and CDN based on environment
 
-## Setup
+## Complete Setup Guide
 
-### 1. Environment Variables
+### 1. Get Cloudflare API Token
 
-Create a `.env` file in the project root:
+1. Go to https://dash.cloudflare.com/profile/api-tokens
+2. Click "Create Token"
+3. Use "Custom token" template with these permissions:
+   - **Account** → Cloudflare Images:Edit
+4. Copy the token
+
+### 2. Create Environment File
+
+Create `.env` file in project root:
 
 ```
-CLOUDFLARE_API_TOKEN=your_token_here
-CLOUDFLARE_ACCOUNT_ID=97af56fe1b421ea97a8f401fab7e5cc2
+CLOUDFLARE_API_TOKEN=your-actual-token-here
+CLOUDFLARE_ACCOUNT_ID=your-account-id
 ```
 
-### 2. Install Dependencies
+**Important**: Add `.env` to `.gitignore` to keep token secure
+
+### 3. Set Up Project Structure
+
+```
+your-project/
+├── public/
+│   └── media/                  # Images go here
+├── components/
+│   └── CloudflareImage.js      # Component (copy from below)
+├── scripts/
+│   └── upload-images.js        # Upload script (copy from below)
+├── .env                        # Your API credentials
+└── .gitignore                  # Must include .env
+```
+
+### 4. Install Dependencies
 
 ```bash
-npm install
+npm install form-data node-fetch
+```
+
+### 5. Copy Required Files
+
+**CloudflareImage Component** (`components/CloudflareImage.js`):
+```jsx
+import React from 'react';
+import Image from 'next/image';
+
+export default function CloudflareImage({ 
+  src, 
+  width, 
+  height, 
+  alt = "", 
+  className = "", 
+  priority = false,
+  objectFit = "cover",
+  ...props 
+}) {
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+  const cloudflareAccountHash = 'YOUR-ACCOUNT-HASH'; // Get this from Cloudflare dashboard
+  const variant = 'public';
+  
+  const imageId = src.startsWith('/') ? src.slice(1).split('/').pop().split('.')[0] : src.split('/').pop().split('.')[0];
+  
+  let imageSrc;
+  
+  if (isDevelopment) {
+    imageSrc = `/media/${imageId}.png`;
+  } else {
+    imageSrc = `https://imagedelivery.net/${cloudflareAccountHash}/${imageId}/${variant}`;
+  }
+  
+  if (typeof window === 'undefined' && !isDevelopment) {
+    return (
+      <img
+        src={imageSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        className={className}
+        style={{ objectFit }}
+        {...props}
+      />
+    );
+  }
+  
+  return (
+    <Image
+      src={imageSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+      style={{ objectFit }}
+      unoptimized={!isDevelopment}
+      {...props}
+    />
+  );
+}
+```
+
+**Upload Script** (`scripts/upload-images.js`): Copy from this repo
+
+### 6. Update package.json
+
+Add upload script:
+```json
+{
+  "scripts": {
+    "upload-images": "node scripts/upload-images.js"
+  }
+}
 ```
 
 ## Usage
 
 ### Adding New Images
 
-1. Place image files in the `/media` directory:
+1. Place images in `/public/media/`:
    ```bash
-   cp my-new-image.png media/
+   cp my-image.png public/media/
    ```
-2.5 run -> node scripts/upload-images.js
 
-or ?
+2. Upload to Cloudflare:
+   ```bash
+   npm run upload-images or node scripts/upload-images.js
+   ```
 
-2. Use the CloudflareImage component in your React components:
+3. Use in your components:
    ```jsx
    import CloudflareImage from '../components/CloudflareImage';
 
-   // Use filename without extension as src
    <CloudflareImage
-     src="my-new-image"
+     src="my-image"  // No extension needed
      alt="Description"
      width={800}
      height={600}
-     className="rounded-lg"
    />
    ```
 
-### Manual Upload
+## Getting Your Account Hash
 
-```bash
-# Upload all images in media folder
-npm run upload-images
-```
-
-## How It Works
-
-- Images in `/media` are excluded from Git (keeps repo lightweight)
-- During development: Component uses local files from `/media`
-- During production build: Images are uploaded to Cloudflare and URLs are embedded
-- The build process automatically runs the upload script via prebuild hook
+1. Go to Cloudflare Dashboard → Images
+2. Upload any test image
+3. Copy the hash from the image URL:
+   ```
+   https://imagedelivery.net/[THIS-IS-YOUR-HASH]/image-id/public
+   ```
 
 ## File Structure
 
 ```
-johnny/
+project/
+├── public/
+│   └── media/                  # All images here
 ├── components/
-│   └── CloudflareImage.js      # Main component
+│   └── CloudflareImage.js      # Smart component
 ├── scripts/
-│   └── upload-images.js        # Upload automation
-├── media/                      # Place new images here
-│   └── .gitkeep               # Preserves directory in Git
-└── .env                       # API credentials (not in Git)
+│   ├── upload-images.js        # Upload automation
+│   └── .cloudflare-images.json # Tracks uploaded images (auto-generated)
+└── .env                        # API credentials (not in Git)
 ```
 
 ## Best Practices

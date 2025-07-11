@@ -10,7 +10,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 // Configuration
-const MEDIA_DIR = path.resolve(__dirname, '../media');
+const MEDIA_DIR = path.resolve(__dirname, '../public/media');
 const CONFIG_FILE = path.resolve(__dirname, '.cloudflare-images.json');
 
 // Load or create configuration
