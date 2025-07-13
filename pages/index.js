@@ -46,9 +46,9 @@ function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },

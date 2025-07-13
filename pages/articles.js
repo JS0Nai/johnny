@@ -20,9 +20,9 @@ function ArticlesPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [articlesRef, articlesInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [articlesRef, articlesInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },

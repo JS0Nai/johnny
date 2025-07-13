@@ -30,10 +30,10 @@ function ContactPage() {
   const [contactSubmitStatus, setContactSubmitStatus] = useState(null);
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [contactRef, contactInView] = useInView({ threshold: 0.2 });
-  const [servicesRef, servicesInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [contactRef, contactInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [servicesRef, servicesInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },

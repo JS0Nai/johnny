@@ -26,11 +26,11 @@ function AboutPage() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [brainRef, brainInView] = useInView({ threshold: 0.2 });
-  const [contentRef, contentInView] = useInView({ threshold: 0.2 });
-  const [skillsRef, skillsInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [brainRef, brainInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [contentRef, contentInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [skillsRef, skillsInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },

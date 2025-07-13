@@ -24,9 +24,9 @@ function PortfolioPage() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   // InView hooks
-  const [heroRef, heroInView] = useInView({ threshold: 0.2 });
-  const [galleryRef, galleryInView] = useInView({ threshold: 0.2 });
-  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2 });
+  const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [galleryRef, galleryInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },
