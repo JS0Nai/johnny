@@ -50,8 +50,11 @@ media/*.svg
 
 # Environment files
 .env
+.env.local
 johnny.code-workspace
 pages/test-images.js
 design/
+.johnnie/
 web images/
 docs/
+public/media/breeze.png
