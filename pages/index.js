@@ -358,6 +358,37 @@ function HomePage() {
         </div>
       </div>
 
+      {/* Core Disciplines Section */}
+      <div className="py-24 bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-white mb-4">
+              Core Disciplines
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              An overview of my professional work and creative endeavors.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Projects", href: "/projects", description: "Web applications and software solutions." },
+              { title: "Applications", href: "/projects", description: "Custom-built applications for various platforms." },
+              { title: "Research", href: "/research", description: "In-depth analysis and technical explorations." },
+              { title: "Portfolio", href: "/portfolio", description: "A showcase of AI-generated and digital art." },
+              { title: "Literature", href: "/literature", description: "Creative and technical writing projects." },
+              { title: "Articles", href: "/articles", description: "Published articles on technology and design." },
+            ].map((item, index) => (
+              <Link href={item.href} key={index}>
+                <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700/50 hover:border-orange-200/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full flex flex-col">
+                  <h3 className="text-2xl font-light text-white mb-3">{item.title}</h3>
+                  <p className="text-gray-400 flex-grow">{item.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Portfolio Showcase Section */}
       <div className="relative bg-gray-900 py-24 overflow-hidden">
         <div className="text-center mb-16">
