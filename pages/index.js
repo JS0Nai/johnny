@@ -44,10 +44,13 @@ function HomePage() {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [numbers, setNumbers] = useState(["0", "0", "0", "0", "0", "0"]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [coreDisciplinesRef, coreDisciplinesInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [playgroundRef, playgroundInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
@@ -69,6 +72,14 @@ function HomePage() {
       setTimeout(() => setShowSubheader(true), 2000),
     ];
     return () => timers.forEach((timer) => clearTimeout(timer));
+  }, []);
+
+  // Hero carousel rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -206,10 +217,9 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div>
-          <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm">
-            <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm">
+        <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-20">
                 <Link href="/">
                   <div className="cursor-pointer">
@@ -242,8 +252,6 @@ function HomePage() {
               </div>
             </div>
           </header>
-        </div>
-      </div>
 
       {/* Menu Overlay */}
       <div
@@ -301,87 +309,214 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Signature Image Section */}
-      <div>
-        <div className="flex justify-center items-center pt-24 pb-8">
-          <div className="relative w-full max-w-2xl mx-auto px-4">
-            <CloudflareImage
-              src="jli-signature1000"
-              alt="JLi Signature"
-              width={1200}
-              height={1000}
-              className={`w-full h-auto object-contain max-w-lg mx-auto
-                opacity-0 transition-opacity duration-1000
-                ${showImage ? "opacity-80" : "opacity-0"}
-                sm:w-4/5 md:w-3/4 lg:w-2/3`}
-            />
-          </div>
-        </div>
-
-        {/* Hero Section */}
-        <div
-          ref={heroRef}
-          className="flex items-center justify-center p-4 w-full overflow-hidden"
-        >
-          <div className="w-full max-w-[95vw] lg:max-w-[2000px] mx-auto text-center relative">
-            {/* Welcome and Portfolio Text */}
-            <div
-              className={`relative mb-16 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            >
-              <div className="text-6xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-[11rem] font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter px-4 leading-tight">
-                PORTFOLIO
-              </div>
-              <div className="absolute bottom-2 left-0 right-0 text-gray-400 text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl tracking-widest">
-                John Li
+      {/* Enhanced Hero Section with Carousel - Full Screen */}
+      <div ref={heroRef} className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden bg-slate-900">
+        <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
+          <div className="w-full text-center z-10">
+            {/* Content Carousel */}
+            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] mb-8 md:mb-12 overflow-visible">
+            {/* Slide 1: Signature */}
+            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
+              ${currentHeroSlide === 0 ? 'opacity-100' : 'opacity-0'}`}>
+              <CloudflareImage
+                src="jli-signature1000"
+                alt="JLi Signature"
+                width={450}
+                height={375}
+                className="max-w-[70vw] md:max-w-[450px] lg:max-w-[500px] w-full h-auto opacity-80 object-contain"
+              />
+            </div>
+            
+            {/* Slide 2: Latest Work */}
+            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
+              ${currentHeroSlide === 1 ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="text-center">
+                <h3 className="text-2xl mb-4 text-white">Latest: <span className="text-orange-200">AI Art Collection</span></h3>
+                <CloudflareImage
+                  src="prettywitch"
+                  alt="Latest Work"
+                  width={500}
+                  height={400}
+                  className="rounded-lg shadow-2xl max-w-[500px] w-full"
+                />
               </div>
             </div>
+            
+            {/* Slide 3: Featured Article */}
+            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
+              ${currentHeroSlide === 2 ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="max-w-xl text-left px-4">
+                <p className="text-gray-400 mb-4">FEATURED ARTICLE</p>
+                <h3 className="text-3xl mb-4 text-white">The Future of AI in Creative Industries</h3>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  Exploring how artificial intelligence is transforming creative workflows and opening new possibilities...
+                </p>
+                <Link href="/articles">
+                  <span className="text-orange-200 hover:text-orange-300 cursor-pointer">Read More →</span>
+                </Link>
+              </div>
+            </div>
+          </div>
 
-            {/* Tagline Section */}
-            <div className="mt-24">
-              <h1
-                className={`text-white text-4xl font-light mb-8 leading-relaxed scroll-animate-left ${heroInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                Creative freedom and the pursuit of improving how things work
+          {/* Hero Text */}
+          <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter mb-4 scroll-animate ${heroInView ? "fade-in" : ""}`}>
+            PORTFOLIO
+          </h1>
+          <h2 className={`text-xl sm:text-2xl md:text-3xl text-gray-400 mb-6 md:mb-8 scroll-animate-left ${heroInView ? "fade-in" : ""}`} style={{ transitionDelay: "200ms" }}>
+            John Li
+          </h2>
+          <p className={`text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto scroll-animate-right ${heroInView ? "fade-in" : ""}`} style={{ transitionDelay: "400ms" }}>
+            Creative freedom and the pursuit of improving how things work
+          </p>
+          </div>
+        </div>
+      </div>
+
+      {/* NEW HERO SECTION - For Comparison */}
+      <div className="h-screen w-full flex flex-col justify-center items-center relative bg-slate-900 border-t-4 border-orange-200">
+        <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
+          <div className="w-full text-center relative">
+            
+            {/* Background Signature - Behind Text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+              <CloudflareImage
+                src="jli-signature1000"
+                alt="JLi Signature Background"
+                width={800}
+                height={600}
+                className="w-full max-w-[90vw] md:max-w-[800px] lg:max-w-[900px] h-auto opacity-20 object-contain"
+              />
+            </div>
+
+            {/* Foreground Content */}
+            <div className="relative z-10">
+              {/* Large Portfolio Text */}
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold bg-gradient-to-b from-gray-200 to-gray-600 bg-clip-text text-transparent tracking-tighter mb-6">
+                PORTFOLIO
               </h1>
-              <p
-                className={`text-gray-400 text-lg scroll-animate-right ${heroInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: "400ms" }}
-              >
-                <br />
+              
+              {/* Name */}
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 font-light">
+                John Li
+              </h2>
+              
+              {/* Tagline */}
+              <p className="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                Creative freedom and the pursuit of improving how things work
               </p>
+
+              {/* Simple Carousel Dots - No Auto-Rotation */}
+              <div className="flex justify-center space-x-3 mt-12">
+                <button 
+                  onClick={() => setCurrentHeroSlide(0)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 0 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
+                />
+                <button 
+                  onClick={() => setCurrentHeroSlide(1)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 1 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
+                />
+                <button 
+                  onClick={() => setCurrentHeroSlide(2)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 2 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
+                />
+              </div>
+
+              {/* Content Overlay Based on Slide */}
+              {currentHeroSlide === 1 && (
+                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-sm">
+                  <h3 className="text-lg text-orange-200 mb-2">Latest Work</h3>
+                  <p className="text-sm text-gray-300">AI Art Collection</p>
+                </div>
+              )}
+
+              {currentHeroSlide === 2 && (
+                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-sm">
+                  <h3 className="text-lg text-orange-200 mb-2">Featured Article</h3>
+                  <p className="text-sm text-gray-300">The Future of AI in Creative Industries</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Core Disciplines Section */}
-      <div className="py-24 bg-slate-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-white mb-4">
-              Core Disciplines
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              An overview of my professional work and creative endeavors.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Projects", href: "/projects", description: "Web applications and software solutions." },
-              { title: "Applications", href: "/projects", description: "Custom-built applications for various platforms." },
-              { title: "Research", href: "/research", description: "In-depth analysis and technical explorations." },
-              { title: "Portfolio", href: "/portfolio", description: "A showcase of AI-generated and digital art." },
-              { title: "Literature", href: "/literature", description: "Creative and technical writing projects." },
-              { title: "Articles", href: "/articles", description: "Published articles on technology and design." },
-            ].map((item, index) => (
-              <Link href={item.href} key={index}>
-                <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700/50 hover:border-orange-200/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full flex flex-col">
-                  <h3 className="text-2xl font-light text-white mb-3">{item.title}</h3>
-                  <p className="text-gray-400 flex-grow">{item.description}</p>
+      {/* Core Disciplines Section with Tech Stack Visualizer */}
+      <div ref={coreDisciplinesRef} className="py-24 bg-slate-900 relative z-10">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-5xl font-light text-white mb-4 text-center">
+            Core <span className="text-orange-200">Disciplines</span>
+          </h2>
+          <p className="text-center text-gray-400 mb-12 text-lg">
+            An innovative showcase of professional work and creative exploration
+          </p>
+          
+          <div className="bento-3d-grid">
+            {/* Regular Discipline Boxes */}
+            <Link href="/projects">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '100ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">💡</div>
+                  <h3 className="box-title">Applications</h3>
+                  <p className="box-preview">Custom-built platforms</p>
                 </div>
-              </Link>
-            ))}
+              </div>
+            </Link>
+            
+            <Link href="/research">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">🔬</div>
+                  <h3 className="box-title">Research</h3>
+                  <p className="box-preview">Technical explorations</p>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/portfolio">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '300ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">🎨</div>
+                  <h3 className="box-title">Portfolio</h3>
+                  <p className="box-preview">AI-generated art gallery</p>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/literature">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '400ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">✍️</div>
+                  <h3 className="box-title">Literature</h3>
+                  <p className="box-preview">Creative narratives</p>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/articles">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '500ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">📚</div>
+                  <h3 className="box-title">Articles</h3>
+                  <p className="box-preview">Published insights</p>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/about">
+              <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '600ms' }}>
+                <div className="box-overlay"></div>
+                <div className="box-content">
+                  <div className="box-icon">👤</div>
+                  <h3 className="box-title">Profile</h3>
+                  <p className="box-preview">About me & my journey</p>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -487,7 +622,53 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Tools & Technologies Banner */}
+      {/* AI Playground Section */}
+      <div ref={playgroundRef} className="py-24 bg-gradient-to-b from-slate-900 to-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className={`text-5xl font-light mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent scroll-animate ${playgroundInView ? "fade-in" : ""}`}>
+              AI Playground
+            </h2>
+            <p className={`text-xl text-gray-400 max-w-2xl mx-auto scroll-animate-left ${playgroundInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+              Experience the power of AI firsthand. Interactive demos coming soon!
+            </p>
+          </div>
+
+          <div className={`bg-gray-800/40 rounded-2xl p-8 shadow-2xl border border-gray-700/50 scroll-animate ${playgroundInView ? "fade-in" : ""}`} style={{ transitionDelay: '400ms' }}>
+            {/* Placeholder for Gradio */}
+            <div className="bg-gray-900 rounded-xl p-8 mb-8 text-center" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div>
+                <div className="text-6xl mb-4">🤖</div>
+                <h3 className="text-2xl text-white mb-4">AI Demo Coming Soon</h3>
+                <p className="text-gray-400 mb-6">We're setting up interactive AI experiences for you to try</p>
+                <Link href="/contact">
+                  <span className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg cursor-pointer inline-block transition-colors">
+                    Get Notified When Live
+                  </span>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Feature Pills */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-purple-500/10 border border-purple-500/30 rounded-full px-6 py-3 text-center text-purple-300">
+                🎨 Style Transfer
+              </div>
+              <div className="bg-pink-500/10 border border-pink-500/30 rounded-full px-6 py-3 text-center text-pink-300">
+                ✍️ Text Generation
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-full px-6 py-3 text-center text-blue-300">
+                🖼️ Image Analysis
+              </div>
+              <div className="bg-green-500/10 border border-green-500/30 rounded-full px-6 py-3 text-center text-green-300">
+                💬 AI Chat
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tools & Technologies Section */}
       <div className="relative py-16 bg-gray-900">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-light text-white mb-4">
@@ -498,9 +679,49 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden">
+        {/* Tech Stack Visualizer - Centered */}
+        <div className="flex justify-center mb-16">
+          <div className="tech-stack-standalone">
+            <div className="tech-stack-content-standalone">
+              <div className="tech-orbit-container">
+                <div className="orbit-center">
+                  <span style={{ fontSize: '3rem' }}>🚀</span>
+                </div>
+                
+                {/* Static positioned icons for better visibility */}
+                <div className="tech-icon-wrapper">
+                  <div className="tech-icon-item" style={{ top: '20%', left: '15%' }}>
+                    <SiReact className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <div className="tech-icon-item" style={{ top: '20%', right: '15%' }}>
+                    <SiPython className="w-8 h-8 text-yellow-400" />
+                  </div>
+                  <div className="tech-icon-item" style={{ bottom: '20%', left: '15%' }}>
+                    <SiOpenai className="w-8 h-8 text-green-400" />
+                  </div>
+                  <div className="tech-icon-item" style={{ bottom: '20%', right: '15%' }}>
+                    <SiDocker className="w-8 h-8 text-blue-500" />
+                  </div>
+                  <div className="tech-icon-item" style={{ top: '50%', left: '5%' }}>
+                    <SiAmazonaws className="w-8 h-8 text-orange-400" />
+                  </div>
+                  <div className="tech-icon-item" style={{ top: '50%', right: '5%' }}>
+                    <SiNextdotjs className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bottom-8 left-0 right-0 text-center z-20">
+                <h3 className="text-2xl font-light mb-2 text-white">Tech Stack</h3>
+                <p className="text-gray-400">Full-Stack AI Development</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tools & Technologies Scrolling Icons */}
+        <div className="relative overflow-hidden mb-6">
           <div className="flex animate-scroll-left">
-            <div className="flex items-center py-4 min-w-max">
+            <div className="flex items-center py-5 min-w-max">
               {[
                 SiOpenai,
                 SiAdobe,
@@ -531,7 +752,7 @@ function HomePage() {
                 />
               ))}
             </div>
-            <div className="flex items-center py-4 min-w-max">
+            <div className="flex items-center py-5 min-w-max">
               {[
                 SiOpenai,
                 SiAdobe,
@@ -557,39 +778,30 @@ function HomePage() {
                 SiMicrosoft,
               ].map((Icon, index) => (
                 <Icon
-                  key={`dup-${index}`}
+                  key={index}
                   className="text-gray-400 hover:text-orange-200 transition-colors w-8 h-8 mx-6"
                 />
               ))}
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom banner - scrolling right */}
-      <div className="relative mt-2">
-        <div
-          className="relative transform -rotate-6 bg-orange-200 -mx-8"
-          style={{
-            boxShadow: "0 0 20px rgba(0,0,0,0.1)",
-          }}
-        >
-          <div className="flex whitespace-nowrap animate-scroll-right">
-            <div className="flex items-center text-gray-900 text-2xl md:text-3xl font-semibold py-4">
-              {[1, 2, 3].map((i) => (
-                <span key={i} className="flex items-center">
-                  {"Generative AI * Custom Coding * Research * DevOps"
-                    .split("*")
-                    .map((text, index) => (
-                      <span key={index} className="flex items-center">
-                        <span>{text}</span>
-                        <span className="text-orange-300 mx-3 transform rotate-45 font-regular">
-                          ✱
-                        </span>
-                      </span>
-                    ))}
-                </span>
-              ))}
+        {/* GitHub Activity Ticker - Opposite Direction */}
+        <div className="bg-gray-800/40 border-y border-gray-700/50 py-2 overflow-hidden backdrop-blur-sm">
+          <div className="flex animate-ticker-reverse">
+            <div className="flex items-center whitespace-nowrap px-6">
+              <span className="text-green-400 text-xs mr-2">🟢</span>
+              <span className="text-gray-300 text-xs mr-8">Latest commit: <strong className="text-white">Added comprehensive AI generation feature with model selection and style transfer capabilities</strong> in portfolio-site repository • 2 hours ago</span>
+              <span className="text-orange-200 text-xs mr-2">📊</span>
+              <span className="text-gray-300 text-xs mr-8">This week: <strong className="text-white">47 commits</strong> across 5 active repositories including neural-network-experiments and data-visualization-tools</span>
+              <span className="text-red-400 text-xs mr-2">🔥</span>
+              <span className="text-gray-300 text-xs mr-8">Current development streak: <strong className="text-white">23 consecutive days</strong> of continuous coding and research</span>
+              <span className="text-yellow-400 text-xs mr-2">⭐</span>
+              <span className="text-gray-300 text-xs mr-8">New stars: <strong className="text-white">+12</strong> on Firewood machine learning framework project this week</span>
+              <span className="text-purple-400 text-xs mr-2">🚀</span>
+              <span className="text-gray-300 text-xs mr-8">Deployed: <strong className="text-white">3 new AI models</strong> to production environment on AWS infrastructure</span>
+              <span className="text-blue-400 text-xs mr-2">💡</span>
+              <span className="text-gray-300 text-xs mr-8">Research: Published findings on <strong className="text-white">transformer optimization techniques</strong> improving inference speed by 40%</span>
             </div>
           </div>
         </div>
@@ -858,6 +1070,346 @@ function HomePage() {
           </div>
         </div>
       </footer>
+
+      <style jsx global>{`
+        /* Keep existing styles */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* Fix Core Disciplines spacing */
+        .bento-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Box Styles from Option 3 */
+        .box-3d {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            width: 100%;
+            aspect-ratio: 4/3;
+        }
+
+        .box-3d:hover {
+            transform: rotateY(5deg) rotateX(-5deg) translateZ(10px);
+        }
+
+        .box-content {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1e293b, #334155) !important;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .box-3d:hover .box-content {
+            background: linear-gradient(135deg, #1e293b, rgba(251, 191, 36, 0.2));
+            border-color: rgba(251, 191, 36, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .box-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .box-3d:hover .box-icon {
+            transform: scale(1.15) translateY(-5px);
+            opacity: 1;
+        }
+
+        .box-title {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.1em;
+            color: white !important;
+        }
+
+        .box-preview {
+            color: #94a3b8 !important;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease 0.1s;
+            line-height: 1.4;
+        }
+
+        .box-3d:hover .box-preview {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .box-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(251, 191, 36, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .box-3d:hover .box-overlay {
+            opacity: 1;
+        }
+
+        /* Bento Size Variations */
+        .large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        .tall {
+            grid-row: span 2;
+        }
+
+        /* Fixed Tech Stack Styles */
+        .tech-stack-content {
+            background: linear-gradient(135deg, #0f172a, #1e293b) !important;
+            position: relative;
+        }
+
+        .tech-orbit-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit-center {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        .tech-icon-wrapper {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .tech-icon-item {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(30, 41, 59, 0.95);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .tech-icon-item:nth-child(1) { animation-delay: 0s; }
+        .tech-icon-item:nth-child(2) { animation-delay: 0.5s; }
+        .tech-icon-item:nth-child(3) { animation-delay: 1s; }
+        .tech-icon-item:nth-child(4) { animation-delay: 1.5s; }
+        .tech-icon-item:nth-child(5) { animation-delay: 2s; }
+        .tech-icon-item:nth-child(6) { animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .tech-stack-box:hover .tech-icon-item {
+            transform: scale(1.1);
+            border-color: rgba(251, 191, 36, 0.5);
+            background: rgba(30, 41, 59, 1);
+        }
+
+        /* Better GitHub Ticker */
+        .github-ticker {
+            background: rgba(30, 41, 59, 0.8);
+            border-top: 1px solid rgba(251, 191, 36, 0.2);
+            border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+            padding: 12px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        /* GitHub Ticker Animation */
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-ticker {
+            animation: ticker 30s linear infinite;
+        }
+
+        .animate-ticker-reverse {
+            animation: ticker-reverse 30s linear infinite;
+        }
+
+        .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        @keyframes ticker-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Standalone Tech Stack Styles */
+        .tech-stack-standalone {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .tech-stack-content-standalone {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0f172a, #1e293b) !important;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-stack-standalone:hover .tech-stack-content-standalone {
+            background: linear-gradient(135deg, #1e293b, rgba(251, 191, 36, 0.2)) !important;
+            border-color: rgba(251, 191, 36, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.fade-in,
+        .scroll-animate-left.fade-in,
+        .scroll-animate-right.fade-in {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-3d-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 650px;
+            }
+            
+            .tech-icon-item {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .orbit-center {
+                width: 100px;
+                height: 100px;
+            }
+
+            .tech-stack-standalone {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .bento-3d-grid {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+            }
+            
+            .large, .wide, .tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            
+            .tech-icon-item {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .orbit-center {
+                width: 90px;
+                height: 90px;
+            }
+
+            .tech-stack-standalone {
+                width: 280px;
+                height: 280px;
+            }
+        }
+      `}</style>
 
       <style jsx>{`
         @keyframes scrollLeft {
