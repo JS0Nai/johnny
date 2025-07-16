@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import { TbBrain, TbServer } from "react-icons/tb";
 import CloudflareImage from "../components/CloudflareImage";
+import HeroV8 from "../components/HeroV8";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
@@ -309,136 +310,9 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Enhanced Hero Section with Carousel - Full Screen */}
-      <div ref={heroRef} className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden bg-slate-900">
-        <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
-          <div className="w-full text-center z-10">
-            {/* Content Carousel */}
-            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] mb-8 md:mb-12 overflow-visible">
-            {/* Slide 1: Signature */}
-            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
-              ${currentHeroSlide === 0 ? 'opacity-100' : 'opacity-0'}`}>
-              <CloudflareImage
-                src="jli-signature1000"
-                alt="JLi Signature"
-                width={450}
-                height={375}
-                className="max-w-[70vw] md:max-w-[450px] lg:max-w-[500px] w-full h-auto opacity-80 object-contain"
-              />
-            </div>
-            
-            {/* Slide 2: Latest Work */}
-            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
-              ${currentHeroSlide === 1 ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="text-center">
-                <h3 className="text-2xl mb-4 text-white">Latest: <span className="text-orange-200">AI Art Collection</span></h3>
-                <CloudflareImage
-                  src="prettywitch"
-                  alt="Latest Work"
-                  width={500}
-                  height={400}
-                  className="rounded-lg shadow-2xl max-w-[500px] w-full"
-                />
-              </div>
-            </div>
-            
-            {/* Slide 3: Featured Article */}
-            <div className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center
-              ${currentHeroSlide === 2 ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="max-w-xl text-left px-4">
-                <p className="text-gray-400 mb-4">FEATURED ARTICLE</p>
-                <h3 className="text-3xl mb-4 text-white">The Future of AI in Creative Industries</h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  Exploring how artificial intelligence is transforming creative workflows and opening new possibilities...
-                </p>
-                <Link href="/articles">
-                  <span className="text-orange-200 hover:text-orange-300 cursor-pointer">Read More →</span>
-                </Link>
-              </div>
-            </div>
-          </div>
+      {/* HeroV8 Section */}
+      <HeroV8 />
 
-          {/* Hero Text */}
-          <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter mb-4 scroll-animate ${heroInView ? "fade-in" : ""}`}>
-            PORTFOLIO
-          </h1>
-          <h2 className={`text-xl sm:text-2xl md:text-3xl text-gray-400 mb-6 md:mb-8 scroll-animate-left ${heroInView ? "fade-in" : ""}`} style={{ transitionDelay: "200ms" }}>
-            John Li
-          </h2>
-          <p className={`text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto scroll-animate-right ${heroInView ? "fade-in" : ""}`} style={{ transitionDelay: "400ms" }}>
-            Creative freedom and the pursuit of improving how things work
-          </p>
-          </div>
-        </div>
-      </div>
-
-      {/* NEW HERO SECTION - For Comparison */}
-      <div className="h-screen w-full flex flex-col justify-center items-center relative bg-slate-900 border-t-4 border-orange-200">
-        <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
-          <div className="w-full text-center relative">
-            
-            {/* Background Signature - Behind Text */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-              <CloudflareImage
-                src="jli-signature1000"
-                alt="JLi Signature Background"
-                width={800}
-                height={600}
-                className="w-full max-w-[90vw] md:max-w-[800px] lg:max-w-[900px] h-auto opacity-20 object-contain"
-              />
-            </div>
-
-            {/* Foreground Content */}
-            <div className="relative z-10">
-              {/* Large Portfolio Text */}
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold bg-gradient-to-b from-gray-200 to-gray-600 bg-clip-text text-transparent tracking-tighter mb-6">
-                PORTFOLIO
-              </h1>
-              
-              {/* Name */}
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 font-light">
-                John Li
-              </h2>
-              
-              {/* Tagline */}
-              <p className="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-                Creative freedom and the pursuit of improving how things work
-              </p>
-
-              {/* Simple Carousel Dots - No Auto-Rotation */}
-              <div className="flex justify-center space-x-3 mt-12">
-                <button 
-                  onClick={() => setCurrentHeroSlide(0)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 0 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
-                />
-                <button 
-                  onClick={() => setCurrentHeroSlide(1)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 1 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
-                />
-                <button 
-                  onClick={() => setCurrentHeroSlide(2)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 2 ? 'bg-orange-200 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
-                />
-              </div>
-
-              {/* Content Overlay Based on Slide */}
-              {currentHeroSlide === 1 && (
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-sm">
-                  <h3 className="text-lg text-orange-200 mb-2">Latest Work</h3>
-                  <p className="text-sm text-gray-300">AI Art Collection</p>
-                </div>
-              )}
-
-              {currentHeroSlide === 2 && (
-                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-sm">
-                  <h3 className="text-lg text-orange-200 mb-2">Featured Article</h3>
-                  <p className="text-sm text-gray-300">The Future of AI in Creative Industries</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Core Disciplines Section with Tech Stack Visualizer */}
       <div ref={coreDisciplinesRef} className="py-24 bg-slate-900 relative z-10">
