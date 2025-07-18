@@ -158,19 +158,7 @@ function PortfolioPage() {
     { id: 62, title: "Surreal Product Photoshoot", category: "character", image: "surrealproductphotoshoot", description: "Surreal character in product context", tags: ["Surreal", "Product", "Photoshoot", "Character", "Commercial"], gridSize: "large" },
     
     // Tech & Retro
-    { id: 63, title: "Brain Creative Pink", category: "tech", image: "brain-creative-pink", description: "Creative brain visualization", tags: ["Brain", "Creative", "Pink", "Tech", "Visualization"], gridSize: "medium" },
-    { id: 64, title: "Brain Tekie Blue", category: "tech", image: "brain-tekie-blue", description: "Technical brain concept", tags: ["Brain", "Tech", "Blue", "Technical", "Visualization"], gridSize: "medium" },
-    { id: 65, title: "Commodore 64 Setup", category: "tech", image: "commodore64-setup", description: "Vintage computer setup", tags: ["Commodore 64", "Vintage", "Computer", "Retro", "Tech"], gridSize: "medium" },
-    { id: 66, title: "Connector Device", category: "tech", image: "connector-device", description: "Technical connection device", tags: ["Connector", "Device", "Tech", "Hardware", "Equipment"], gridSize: "small" },
-    { id: 67, title: "Desktop Computers", category: "tech", image: "desktop-computers", description: "Computer workstation setup", tags: ["Desktop", "Computers", "Tech", "Workstation", "Setup"], gridSize: "medium" },
-    { id: 68, title: "Electronic Typewriter", category: "tech", image: "electronic-typewriter", description: "Vintage electronic typewriter", tags: ["Typewriter", "Electronic", "Vintage", "Tech", "Writing"], gridSize: "medium" },
-    { id: 69, title: "Ethernet Wiring", category: "tech", image: "ethernet-wiring", description: "Network cable infrastructure", tags: ["Ethernet", "Wiring", "Network", "Tech", "Infrastructure"], gridSize: "small" },
-    { id: 70, title: "ProWrite Document", category: "tech", image: "prowrite-document", description: "Document processing interface", tags: ["ProWrite", "Document", "Software", "Interface", "Tech"], gridSize: "medium" },
-    { id: 71, title: "TRS-80 Computer", category: "tech", image: "trs80-computer", description: "Classic TRS-80 computer", tags: ["TRS-80", "Computer", "Vintage", "Retro", "Tech"], gridSize: "medium" },
-    { id: 72, title: "TV Gaming", category: "tech", image: "tv-gaming", description: "Retro TV gaming setup", tags: ["TV", "Gaming", "Retro", "Entertainment", "Tech"], gridSize: "medium" },
-    { id: 73, title: "Typewriter Green", category: "tech", image: "typewriter-green", description: "Green vintage typewriter", tags: ["Typewriter", "Green", "Vintage", "Writing", "Retro"], gridSize: "medium" },
-    { id: 74, title: "VIC-20 Computer", category: "tech", image: "vic20-computer", description: "Commodore VIC-20 computer", tags: ["VIC-20", "Computer", "Commodore", "Vintage", "Tech"], gridSize: "medium" }
-    
+
     // Note: Removed website assets (logos, profile pics, signatures) from gallery
     // These are used for site branding and navigation, not portfolio pieces
   ];
