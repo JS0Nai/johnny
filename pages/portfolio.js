@@ -53,6 +53,31 @@ function PortfolioPage() {
   // State for view mode
   const [viewMode, setViewMode] = useState('grid'); // grid, masonry, infinite
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [likedItems, setLikedItems] = useState(new Set());
+
+  // Handle like functionality
+  const handleLike = (itemId) => {
+    setLikedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      // Store in localStorage
+      localStorage.setItem('likedItems', JSON.stringify([...newSet]));
+      return newSet;
+    });
+  };
+
+  // Load liked items from localStorage on component mount
+  useEffect(() => {
+    const stored = localStorage.getItem('likedItems');
+    if (stored) {
+      setLikedItems(new Set(JSON.parse(stored)));
+    }
+  }, []);
+
 
   // Image portfolio data with classifications and tags
   const portfolioItems = [
@@ -144,17 +169,10 @@ function PortfolioPage() {
     { id: 71, title: "TRS-80 Computer", category: "tech", image: "trs80-computer", description: "Classic TRS-80 computer", tags: ["TRS-80", "Computer", "Vintage", "Retro", "Tech"], gridSize: "medium" },
     { id: 72, title: "TV Gaming", category: "tech", image: "tv-gaming", description: "Retro TV gaming setup", tags: ["TV", "Gaming", "Retro", "Entertainment", "Tech"], gridSize: "medium" },
     { id: 73, title: "Typewriter Green", category: "tech", image: "typewriter-green", description: "Green vintage typewriter", tags: ["Typewriter", "Green", "Vintage", "Writing", "Retro"], gridSize: "medium" },
-    { id: 74, title: "VIC-20 Computer", category: "tech", image: "vic20-computer", description: "Commodore VIC-20 computer", tags: ["VIC-20", "Computer", "Commodore", "Vintage", "Tech"], gridSize: "medium" },
+    { id: 74, title: "VIC-20 Computer", category: "tech", image: "vic20-computer", description: "Commodore VIC-20 computer", tags: ["VIC-20", "Computer", "Commodore", "Vintage", "Tech"], gridSize: "medium" }
     
-    // Logos & Branding
-    { id: 75, title: "ICO GO 150", category: "branding", image: "icogo150", description: "ICO GO brand logo", tags: ["Logo", "Branding", "ICO GO", "Corporate", "Design"], gridSize: "small" },
-    { id: 76, title: "JLI Signature 1000", category: "branding", image: "jli-signature1000", description: "JLI signature branding", tags: ["Signature", "JLI", "Branding", "Logo", "Corporate"], gridSize: "medium" },
-    { id: 77, title: "Profile Pic Jaison", category: "branding", image: "profilepicjaison", description: "Professional profile image", tags: ["Profile", "Professional", "Portrait", "Branding", "Personal"], gridSize: "small" },
-    { id: 78, title: "Signature Logo Rast", category: "branding", image: "signature-logo-rast", description: "Rasterized signature logo", tags: ["Signature", "Logo", "Raster", "Branding", "Design"], gridSize: "small" },
-    { id: 79, title: "Signature Logo White", category: "branding", image: "signature-logo-wht", description: "White signature logo variant", tags: ["Signature", "Logo", "White", "Branding", "Clean"], gridSize: "small" },
-    { id: 80, title: "Signature Logo White 395", category: "branding", image: "signature-logo-wht395", description: "White logo 395px variant", tags: ["Signature", "Logo", "White", "Branding", "395px"], gridSize: "small" },
-    { id: 81, title: "Signature Logo White 450", category: "branding", image: "signature-logo-wht450", description: "White logo 450px variant", tags: ["Signature", "Logo", "White", "Branding", "450px"], gridSize: "small" },
-    { id: 82, title: "Signature Logo White 700", category: "branding", image: "signature-logo-wht700", description: "White logo 700px variant", tags: ["Signature", "Logo", "White", "Branding", "700px"], gridSize: "small" }
+    // Note: Removed website assets (logos, profile pics, signatures) from gallery
+    // These are used for site branding and navigation, not portfolio pieces
   ];
 
   // Get unique categories from portfolio items
@@ -207,12 +225,49 @@ function PortfolioPage() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isLightboxOpen]);
 
+  // Shuffle function for better visual mixing
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Create stable shuffled arrays that don't change on re-render
+  const [shuffledGridItems, setShuffledGridItems] = useState([]);
+  const [shuffledMasonryItems, setShuffledMasonryItems] = useState([]);
+  const [col1Items, setCol1Items] = useState([]);
+  const [col2Items, setCol2Items] = useState([]);
+  const [col3Items, setCol3Items] = useState([]);
+
+  // Initialize shuffled arrays only once when filteredItems changes
+  useEffect(() => {
+    if (filteredItems.length > 0) {
+      setShuffledGridItems(shuffleArray(filteredItems));
+      setShuffledMasonryItems(shuffleArray(filteredItems));
+      setCol1Items(shuffleArray(filteredItems));
+      setCol2Items(shuffleArray(filteredItems));
+      setCol3Items(shuffleArray(filteredItems));
+    }
+  }, [filteredItems.length, selectedCategory, searchTerm]);
+
   // For pagination
-  const itemsPerPage = viewMode === 'infinite' ? filteredItems.length : 12;
+  const itemsPerPage = viewMode === 'infinite' ? filteredItems.length : 15;
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = viewMode === 'infinite' ? filteredItems : filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  
+  // Use appropriate shuffled array based on view mode
+  const getItemsForView = () => {
+    if (viewMode === 'grid') return shuffledGridItems;
+    if (viewMode === 'masonry') return shuffledMasonryItems;
+    return filteredItems; // infinite scroll uses col arrays directly
+  };
+  
+  const itemsToShow = getItemsForView();
+  const currentItems = viewMode === 'infinite' ? itemsToShow : itemsToShow.slice(indexOfFirstItem, indexOfLastItem);
 
   // Newsletter subscription
   const handleNewsletterSubmit = async (e) => {
@@ -423,7 +478,7 @@ function PortfolioPage() {
           <div className={`text-gray-500 text-sm scroll-animate ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "600ms" }}
           >
-            Showing {filteredItems.length} {filteredItems.length === 1 ? 'work' : 'works'}
+            Showing {filteredItems.length} {filteredItems.length === 1 ? 'work' : 'works'} | Category: {selectedCategory} | View: {viewMode}
           </div>
         </div>
       </div>
@@ -492,13 +547,15 @@ function PortfolioPage() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              // Add to favorites functionality
+                              handleLike(item.id);
                             }}
-                            className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-                            title="Add to favorites"
+                            className={`w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg ${
+                              likedItems.has(item.id) ? 'text-red-500' : 'text-gray-700'
+                            }`}
+                            title={likedItems.has(item.id) ? "Remove from favorites" : "Add to favorites"}
                           >
-                            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            <svg className="w-4 h-4 md:w-5 md:h-5" fill={likedItems.has(item.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
                           </button>
                           <button 
@@ -507,11 +564,11 @@ function PortfolioPage() {
                               // Navigate to shop page with this item
                               router.push(`/shop?item=${item.id}`);
                             }}
-                            className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                            className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-700"
                             title="View in shop"
                           >
-                            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>
                           </button>
                         </motion.div>
@@ -558,13 +615,15 @@ function PortfolioPage() {
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          // Add to favorites functionality
+                          handleLike(item.id);
                         }}
-                        className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-                        title="Add to favorites"
+                        className={`w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg ${
+                          likedItems.has(item.id) ? 'text-red-500' : 'text-gray-700'
+                        }`}
+                        title={likedItems.has(item.id) ? "Remove from favorites" : "Add to favorites"}
                       >
-                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill={likedItems.has(item.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
                       <button 
@@ -573,11 +632,11 @@ function PortfolioPage() {
                           // Navigate to shop page with this item
                           router.push(`/shop?item=${item.id}`);
                         }}
-                        className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                        className="w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-700"
                         title="View in shop"
                       >
-                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
                       </button>
                     </div>
@@ -599,13 +658,13 @@ function PortfolioPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="relative h-[600px] overflow-hidden"
+                className="relative h-[2400px] overflow-hidden"
               >
                 <div className="absolute inset-0">
                   {/* Column 1 - Scrolls Up */}
                   <div className="absolute left-0 w-1/3 animate-scroll-up">
                     <div className="space-y-4">
-                      {[...filteredItems, ...filteredItems].map((item, index) => (
+                      {[...col1Items, ...col1Items].map((item, index) => (
                         <div 
                           key={`col1-${index}`} 
                           className="rounded-lg overflow-hidden cursor-pointer relative group"
@@ -623,13 +682,15 @@ function PortfolioPage() {
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
-                                // Add to favorites functionality
+                                handleLike(item.id);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-                              title="Add to favorites"
+                              className={`w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg ${
+                                likedItems.has(item.id) ? 'text-red-500' : 'text-gray-700'
+                              }`}
+                              title={likedItems.has(item.id) ? "Remove from favorites" : "Add to favorites"}
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill={likedItems.has(item.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
                             </button>
                             <button 
@@ -637,11 +698,11 @@ function PortfolioPage() {
                                 e.stopPropagation();
                                 router.push(`/shop?item=${item.id}`);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-700"
                               title="View in shop"
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                               </svg>
                             </button>
                           </div>
@@ -653,7 +714,7 @@ function PortfolioPage() {
                   {/* Column 2 - Scrolls Down */}
                   <div className="absolute left-1/3 w-1/3 animate-scroll-down">
                     <div className="space-y-4">
-                      {[...filteredItems, ...filteredItems].map((item, index) => (
+                      {[...col2Items, ...col2Items].map((item, index) => (
                         <div 
                           key={`col2-${index}`} 
                           className="rounded-lg overflow-hidden cursor-pointer relative group"
@@ -671,13 +732,15 @@ function PortfolioPage() {
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
-                                // Add to favorites functionality
+                                handleLike(item.id);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-                              title="Add to favorites"
+                              className={`w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg ${
+                                likedItems.has(item.id) ? 'text-red-500' : 'text-gray-700'
+                              }`}
+                              title={likedItems.has(item.id) ? "Remove from favorites" : "Add to favorites"}
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill={likedItems.has(item.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
                             </button>
                             <button 
@@ -685,11 +748,11 @@ function PortfolioPage() {
                                 e.stopPropagation();
                                 router.push(`/shop?item=${item.id}`);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-700"
                               title="View in shop"
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                               </svg>
                             </button>
                           </div>
@@ -701,7 +764,7 @@ function PortfolioPage() {
                   {/* Column 3 - Scrolls Up */}
                   <div className="absolute left-2/3 w-1/3 animate-scroll-up">
                     <div className="space-y-4">
-                      {[...filteredItems, ...filteredItems].map((item, index) => (
+                      {[...col3Items, ...col3Items].map((item, index) => (
                         <div 
                           key={`col3-${index}`} 
                           className="rounded-lg overflow-hidden cursor-pointer relative group"
@@ -719,13 +782,15 @@ function PortfolioPage() {
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
-                                // Add to favorites functionality
+                                handleLike(item.id);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-                              title="Add to favorites"
+                              className={`w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg ${
+                                likedItems.has(item.id) ? 'text-red-500' : 'text-gray-700'
+                              }`}
+                              title={likedItems.has(item.id) ? "Remove from favorites" : "Add to favorites"}
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill={likedItems.has(item.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
                             </button>
                             <button 
@@ -733,11 +798,11 @@ function PortfolioPage() {
                                 e.stopPropagation();
                                 router.push(`/shop?item=${item.id}`);
                               }}
-                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                              className="w-6 h-6 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-gray-700"
                               title="View in shop"
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                               </svg>
                             </button>
                           </div>
@@ -1144,11 +1209,11 @@ function PortfolioPage() {
         }
         
         .animate-scroll-up {
-          animation: scroll-up 30s linear infinite;
+          animation: scroll-up 120s linear infinite;
         }
         
         .animate-scroll-down {
-          animation: scroll-down 30s linear infinite;
+          animation: scroll-down 120s linear infinite;
         }
 
         .animate-scroll-left:hover,
