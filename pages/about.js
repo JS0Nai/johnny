@@ -26,6 +26,7 @@ import { SiNodedotjs } from "react-icons/si";
 import { SiPython } from "react-icons/si";
 import { SiJavascript } from "react-icons/si";
 import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
+import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake } from "react-icons/fa";
 
 function AboutPage() {
   const router = useRouter();
@@ -41,6 +42,7 @@ function AboutPage() {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [selectedBrainSide, setSelectedBrainSide] = useState('left'); // 'left' or 'right'
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activeExpertiseTab, setActiveExpertiseTab] = useState('ai'); // for Core Expertise tabs
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -50,6 +52,7 @@ function AboutPage() {
   const [contentRef, contentInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [experienceRef, experienceInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [expertiseRef, expertiseInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },
@@ -435,16 +438,15 @@ function AboutPage() {
             className={`text-white text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
-            Creative technologist passionate about the intersection of AI,
-            design, and development
+            Architecting Intelligent Futures at the intersection of cutting-edge technology,
+            strategic vision, and human-centric innovation
           </h2>
 
           <div
             className={`text-gray-400 text-lg max-w-2xl mx-auto scroll-animate-right ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "400ms" }}
           >
-            Crafting digital experiences through innovative technology and
-            artistic vision
+            Founder and Principal Consultant at AI Infrastructure & Integrations Consultancy (AIii), Abu Dhabi
           </div>
         </div>
       </div>
@@ -484,57 +486,51 @@ function AboutPage() {
                 style={{ transitionDelay: "200ms" }}
               >
                 <p>
-                  I'm a creative technologist based in Abu Dhabi, UAE, where I
-                  blend the worlds of artificial intelligence, design, and
-                  development to create innovative digital experiences.
+                  Welcome — I'm John Li, founder and principal consultant at AI Infrastructure & Integrations Consultancy (AIii), based in Abu Dhabi, UAE. My passion lies at the intersection of cutting-edge technology, strategic vision, and human-centric innovation. With a unique blend of deep technical expertise, creative insight, and robust interdisciplinary skills, my mission is to architect intelligent ecosystems that transform possibilities into impactful realities, particularly within educational and governmental sectors.
                 </p>
 
-                <p>
-                  My journey began with traditional design and photography, but
-                  I quickly became fascinated by the potential of emerging
-                  technologies. Today, I specialize in generative AI, having
-                  created over 13,000 AI-generated images and licensed more than
-                  10,000 assets for commercial use.
+                <p className="mt-6">
+                  My journey bridges the technical and creative realms through a Bachelor of Arts (Honours) in English Literature and Creative Writing, combined with advanced certifications in AI Engineering, DevOps, and Cybersecurity from IBM and Google. I'm actively pursuing a Master of Science in Computer Science & AI, authoring evidence-based academic papers that directly inform practical AI implementations grounded in cognitive and pedagogical science.
                 </p>
 
-                <p>
-                  What drives me is the pursuit of creative freedom and the
-                  challenge of improving how things work. Whether I'm developing
-                  custom applications, creating visual content, or exploring new
-                  AI tools, I approach each project with curiosity and a
-                  commitment to pushing boundaries.
+                <p className="mt-6">
+                  Today, I specialize in end-to-end AI development, having created complex applications spanning computer vision systems, intelligent chatbots, and ML-driven web integrations. My expertise extends from custom AI data infrastructure and hybrid intelligence integrations to enterprise-grade security and compliance frameworks, ensuring every solution is not only sophisticated but operationally sound and strategically aligned.
                 </p>
 
-                <p>
-                  When I'm not coding or creating, you'll find me exploring the
-                  intersection of technology and art, always looking for the
-                  next breakthrough that will transform how we interact with
-                  digital experiences.
+                <p className="mt-6">
+                  What drives me is the vision of a future where advanced technology profoundly enhances human capabilities, particularly in education. My goal is to create adaptive, intelligent systems that empower learners, support educators, and revolutionize how educational content is delivered — making learning experiences accessible, intuitive, and inspiring.
                 </p>
               </div>
             </div>
 
             <div
-              className={`space-y-8 scroll-animate ${storyInView ? "fade-in" : ""}`}
+              className={`space-y-4 md:space-y-8 scroll-animate ${storyInView ? "fade-in" : ""}`}
               style={{ transitionDelay: "400ms" }}
             >
-              <div className="bg-gray-800/40 p-8 rounded-lg">
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
                 <h3 className="text-2xl font-light text-white mb-4">
-                  Philosophy
+                  Philosophy: Innovation Driven by Human-Centric Values
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  "Creative freedom and the pursuit of improving how things
-                  work" - this drives everything I do. I believe technology
-                  should enhance human creativity, not replace it.
+                  My philosophy is deeply rooted in three core principles: innovation, user-centric design, and uncompromising integrity. I believe true technological progress emerges from creatively blending rigorous analytical thinking with imaginative problem-solving. My interdisciplinary background uniquely positions me to craft intelligent solutions that are intuitive, engaging, and deeply aligned with human needs, especially for younger learners.
                 </p>
               </div>
 
-              <div className="bg-gray-800/40 p-8 rounded-lg">
-                <h3 className="text-2xl font-light text-white mb-4">Mission</h3>
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
+                <h3 className="text-2xl font-light text-white mb-4">
+                  Vision: Transforming Education and Digital Infrastructure
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  I envision a future where advanced technology profoundly enhances human capabilities, particularly in education. My goal is to create adaptive, intelligent systems that empower learners, support educators, and revolutionize how educational content is delivered.
+                </p>
+              </div>
+
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
+                <h3 className="text-2xl font-light text-white mb-4">
+                  Mission: Delivering Secure, Scalable, and Impactful AI Solutions
+                </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  To bridge the gap between cutting-edge technology and
-                  practical applications, creating solutions that are both
-                  innovative and accessible.
+                  My mission is to leverage advanced technological capabilities and creative insights to develop intelligent, secure, and impactful solutions. By prioritizing user engagement, operational integrity, and strategic protection of innovations, I build intelligent ecosystems tailored to real-world needs.
                 </p>
               </div>
             </div>
@@ -678,6 +674,238 @@ function AboutPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Core Expertise Section */}
+      <div ref={expertiseRef} className="py-24 bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className={`text-3xl md:text-5xl font-extralight mb-4 tracking-wide text-white scroll-animate ${expertiseInView ? "fade-in" : ""}`}
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Core <span className="text-orange-200/90">Expertise</span> & Technical Depth
+            </h2>
+            <p className={`text-gray-400 text-lg max-w-3xl mx-auto scroll-animate ${expertiseInView ? "fade-in" : ""}`}
+               style={{ transitionDelay: "200ms" }}>
+              Comprehensive technical grounding in machine learning, deep learning, DevOps, and cybersecurity,
+              uniquely positioned to develop solutions that are sophisticated, operationally sound, and strategically aligned
+            </p>
+          </div>
+
+          {/* Tab Navigation */}
+          <div className={`flex flex-wrap justify-center gap-2 mb-8 md:mb-12 scroll-animate ${expertiseInView ? "fade-in" : ""}`}
+               style={{ transitionDelay: "400ms" }}>
+            <button
+              onClick={() => setActiveExpertiseTab('ai')}
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeExpertiseTab === 'ai'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                  : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
+              }`}
+            >
+              <FaRobot className="w-4 h-4" />
+              AI & Machine Learning
+            </button>
+            <button
+              onClick={() => setActiveExpertiseTab('devops')}
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeExpertiseTab === 'devops'
+                  ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
+                  : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
+              }`}
+            >
+              <FaCloud className="w-4 h-4" />
+              DevOps & Cloud
+            </button>
+            <button
+              onClick={() => setActiveExpertiseTab('security')}
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeExpertiseTab === 'security'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
+                  : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
+              }`}
+            >
+              <FaShieldAlt className="w-4 h-4" />
+              Security & Compliance
+            </button>
+            <button
+              onClick={() => setActiveExpertiseTab('interdisciplinary')}
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeExpertiseTab === 'interdisciplinary'
+                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
+                  : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
+              }`}
+            >
+              <FaLightbulb className="w-4 h-4" />
+              Interdisciplinary Insight
+            </button>
+            <button
+              onClick={() => setActiveExpertiseTab('client')}
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeExpertiseTab === 'client'
+                  ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30'
+                  : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
+              }`}
+            >
+              <FaHandshake className="w-4 h-4" />
+              Client-Focused Expertise
+            </button>
+          </div>
+
+          {/* Tab Content */}
+          <div className={`bg-gray-800/20 border border-gray-700/40 rounded-xl p-6 md:p-8 scroll-animate ${expertiseInView ? "fade-in" : ""}`}
+               style={{ transitionDelay: "600ms" }}>
+            {activeExpertiseTab === 'ai' && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaRobot className="w-8 h-8 text-blue-400" />
+                  <h3 className="text-2xl font-light text-blue-400">
+                    End-to-End AI Development & Engineering Mastery
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Certified IBM AI Engineering Professional</span>, demonstrating comprehensive skills in Machine Learning (ML), Deep Learning (DL), and AI model deployment.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Proven hands-on expertise</span> with PyTorch, TensorFlow, Keras, and Flask, developing complex applications like computer vision systems, intelligent chatbots, and ML-driven web integrations.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Specialized in custom AI data infrastructure</span> including intelligent middleware, hybrid intelligence integrations, and optimized Big Data processing pipelines leveraging Apache Spark.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeExpertiseTab === 'devops' && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaCloud className="w-8 h-8 text-green-400" />
+                  <h3 className="text-xl sm:text-2xl font-light text-green-400">
+                    DevOps, Cloud & Seamless AI Deployment
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Certified in IBM DevOps & Software Engineering</span>, mastering Continuous Integration and Continuous Deployment (CI/CD), containerization technologies (Docker, Kubernetes), microservices architecture, and serverless implementations.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Extensive experience with leading cloud infrastructure providers</span> such as AWS, Google Cloud, Firebase, and Cloudflare, ensuring scalable, secure, and efficient production deployment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeExpertiseTab === 'security' && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaShieldAlt className="w-8 h-8 text-purple-400" />
+                  <h3 className="text-xl sm:text-2xl font-light text-purple-400">
+                    Robust Security & Compliance Integration
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Google Cloud Cybersecurity Professional certification</span>, providing enterprise-grade capabilities in risk management, data protection, threat detection, and robust incident response.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Expertise in adhering to rigorous compliance standards</span> (SOC 2 Type 2, HIPAA), and detailed understanding of Intellectual Property laws (copyright, patents, trademarks), safeguarding innovation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeExpertiseTab === 'interdisciplinary' && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaLightbulb className="w-8 h-8 text-orange-400" />
+                  <h3 className="text-xl sm:text-2xl font-light text-orange-400">
+                    Interdisciplinary Insight & Research-Driven AI
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Bachelor of Arts (Honours) in English Literature and Creative Writing</span>, delivering unique capabilities in user-experience design, engaging content creation, and narrative-driven AI tools, particularly beneficial in educational contexts.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Actively pursuing a Master of Science in Computer Science & AI</span>, authoring evidence-based academic papers such as "The Developing Reader" and "The Architecture of Learning," directly informing practical AI implementations grounded in cognitive and pedagogical science.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Notable research project "Behavioral Computer Vision for Child Health Monitoring"</span>, demonstrating validated, creative, behavioral AI innovations leveraging icon-based detection and synthetic data methodologies.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeExpertiseTab === 'client' && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaHandshake className="w-8 h-8 text-pink-400" />
+                  <h3 className="text-xl sm:text-2xl font-light text-pink-400">
+                    Strategic Client Value & Sector-Focused Expertise
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Based strategically in Abu Dhabi</span>, uniquely positioned to bridge innovative AI solutions with legacy governmental, educational, and enterprise infrastructures without disruption.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-gray-300 leading-relaxed mb-3">
+                        <span className="text-white font-medium">Specialized in:</span>
+                      </p>
+                      <ul className="space-y-2 ml-4">
+                        <li className="text-gray-300">• AI-driven Business Process Automation</li>
+                        <li className="text-gray-300">• Middleware for AI service orchestration</li>
+                        <li className="text-gray-300">• Customized AI Data Infrastructure Systems</li>
+                        <li className="text-gray-300">• Comprehensive Enterprise AI Integration Strategies</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <p className="text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">Deep commitment to "Trust by Design"</span>, integrating rigorous privacy, ethical AI frameworks, and operational integrity, ensuring systems remain secure, compliant, beneficial, and trustworthy at every level of operation.
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
