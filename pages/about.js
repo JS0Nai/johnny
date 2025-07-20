@@ -26,7 +26,8 @@ import { SiNodedotjs } from "react-icons/si";
 import { SiPython } from "react-icons/si";
 import { SiJavascript } from "react-icons/si";
 import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
-import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake } from "react-icons/fa";
+import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake, FaBrain, FaCode, FaServer, FaDatabase, FaPaintBrush, FaPencilAlt, FaCubes, FaGraduationCap, FaBookOpen, FaFlask, FaMicroscope, FaChartLine, FaCogs, FaNetworkWired, FaUserShield } from "react-icons/fa";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 function AboutPage() {
   const router = useRouter();
@@ -509,15 +510,19 @@ function AboutPage() {
               style={{ transitionDelay: "400ms" }}
             >
               {/* Philosophy Card */}
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
-                   style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)' }}
+              <div className="bg-gray-800/40 py-12 px-10 md:py-16 md:px-12 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden min-h-[120px]"
+                   style={{ 
+                     backgroundImage: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.035) 0%, transparent 50%), 
+                                      radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.035) 0%, transparent 50%),
+                                      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.008) 35px, rgba(255,255,255,0.008) 70px)` 
+                   }}
                    onClick={() => setExpandedCard(expandedCard === 'philosophy' ? null : 'philosophy')}>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-light text-white">
+                <div className="flex items-center justify-center relative">
+                  <h3 className="text-4xl font-extralight text-orange-200/90 text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     PHILOSOPHY
                   </h3>
-                  <div className={`transition-transform duration-300 ${expandedCard === 'philosophy' ? 'rotate-180' : ''}`}>
-                    <span className="text-orange-200 text-xl">▼</span>
+                  <div className="absolute right-0">
+                    <IoMdArrowDropdown className={`text-orange-200 text-2xl transition-transform duration-300 ${expandedCard === 'philosophy' ? 'rotate-180' : ''}`} style={{ strokeWidth: '0.5' }} />
                   </div>
                 </div>
                 {expandedCard === 'philosophy' && (
@@ -542,15 +547,19 @@ function AboutPage() {
               </div>
 
               {/* Vision Card */}
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
-                   style={{ backgroundImage: 'radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%), radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%)' }}
+              <div className="bg-gray-800/40 py-12 px-10 md:py-16 md:px-12 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden min-h-[120px]"
+                   style={{ 
+                     backgroundImage: `radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.035) 0%, transparent 50%), 
+                                      radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.035) 0%, transparent 50%),
+                                      repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(255,255,255,0.008) 35px, rgba(255,255,255,0.008) 70px)` 
+                   }}
                    onClick={() => setExpandedCard(expandedCard === 'vision' ? null : 'vision')}>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-light text-white">
+                <div className="flex items-center justify-center relative">
+                  <h3 className="text-4xl font-extralight text-orange-200/90 text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     VISION
                   </h3>
-                  <div className={`transition-transform duration-300 ${expandedCard === 'vision' ? 'rotate-180' : ''}`}>
-                    <span className="text-orange-200 text-xl">▼</span>
+                  <div className="absolute right-0">
+                    <IoMdArrowDropdown className={`text-orange-200 text-2xl transition-transform duration-300 ${expandedCard === 'vision' ? 'rotate-180' : ''}`} style={{ strokeWidth: '0.5' }} />
                   </div>
                 </div>
                 {expandedCard === 'vision' && (
@@ -572,15 +581,19 @@ function AboutPage() {
               </div>
 
               {/* Mission Card */}
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
-                   style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%), radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)' }}
+              <div className="bg-gray-800/40 py-12 px-10 md:py-16 md:px-12 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden min-h-[120px]"
+                   style={{ 
+                     backgroundImage: `radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.035) 0%, transparent 60%), 
+                                      radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.035) 0%, transparent 50%),
+                                      repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.008) 35px, rgba(255,255,255,0.008) 70px)` 
+                   }}
                    onClick={() => setExpandedCard(expandedCard === 'mission' ? null : 'mission')}>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-light text-white">
+                <div className="flex items-center justify-center relative">
+                  <h3 className="text-4xl font-extralight text-orange-200/90 text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     MISSION
                   </h3>
-                  <div className={`transition-transform duration-300 ${expandedCard === 'mission' ? 'rotate-180' : ''}`}>
-                    <span className="text-orange-200 text-xl">▼</span>
+                  <div className="absolute right-0">
+                    <IoMdArrowDropdown className={`text-orange-200 text-2xl transition-transform duration-300 ${expandedCard === 'mission' ? 'rotate-180' : ''}`} style={{ strokeWidth: '0.5' }} />
                   </div>
                 </div>
                 {expandedCard === 'mission' && (
@@ -654,31 +667,31 @@ function AboutPage() {
               </p>
 
               {/* Labels with click functionality */}
-              <div className="flex justify-between gap-4 mt-8 text-lg max-w-md mx-auto">
+              <div className="flex justify-between gap-3 mt-8 text-lg max-w-md mx-auto">
                 <button
                   onClick={() => setSelectedBrainSide('left')}
-                  className={`text-center transition-all duration-300 group cursor-pointer px-3 py-2 rounded-lg relative overflow-hidden ${
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer px-4 py-3 rounded-lg relative overflow-hidden ${
                     selectedBrainSide === 'left' 
                       ? 'text-blue-400 scale-105 bg-blue-900/20 border border-blue-400/50 shadow-lg shadow-blue-400/20' 
                       : 'text-gray-400 hover:text-blue-300 border border-gray-600/30 hover:border-blue-400/30 hover:bg-blue-900/10'
                   }`}
                 >
-                  <TbCode className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                  <span className="font-light text-base">Tekkie</span>
+                  <TbCode className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <span className="font-light">Tekkie</span>
                   {selectedBrainSide === 'left' && (
                     <div className="absolute inset-0 bg-blue-400/10 animate-pulse pointer-events-none rounded-lg"></div>
                   )}
                 </button>
                 <button
                   onClick={() => setSelectedBrainSide('right')}
-                  className={`text-center transition-all duration-300 group cursor-pointer px-3 py-2 rounded-lg relative overflow-hidden ${
+                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer px-4 py-3 rounded-lg relative overflow-hidden ${
                     selectedBrainSide === 'right' 
                       ? 'text-pink-400 scale-105 bg-pink-900/20 border border-pink-400/50 shadow-lg shadow-pink-400/20' 
                       : 'text-gray-400 hover:text-pink-300 border border-gray-600/30 hover:border-pink-400/30 hover:bg-pink-900/10'
                   }`}
                 >
-                  <TbPalette className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                  <span className="font-light text-base">Pantser</span>
+                  <TbPalette className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <span className="font-light">Pantser</span>
                   {selectedBrainSide === 'right' && (
                     <div className="absolute inset-0 bg-pink-400/10 animate-pulse pointer-events-none rounded-lg"></div>
                   )}
@@ -837,7 +850,9 @@ function AboutPage() {
           <div className={`bg-gray-800/20 border border-gray-700/40 rounded-xl p-6 md:p-8 scroll-animate ${expertiseInView ? "fade-in" : ""} relative overflow-hidden`}
                style={{ 
                  transitionDelay: "600ms",
-                 backgroundImage: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 40%), radial-gradient(circle at 90% 10%, rgba(249, 115, 22, 0.03) 0%, transparent 50%)'
+                 backgroundImage: `linear-gradient(135deg, rgba(59, 130, 246, 0.025) 0%, transparent 40%), 
+                                  radial-gradient(circle at 90% 10%, rgba(249, 115, 22, 0.025) 0%, transparent 50%),
+                                  repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,255,255,0.005) 10deg, transparent 20deg)`
                }}>
             {activeExpertiseTab === 'ai' && (
               <div className="space-y-6">
@@ -849,19 +864,19 @@ function AboutPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <FaBrain className="w-5 h-5 text-blue-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Certified IBM AI Engineering Professional</span>, demonstrating comprehensive skills in Machine Learning (ML), Deep Learning (DL), and AI model deployment.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <FaCode className="w-5 h-5 text-blue-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Proven hands-on expertise</span> with PyTorch, TensorFlow, Keras, and Flask, developing complex applications like computer vision systems, intelligent chatbots, and ML-driven web integrations.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-4 mt-2"></div>
+                    <FaServer className="w-5 h-5 text-blue-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Specialized in custom AI data infrastructure</span> including intelligent middleware, hybrid intelligence integrations, and optimized Big Data processing pipelines leveraging Apache Spark.
                     </p>
@@ -880,13 +895,13 @@ function AboutPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-4 mt-2"></div>
+                    <FaCogs className="w-5 h-5 text-green-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Certified in IBM DevOps & Software Engineering</span>, mastering Continuous Integration and Continuous Deployment (CI/CD), containerization technologies (Docker, Kubernetes), microservices architecture, and serverless implementations.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-4 mt-2"></div>
+                    <FaNetworkWired className="w-5 h-5 text-green-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Extensive experience with leading cloud infrastructure providers</span> such as AWS, Google Cloud, Firebase, and Cloudflare, ensuring scalable, secure, and efficient production deployment.
                     </p>
@@ -905,13 +920,13 @@ function AboutPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full mr-4 mt-2"></div>
+                    <FaShieldAlt className="w-5 h-5 text-purple-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Google Cloud Cybersecurity Professional certification</span>, providing enterprise-grade capabilities in risk management, data protection, threat detection, and robust incident response.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full mr-4 mt-2"></div>
+                    <FaUserShield className="w-5 h-5 text-purple-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Expertise in adhering to rigorous compliance standards</span> (SOC 2 Type 2, HIPAA), and detailed understanding of Intellectual Property laws (copyright, patents, trademarks), safeguarding innovation.
                     </p>
@@ -930,19 +945,19 @@ function AboutPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <FaPencilAlt className="w-5 h-5 text-orange-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Bachelor of Arts (Honours) in English Literature and Creative Writing</span>, delivering unique capabilities in user-experience design, engaging content creation, and narrative-driven AI tools, particularly beneficial in educational contexts.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <FaGraduationCap className="w-5 h-5 text-orange-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Actively pursuing a Master of Science in Computer Science & AI</span>, authoring evidence-based academic papers such as "The Developing Reader" and "The Architecture of Learning," directly informing practical AI implementations grounded in cognitive and pedagogical science.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-4 mt-2"></div>
+                    <FaMicroscope className="w-5 h-5 text-orange-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Notable research project "Behavioral Computer Vision for Child Health Monitoring"</span>, demonstrating validated, creative, behavioral AI innovations leveraging icon-based detection and synthetic data methodologies.
                     </p>
@@ -961,13 +976,13 @@ function AboutPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <FaChartLine className="w-5 h-5 text-pink-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Based strategically in Abu Dhabi</span>, uniquely positioned to bridge innovative AI solutions with legacy governmental, educational, and enterprise infrastructures without disruption.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <FaCubes className="w-5 h-5 text-pink-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <div className="flex-1">
                       <p className="text-gray-300 leading-relaxed mb-3">
                         <span className="text-white font-medium">Specialized in:</span>
@@ -981,7 +996,7 @@ function AboutPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-4 mt-2"></div>
+                    <FaHandshake className="w-5 h-5 text-pink-400 mr-4 mt-1 flex-shrink-0 opacity-20" />
                     <p className="text-gray-300 leading-relaxed">
                       <span className="text-white font-medium">Deep commitment to "Trust by Design"</span>, integrating rigorous privacy, ethical AI frameworks, and operational integrity, ensuring systems remain secure, compliant, beneficial, and trustworthy at every level of operation.
                     </p>
