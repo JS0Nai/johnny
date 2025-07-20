@@ -145,7 +145,7 @@ const HeroV3 = () => {
       type: 'logo',
       component: () => (
         <div className="flex flex-col items-center justify-center text-center h-full">
-          <img src="/media/signature-logo-wht.png" alt="John Li Logo" width={200} height={200} className="w-48 h-48 md:w-64 md:h-64" />
+          <img src="/media/signature-webpagetopleft-logo.png" alt="John Li Logo" width={200} height={200} className="w-48 h-48 md:w-64 md:h-64" />
           <h2 className="text-3xl md:text-5xl font-light text-white mt-6">Creative Technologist</h2>
           <p className="text-lg text-gray-400 mt-2">Exploring the intersection of AI, Design, and Code</p>
         </div>

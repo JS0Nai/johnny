@@ -176,7 +176,7 @@ function ArticlesPage() {
               <Link href="/">
                 <div className="cursor-pointer">
                   <img
-                    src="/media/signature-logo-wht.png"
+                    src="/media/signature-webpagetopleft-logo.png"
                     alt="John Li Logo"
                     width={150}
                     height={150}
