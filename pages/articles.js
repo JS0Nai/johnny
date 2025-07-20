@@ -175,12 +175,12 @@ function ArticlesPage() {
             <div className="flex justify-between items-center h-20">
               <Link href="/">
                 <div className="cursor-pointer">
-                  <CloudflareImage
-                    src="icogo150"
-                    alt="Monarkh Logo"
+                  <img
+                    src="/media/signature-logo-wht.png"
+                    alt="John Li Logo"
                     width={150}
                     height={150}
-                    className="w-[65px] h-[65px]"
+                    className="w-[65px] h-[65px] object-contain"
                   />
                 </div>
               </Link>

@@ -11,7 +11,8 @@ export default function Document() {
         <meta name="author" content="John Li" />
 
         {/* Favicon */}
-        <link rel="icon" href="https://imagedelivery.net/afekpjgU7bwy8XYMt0lA2Q/icogo150/public" />
+        <link rel="icon" href="/media/signature-ico.png" />
+        <link rel="apple-touch-icon" href="/media/signature-ico.png" />
 
         {/* Google Fonts */}
         <link

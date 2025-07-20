@@ -136,12 +136,12 @@ function AboutPage() {
             <div className="flex justify-between items-center h-20">
               <Link href="/">
                 <div className="cursor-pointer">
-                  <CloudflareImage
-                    src="icogo150"
-                    alt="Monarkh Logo"
+                  <img
+                    src="/media/signature-logo-wht.png"
+                    alt="John Li Logo"
                     width={150}
                     height={150}
-                    className="w-[65px] h-[65px]"
+                    className="w-[65px] h-[65px] object-contain"
                   />
                 </div>
               </Link>
@@ -261,7 +261,7 @@ function AboutPage() {
                   >
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
-                      <CloudflareImage
+                      <img
                         src="brain-tekie-blue"
                         alt="TEKKIE"
                         width={400}
@@ -273,7 +273,7 @@ function AboutPage() {
 
                     {/* Creative Brain (Back - flipped) */}
                     <div className="brain-side brain-back">
-                      <CloudflareImage
+                      <img
                         src="brain-creative-pink"
                         alt="PANTSER"
                         width={400}
@@ -436,7 +436,7 @@ function AboutPage() {
           <div
             className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${skillsInView ? "fade-in" : ""}`}
           >
-            <CloudflareImage
+            <img
               src="profilepicjaison"
               alt="John Li"
               width={400}

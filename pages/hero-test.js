@@ -21,7 +21,7 @@ const HeroV1 = () => {
         <div className="shape-3"></div>
       </div>
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <CloudflareImage
+        <img
           src="jli-signature1000"
           alt="JLi Signature"
           width={1200}
@@ -96,7 +96,7 @@ const HeroV2 = () => {
         <div className="shape-3"></div>
       </div>
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <CloudflareImage
+        <img
           src="jli-signature1000"
           alt="JLi Signature"
           width={1200}
@@ -145,7 +145,7 @@ const HeroV3 = () => {
       type: 'logo',
       component: () => (
         <div className="flex flex-col items-center justify-center text-center h-full">
-          <CloudflareImage src="icogo150" alt="Monarkh Logo" width={200} height={200} className="w-48 h-48 md:w-64 md:h-64" />
+          <img src="/media/signature-logo-wht.png" alt="John Li Logo" width={200} height={200} className="w-48 h-48 md:w-64 md:h-64" />
           <h2 className="text-3xl md:text-5xl font-light text-white mt-6">Creative Technologist</h2>
           <p className="text-lg text-gray-400 mt-2">Exploring the intersection of AI, Design, and Code</p>
         </div>
@@ -207,7 +207,7 @@ const HeroV3 = () => {
                       </Link>
                     </div>
                     <div className="hidden md:flex items-center justify-center">
-                       <CloudflareImage src={slide.image} alt={slide.title} width={400} height={300} className="rounded-lg shadow-2xl object-cover" />
+                       <img src={slide.image} alt={slide.title} width={400} height={300} className="rounded-lg shadow-2xl object-cover" />
                     </div>
                   </div>
                 )}
@@ -235,7 +235,7 @@ const HeroV4 = () => {
       type: 'logo',
       component: () => (
         <div className="flex flex-col items-center justify-center text-center h-full">
-          <CloudflareImage src="jli-signature1000" alt="John Li Signature" width={800} height={400} className="w-full max-w-lg" />
+          <img src="jli-signature1000" alt="John Li Signature" width={800} height={400} className="w-full max-w-lg" />
         </div>
       )
     },
@@ -295,7 +295,7 @@ const HeroV4 = () => {
                       </Link>
                     </div>
                     <div className="hidden md:flex items-center justify-center">
-                       <CloudflareImage src={slide.image} alt={slide.title} width={400} height={300} className="rounded-lg shadow-2xl object-cover" />
+                       <img src={slide.image} alt={slide.title} width={400} height={300} className="rounded-lg shadow-2xl object-cover" />
                     </div>
                   </div>
                 )}
@@ -356,7 +356,7 @@ const HeroV5 = () => {
   return (
     <main className="h-screen flex flex-col justify-center relative overflow-hidden bg-slate-900">
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <CloudflareImage
+        <img
           src="jli-signature1000"
           alt="JLi Signature"
           width={800}
@@ -441,7 +441,7 @@ const HeroV6 = () => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <CloudflareImage
+        <img
           src="jli-signature1000"
           alt="JLi Signature"
           width={800}
@@ -532,7 +532,7 @@ const HeroV7 = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
                 {/* Left Column: Signature */}
                 <div className={`flex items-center justify-center transition-all duration-1000 ${currentSlide === 0 ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>
-                  <CloudflareImage
+                  <img
                     src="jli-signature1000"
                     alt="JLi Signature"
                     width={600}
@@ -577,7 +577,7 @@ function HeroTestPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm">
         <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <Link href="/"><div className="cursor-pointer"><CloudflareImage src="jli-signature1000" alt="John Li Signature" width={200} height={50} className="h-12 w-auto" /></div></Link>
+            <Link href="/"><div className="cursor-pointer"><img src="jli-signature1000" alt="John Li Signature" width={200} height={50} className="h-12 w-auto" /></div></Link>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 w-8 h-8 flex items-center justify-center">
               {isMenuOpen ? (<div className="relative w-6 h-6"><div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white rotate-45"></div><div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white -rotate-45"></div></div>) : (<div className="space-y-1"><div className="w-6 h-0.5 bg-green-500"></div><div className="w-6 h-0.5 bg-green-500"></div></div>)}
             </button>
@@ -608,7 +608,7 @@ function HeroTestPage() {
               
               {/* Background Signature - Large and Properly Sized */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-                <CloudflareImage
+                <img
                   src="jli-signature1000"
                   alt="JLi Signature Background"
                   width={1000}

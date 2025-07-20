@@ -30,9 +30,9 @@ const HeroV8 = () => {
           <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${currentSlide === 0 ? 'opacity-100' : 'opacity-0'}`}>
             <div className="flex flex-col items-center justify-center text-center h-full relative">
               <div className="relative">
-                <CloudflareImage 
-                  src="jli-signature1000" 
-                  alt="John Li Signature" 
+                <img 
+                  src="/media/signature-logo-wht.png" 
+                  alt="John Li Logo" 
                   width={450}
                   height={375}
                   className="max-w-[70vw] md:max-w-[450px] lg:max-w-[500px] w-full h-auto opacity-85 object-contain" 
