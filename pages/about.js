@@ -43,6 +43,7 @@ function AboutPage() {
   const [selectedBrainSide, setSelectedBrainSide] = useState('left'); // 'left' or 'right'
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [activeExpertiseTab, setActiveExpertiseTab] = useState('ai'); // for Core Expertise tabs
+  const [expandedCard, setExpandedCard] = useState(null); // for expandable cards
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -507,31 +508,97 @@ function AboutPage() {
               className={`space-y-4 md:space-y-8 scroll-animate ${storyInView ? "fade-in" : ""}`}
               style={{ transitionDelay: "400ms" }}
             >
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
-                <h3 className="text-2xl font-light text-white mb-4">
-                  Philosophy: Innovation Driven by Human-Centric Values
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  My philosophy is deeply rooted in three core principles: innovation, user-centric design, and uncompromising integrity. I believe true technological progress emerges from creatively blending rigorous analytical thinking with imaginative problem-solving. My interdisciplinary background uniquely positions me to craft intelligent solutions that are intuitive, engaging, and deeply aligned with human needs, especially for younger learners.
-                </p>
+              {/* Philosophy Card */}
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
+                   style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)' }}
+                   onClick={() => setExpandedCard(expandedCard === 'philosophy' ? null : 'philosophy')}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-light text-white">
+                    PHILOSOPHY
+                  </h3>
+                  <div className={`transition-transform duration-300 ${expandedCard === 'philosophy' ? 'rotate-180' : ''}`}>
+                    <span className="text-orange-200 text-xl">▼</span>
+                  </div>
+                </div>
+                {expandedCard === 'philosophy' && (
+                  <div className="mt-4 text-gray-300 animate-fadeIn">
+                    <p className="text-xl font-light">Innovation Driven by Human-Centric Values</p>
+                    <div className="mt-4 space-y-3 border-t border-gray-700/50 pt-4">
+                      <p className="leading-relaxed">
+                        My philosophy is deeply rooted in three core principles: innovation, user-centric design, and uncompromising integrity.
+                      </p>
+                      <p className="leading-relaxed">
+                        I believe true technological progress emerges from creatively blending rigorous analytical thinking with imaginative problem-solving. My interdisciplinary background uniquely positions me to craft intelligent solutions that are intuitive, engaging, and deeply aligned with human needs, especially for younger learners.
+                      </p>
+                      <p className="leading-relaxed">
+                        Ensuring technology resonates genuinely with its users is central to my approach. My expertise extends beyond mere technical implementation; I ensure intelligent systems are effectively communicated, widely adopted, and impactful. With specialized skills in social media marketing, brand management, and storytelling, I bring innovations to life in ways that connect meaningfully with diverse audiences.
+                      </p>
+                      <p className="leading-relaxed">
+                        Integrity underpins all my work. My extensive qualifications in cybersecurity, compliance, and intellectual property law underscore my commitment to building robust, secure, and trustworthy digital environments.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
-                <h3 className="text-2xl font-light text-white mb-4">
-                  Vision: Transforming Education and Digital Infrastructure
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  I envision a future where advanced technology profoundly enhances human capabilities, particularly in education. My goal is to create adaptive, intelligent systems that empower learners, support educators, and revolutionize how educational content is delivered.
-                </p>
+              {/* Vision Card */}
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
+                   style={{ backgroundImage: 'radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%), radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%)' }}
+                   onClick={() => setExpandedCard(expandedCard === 'vision' ? null : 'vision')}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-light text-white">
+                    VISION
+                  </h3>
+                  <div className={`transition-transform duration-300 ${expandedCard === 'vision' ? 'rotate-180' : ''}`}>
+                    <span className="text-orange-200 text-xl">▼</span>
+                  </div>
+                </div>
+                {expandedCard === 'vision' && (
+                  <div className="mt-4 text-gray-300 animate-fadeIn">
+                    <p className="text-xl font-light">Transforming Education and Digital Infrastructure</p>
+                    <div className="mt-4 space-y-3 border-t border-gray-700/50 pt-4">
+                      <p className="leading-relaxed">
+                        I envision a future where advanced technology profoundly enhances human capabilities, particularly in education.
+                      </p>
+                      <p className="leading-relaxed">
+                        My goal is to create adaptive, intelligent systems that empower learners, support educators, and revolutionize how educational content is delivered. By leveraging AI's transformative potential, my solutions seek to personalize and enrich learning experiences, making them accessible, intuitive, and inspiring.
+                      </p>
+                      <p className="leading-relaxed">
+                        This vision extends beyond educational tools alone—I am equally committed to developing resilient digital infrastructures capable of securely supporting these innovations at scale. My expertise in DevOps, cloud technologies, and cybersecurity ensures these platforms are robust, scalable, and secure, capable of seamlessly integrating with existing legacy systems without disruption.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg">
-                <h3 className="text-2xl font-light text-white mb-4">
-                  Mission: Delivering Secure, Scalable, and Impactful AI Solutions
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  My mission is to leverage advanced technological capabilities and creative insights to develop intelligent, secure, and impactful solutions. By prioritizing user engagement, operational integrity, and strategic protection of innovations, I build intelligent ecosystems tailored to real-world needs.
-                </p>
+              {/* Mission Card */}
+              <div className="bg-gray-800/40 p-6 md:p-8 rounded-lg cursor-pointer transition-all duration-300 hover:bg-gray-800/60 hover:shadow-lg hover:shadow-orange-200/10 relative overflow-hidden"
+                   style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%), radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)' }}
+                   onClick={() => setExpandedCard(expandedCard === 'mission' ? null : 'mission')}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-light text-white">
+                    MISSION
+                  </h3>
+                  <div className={`transition-transform duration-300 ${expandedCard === 'mission' ? 'rotate-180' : ''}`}>
+                    <span className="text-orange-200 text-xl">▼</span>
+                  </div>
+                </div>
+                {expandedCard === 'mission' && (
+                  <div className="mt-4 text-gray-300 animate-fadeIn">
+                    <p className="text-xl font-light">Delivering Secure, Scalable, and Impactful AI Solutions</p>
+                    <div className="mt-4 space-y-3 border-t border-gray-700/50 pt-4">
+                      <p className="leading-relaxed">
+                        My mission is to leverage advanced technological capabilities and creative insights to develop intelligent, secure, and impactful solutions.
+                      </p>
+                      <p className="leading-relaxed">
+                        By prioritizing user engagement, operational integrity, and strategic protection of innovations, I build intelligent ecosystems tailored to real-world needs. My comprehensive technical grounding in machine learning, deep learning, DevOps, and cybersecurity uniquely positions me to develop solutions that are not only sophisticated but also operationally sound and strategically aligned with organizational objectives.
+                      </p>
+                      <p className="leading-relaxed">
+                        Each project I undertake is approached with a "Trust by Design" philosophy, integrating rigorous privacy measures, ethical AI frameworks, and operational integrity from the ground up. This ensures that every system I create remains secure, compliant, beneficial, and trustworthy at every level of operation.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -587,24 +654,34 @@ function AboutPage() {
               </p>
 
               {/* Labels with click functionality */}
-              <div className="flex justify-between mt-8 text-lg max-w-md mx-auto">
+              <div className="flex justify-between gap-4 mt-8 text-lg max-w-md mx-auto">
                 <button
                   onClick={() => setSelectedBrainSide('left')}
-                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
-                    selectedBrainSide === 'left' ? 'text-blue-400 scale-110' : 'text-gray-400 hover:text-blue-300'
+                  className={`text-center transition-all duration-300 group cursor-pointer px-3 py-2 rounded-lg relative overflow-hidden ${
+                    selectedBrainSide === 'left' 
+                      ? 'text-blue-400 scale-105 bg-blue-900/20 border border-blue-400/50 shadow-lg shadow-blue-400/20' 
+                      : 'text-gray-400 hover:text-blue-300 border border-gray-600/30 hover:border-blue-400/30 hover:bg-blue-900/10'
                   }`}
                 >
-                  <TbCode className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="font-light">Tekkie</span>
+                  <TbCode className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform" />
+                  <span className="font-light text-base">Tekkie</span>
+                  {selectedBrainSide === 'left' && (
+                    <div className="absolute inset-0 bg-blue-400/10 animate-pulse pointer-events-none rounded-lg"></div>
+                  )}
                 </button>
                 <button
                   onClick={() => setSelectedBrainSide('right')}
-                  className={`flex-1 text-center transition-all duration-300 group cursor-pointer ${
-                    selectedBrainSide === 'right' ? 'text-pink-400 scale-110' : 'text-gray-400 hover:text-pink-300'
+                  className={`text-center transition-all duration-300 group cursor-pointer px-3 py-2 rounded-lg relative overflow-hidden ${
+                    selectedBrainSide === 'right' 
+                      ? 'text-pink-400 scale-105 bg-pink-900/20 border border-pink-400/50 shadow-lg shadow-pink-400/20' 
+                      : 'text-gray-400 hover:text-pink-300 border border-gray-600/30 hover:border-pink-400/30 hover:bg-pink-900/10'
                   }`}
                 >
-                  <TbPalette className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="font-light">Pantser</span>
+                  <TbPalette className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform" />
+                  <span className="font-light text-base">Pantser</span>
+                  {selectedBrainSide === 'right' && (
+                    <div className="absolute inset-0 bg-pink-400/10 animate-pulse pointer-events-none rounded-lg"></div>
+                  )}
                 </button>
               </div>
             </div>
@@ -701,7 +778,7 @@ function AboutPage() {
                style={{ transitionDelay: "400ms" }}>
             <button
               onClick={() => setActiveExpertiseTab('ai')}
-              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
                 activeExpertiseTab === 'ai'
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                   : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
@@ -712,7 +789,7 @@ function AboutPage() {
             </button>
             <button
               onClick={() => setActiveExpertiseTab('devops')}
-              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
                 activeExpertiseTab === 'devops'
                   ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
                   : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
@@ -723,7 +800,7 @@ function AboutPage() {
             </button>
             <button
               onClick={() => setActiveExpertiseTab('security')}
-              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
                 activeExpertiseTab === 'security'
                   ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
                   : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
@@ -734,7 +811,7 @@ function AboutPage() {
             </button>
             <button
               onClick={() => setActiveExpertiseTab('interdisciplinary')}
-              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
                 activeExpertiseTab === 'interdisciplinary'
                   ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
                   : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
@@ -745,7 +822,7 @@ function AboutPage() {
             </button>
             <button
               onClick={() => setActiveExpertiseTab('client')}
-              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
                 activeExpertiseTab === 'client'
                   ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30'
                   : 'bg-gray-800/40 text-gray-400 hover:bg-gray-800/60 hover:text-white'
@@ -757,8 +834,11 @@ function AboutPage() {
           </div>
 
           {/* Tab Content */}
-          <div className={`bg-gray-800/20 border border-gray-700/40 rounded-xl p-6 md:p-8 scroll-animate ${expertiseInView ? "fade-in" : ""}`}
-               style={{ transitionDelay: "600ms" }}>
+          <div className={`bg-gray-800/20 border border-gray-700/40 rounded-xl p-6 md:p-8 scroll-animate ${expertiseInView ? "fade-in" : ""} relative overflow-hidden`}
+               style={{ 
+                 transitionDelay: "600ms",
+                 backgroundImage: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 40%), radial-gradient(circle at 90% 10%, rgba(249, 115, 22, 0.03) 0%, transparent 50%)'
+               }}>
             {activeExpertiseTab === 'ai' && (
               <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-6">
@@ -929,13 +1009,13 @@ function AboutPage() {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16`}
+                className={`flex flex-col lg:flex-row gap-4 lg:gap-8 mb-8 lg:mb-16 group`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Mobile + Desktop - Image */}
                 <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
                   {exp.image && (
-                    <div className="relative">
+                    <div className="relative z-10">
                       <CloudflareImage
                         src={exp.image}
                         alt={exp.title}
@@ -957,7 +1037,7 @@ function AboutPage() {
                           exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
                           125  // All others: 25% larger (125px)
                         }
-                        className="rounded-lg object-cover"
+                        className="rounded-lg object-cover transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover:shadow-orange-200/20"
                       />
                     </div>
                   )}
@@ -1362,6 +1442,27 @@ function AboutPage() {
 
         .float-animation {
           animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Enhanced hover transitions */
+        .transition-all {
+          transition-property: all;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
       `}</style>
     </div>
