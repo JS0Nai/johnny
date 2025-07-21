@@ -374,20 +374,20 @@ function HomePage() {
               <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '500ms' }}>
                 <div className="box-overlay"></div>
                 <div className="box-content">
-                  <div className="box-icon">📚</div>
+                  <div className="box-icon">📰</div>
                   <h3 className="box-title">Articles</h3>
                   <p className="box-preview">Published insights</p>
                 </div>
               </div>
             </Link>
             
-            <Link href="/about">
+            <Link href="/design-branding">
               <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '600ms' }}>
                 <div className="box-overlay"></div>
                 <div className="box-content">
-                  <div className="box-icon">👤</div>
-                  <h3 className="box-title">Profile</h3>
-                  <p className="box-preview">About me & my journey</p>
+                  <div className="box-icon">🎯</div>
+                  <h3 className="box-title">Design & Branding</h3>
+                  <p className="box-preview">Visual identity & brand strategy</p>
                 </div>
               </div>
             </Link>

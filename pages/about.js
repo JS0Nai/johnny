@@ -247,10 +247,31 @@ function AboutPage() {
       achievements: [],
     },
     {
+      period: "1993-1994",
+      title: "International Business College Degree",
+      company: "University",
+      Icon: FaGraduationCap,
+      description:
+        "Completed an International Business College Degree with a focus on business studies.",
+      achievements: [
+        "Business study focus here",
+        "Business study focus here",
+      ],
+    },
+    {
       period: "Mid '90s",
       title: "Network Infrastructure",
       image: "ethernet-wiring",
       description: "Multi-floor ethernet wiring - before the WIFI era.",
+      achievements: [],
+    },
+    {
+      period: "1995-1997",
+      title: "Bachelor of Arts Psychology and Early Childhood Education",
+      company: "University",
+      Icon: FaGraduationCap,
+      description:
+        "Course focuses included child psychology and behavior, anthropological biology, and chemistry.",
       achievements: [],
     },
     {
@@ -261,8 +282,20 @@ function AboutPage() {
       achievements: [],
     },
     {
-      period: "2005 - 2018",
-      title: "Digital Designer",
+      period: "Late '90s to 2007",
+      title: "Youth & Athletics Trainer",
+      company: "Fitness Center",
+      location: "USA",
+      description:
+        "Provided fitness training to youth and professional athletes.",
+      achievements: [
+        "Large group class fitness",
+        "Individual Sport-Specific Professional Training",
+      ],
+    },
+    {
+      period: "2005 - 2010",
+      title: "Corporate Media Design and Services",
       company: "Design Agency",
       location: "UAE",
       description:
@@ -270,37 +303,73 @@ function AboutPage() {
       achievements: [
         "Designed 200+ digital assets",
         "Worked with large brands and startups",
-        "Increased client satisfaction by 35%",
-        "Mentored junior designers",
       ],
     },
     {
-      period: "2018 - 2022",
-      title: "Full Stack Developer",
-      company: "Freelance and Collaboration",
-      location: "Remote",
+      period: "2011-2017",
+      title: "Youth Athletics Academy Trainer",
+      company: "Athletics Academy",
+      location: "UAE",
       description:
-        "Developed web applications and digital solutions with focus on user experience and performance optimization.",
+        "Provided coaching to youth and professional athletes.",
       achievements: [
-        "Built scalable web applications",
-        "Optimized performance by 40%",
-        "Led team of 5 developers",
-        "Implemented DevOps practices",
+        "Large group classes and events",
+        "Individual coaching professional athletes",
       ],
     },
     {
-      period: "2020 - Present",
-      title: "Creative Technologist & AI Specialist",
-      company: "Freelance",
-      location: "Abu Dhabi, UAE",
+      period: "May 2021",
+      title: "Meta Social Media Marketing Certificate",
+      company: "Meta",
+      Icon: SiMeta,
       description:
-        "Leading creative projects combining AI technology with traditional design. Specializing in generative AI, custom development, and innovative digital solutions.",
-      achievements: [
-        "Generated 13K+ AI images using various platforms",
-        "Built 100+ commercial projects with custom coding",
-        "Licensed 10K+ image assets for commercial use",
-        "Developed 50K+ photography collection",
-      ],
+        "Completed the Meta Social Media Marketing Certificate, consisting of 6 courses.",
+      achievements: [],
+    },
+    {
+      period: "March 2024",
+      title: "IBM AI Engineering Professional Certificate",
+      company: "IBM",
+      Icon: SiIbm,
+      description:
+        "Completed the IBM AI Engineering Professional Certificate, encompassing 6 courses including Machine Learning with Python, Deep Learning & Neural Networks, AI-Powered Chatbots, Computer Vision & Image Processing, PyTorch & TensorFlow Deep Learning, and an AI Capstone Project.",
+      achievements: [],
+    },
+    {
+      period: "July 2024",
+      title: "Bachelor of Arts (Honours) in English Literature and Creative Writing",
+      company: "University",
+      Icon: FaGraduationCap,
+      description:
+        "Completed Bachelor of Arts (Honours) in English Literature and Creative Writing, with a focus on business studies.",
+      achievements: [],
+    },
+    {
+      period: "August 2024",
+      title: "IBM DevOps and Software Engineering Professional Certificate",
+      company: "IBM",
+      Icon: SiIbm,
+      description:
+        "Completed the IBM DevOps and Software Engineering Professional Certificate, a comprehensive program of 14 courses.",
+      achievements: [],
+    },
+    {
+      period: "January 2025",
+      title: "Google Cloud Cybersecurity Professional Certificate",
+      company: "Google",
+      image: "/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png",
+      description:
+        "• Security Command Center (SCC)\n• Identity and Access Management (IAM)\n• Cloud Logging and Storage\n• Compute Engine\n• Google Compute Engine\n• Cloud Firewall and Shell\n• Generative AI in Cybersecurity",
+      achievements: [],
+    },
+    {
+      period: "2025 - Ongoing",
+      title: "Master of Science in Computer Science & AI (MSCS)",
+      company: "University",
+      Icon: FaGraduationCap,
+      description:
+        "Currently pursuing a Master of Science in Computer Science & AI (MSCS).",
+      achievements: [],
     },
   ];
 
@@ -1029,12 +1098,18 @@ function AboutPage() {
               >
                 {/* Mobile + Desktop - Image */}
                 <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
+                  {exp.Icon && !exp.image && (
+                    <div className="relative z-10 w-48 h-48 flex items-center justify-center">
+                      <exp.Icon className="text-4xl text-orange-200" />
+                    </div>
+                  )}
                   {exp.image && (
                     <div className="relative z-10">
                       <CloudflareImage
                         src={exp.image}
                         alt={exp.title}
                         width={
+                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 94 :
                           exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
                           exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
                           exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
@@ -1044,6 +1119,7 @@ function AboutPage() {
                           188  // All others: 25% larger (188px)
                         }
                         height={
+                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 63 :
                           exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
                           exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
                           exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
@@ -1088,7 +1164,7 @@ function AboutPage() {
                       {exp.location && (
                         <div className="text-gray-400 text-sm mb-4 text-center lg:text-left">{exp.location}</div>
                       )}
-                      <p className="text-gray-300 mb-6 leading-relaxed text-center lg:text-left">
+                      <p className="text-gray-300 mb-6 leading-relaxed text-center lg:text-left whitespace-pre-line">
                         {exp.description}
                       </p>
 
