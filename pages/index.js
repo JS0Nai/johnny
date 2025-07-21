@@ -163,7 +163,7 @@ function HomePage() {
   ];
 
   // Define which images have video versions
-  const imagesWithVideo = ["simplechaos"]; // Add more image names here as you add videos
+  const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy"]; // Add more image names here as you add videos
 
   const handleSlideChange = (direction) => {
     const slider = document.querySelector(".image-slider-left");
@@ -451,6 +451,8 @@ function HomePage() {
                           autoPlay
                           muted
                           playsInline
+                          preload="metadata"
+                          onEnded={(e) => e.target.play()} // Loop the video
                         />
                       ) : (
                         <CloudflareImage
