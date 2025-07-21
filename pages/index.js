@@ -47,6 +47,8 @@ function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
   const [hoveredImage, setHoveredImage] = useState(null);
+  const [preloadedVideos, setPreloadedVideos] = useState({});
+  const [videoLoadingStates, setVideoLoadingStates] = useState({});
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -164,6 +166,28 @@ function HomePage() {
 
   // Define which images have video versions
   const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy"]; // Add more image names here as you add videos
+
+  // Preload video on hover intent
+  const preloadVideo = (imageName) => {
+    if (!preloadedVideos[imageName] && imagesWithVideo.includes(imageName)) {
+      const video = document.createElement('video');
+      video.src = `/media/${imageName}.mp4`;
+      video.preload = 'auto';
+      video.muted = true;
+      video.playsInline = true;
+      
+      setVideoLoadingStates(prev => ({ ...prev, [imageName]: 'loading' }));
+      
+      video.onloadeddata = () => {
+        setPreloadedVideos(prev => ({ ...prev, [imageName]: true }));
+        setVideoLoadingStates(prev => ({ ...prev, [imageName]: 'loaded' }));
+      };
+      
+      video.onerror = () => {
+        setVideoLoadingStates(prev => ({ ...prev, [imageName]: 'error' }));
+      };
+    }
+  };
 
   const handleSlideChange = (direction) => {
     const slider = document.querySelector(".image-slider-left");
@@ -440,28 +464,53 @@ function HomePage() {
                   {topSliderImages.map((img, index) => (
                     <div
                       key={`${set}-${index}`}
-                      className="flex-none w-72 h-96 relative overflow-hidden rounded-lg"
-                      onMouseEnter={() => setHoveredImage(`${set}-${img}`)}
+                      className="flex-none w-72 h-96 relative overflow-hidden rounded-lg group cursor-pointer"
+                      onMouseEnter={() => {
+                        preloadVideo(img);
+                        setHoveredImage(`${set}-${img}`);
+                      }}
                       onMouseLeave={() => setHoveredImage(null)}
                     >
-                      {imagesWithVideo.includes(img) && hoveredImage === `${set}-${img}` ? (
+                      {/* Loading indicator */}
+                      {imagesWithVideo.includes(img) && videoLoadingStates[img] === 'loading' && hoveredImage === `${set}-${img}` && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
+                          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        </div>
+                      )}
+                      
+                      {/* Video/Image display */}
+                      {imagesWithVideo.includes(img) && hoveredImage === `${set}-${img}` && videoLoadingStates[img] === 'loaded' ? (
                         <video
+                          key={`video-${set}-${img}`}
                           src={`/media/${img}.mp4`}
                           className="w-full h-full object-cover"
                           autoPlay
                           muted
+                          loop
                           playsInline
-                          preload="metadata"
-                          onEnded={(e) => e.target.play()} // Loop the video
+                          preload="auto"
+                          poster={`https://imagedelivery.net/cBNDGgkrsEA-uPSvJAUJyw/${img}/public`}
                         />
                       ) : (
-                        <CloudflareImage
-                          src={img}
-                          alt={`Portfolio ${index + 1}`}
-                          width={288}
-                          height={384}
-                          className="slider-image w-full h-full object-cover"
-                        />
+                        <>
+                          <CloudflareImage
+                            src={img}
+                            alt={`Portfolio ${index + 1}`}
+                            width={288}
+                            height={384}
+                            className="slider-image w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          {/* Hover overlay for images with videos */}
+                          {imagesWithVideo.includes(img) && (
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none">
+                              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg className="w-6 h-6 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                                </svg>
+                              </div>
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   ))}
