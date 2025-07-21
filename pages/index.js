@@ -121,7 +121,7 @@ function HomePage() {
 
   const topSliderImages = [
     "mouthy",
-    "virtuallynothing",
+    "dist-op",
     "simplechaos",
     "bee",
     "surrealproductphotoshoot",
@@ -163,7 +163,18 @@ function HomePage() {
   ];
 
   // Define which images have video versions
-  const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy"]; // Add more image names here as you add videos
+  const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy", "dist-op"]; // Add more image names here as you add videos
+
+  // Map image names to video names (when they differ)
+  const videoNameMap = {
+    // Add mappings here when image and video names differ
+    // Example: "image-name": "video-name",
+  };
+
+  // Helper function to get video filename
+  const getVideoName = (imageName) => {
+    return videoNameMap[imageName] || imageName;
+  };
 
   const handleSlideChange = (direction) => {
     const slider = document.querySelector(".image-slider-left");
@@ -446,7 +457,7 @@ function HomePage() {
                     >
                       {imagesWithVideo.includes(img) && hoveredImage === `${set}-${img}` ? (
                         <video
-                          src={`/media/${img}.mp4`}
+                          src={`/media/${getVideoName(img)}.mp4`}
                           className="w-full h-full object-cover"
                           autoPlay
                           muted
