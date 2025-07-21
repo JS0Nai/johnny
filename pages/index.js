@@ -46,6 +46,7 @@ function HomePage() {
   const [numbers, setNumbers] = useState(["0", "0", "0", "0", "0", "0"]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [hoveredImage, setHoveredImage] = useState(null);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -160,6 +161,9 @@ function HomePage() {
     "thoughts",
     "witchprincess",
   ];
+
+  // Define which images have video versions
+  const imagesWithVideo = ["simplechaos"]; // Add more image names here as you add videos
 
   const handleSlideChange = (direction) => {
     const slider = document.querySelector(".image-slider-left");
@@ -436,15 +440,27 @@ function HomePage() {
                   {topSliderImages.map((img, index) => (
                     <div
                       key={`${set}-${index}`}
-                      className="flex-none w-72 h-96"
+                      className="flex-none w-72 h-96 relative overflow-hidden rounded-lg"
+                      onMouseEnter={() => setHoveredImage(`${set}-${img}`)}
+                      onMouseLeave={() => setHoveredImage(null)}
                     >
-                      <CloudflareImage
-                        src={img}
-                        alt={`Portfolio ${index + 1}`}
-                        width={288}
-                        height={384}
-                        className="slider-image w-full h-full object-cover rounded-lg"
-                      />
+                      {imagesWithVideo.includes(img) && hoveredImage === `${set}-${img}` ? (
+                        <video
+                          src={`/media/${img}.mp4`}
+                          className="w-full h-full object-cover"
+                          autoPlay
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <CloudflareImage
+                          src={img}
+                          alt={`Portfolio ${index + 1}`}
+                          width={288}
+                          height={384}
+                          className="slider-image w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
