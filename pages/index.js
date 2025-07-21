@@ -88,7 +88,7 @@ function HomePage() {
       const duration = 2000;
       const steps = 50;
       const interval = duration / steps;
-      const targetNumbers = [10000, 13000, 100, 10000, 1000000, 50000];
+      const targetNumbers = [10000, 15000, 100, 18000, 2000000, 50000];
 
       const animateNumbers = () => {
         for (let i = 0; i <= steps; i++) {
@@ -735,10 +735,10 @@ function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 mt-12">
             {[
               { number: "10K", label: "Licensed Image Assets" },
-              { number: "13K", label: "AI Generated Images" },
+              { number: "15K", label: "AI Generated Images" },
               { number: "100", label: "Commercial Licenses" },
-              { number: "10K", label: "Coding Hours" },
-              { number: "1M", label: "Words Written" },
+              { number: "18K", label: "Coding Hours" },
+              { number: "2M", label: "Creative Words Written" },
               { number: "50K", label: "Photography Collection" },
             ].map((item, index) => (
               <div

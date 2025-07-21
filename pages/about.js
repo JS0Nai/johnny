@@ -318,6 +318,48 @@ function AboutPage() {
       achievements: [],
     },
     {
+      period: "2021-2022",
+      title: "Introduction to Intellectual Property",
+      image: "/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png",
+      description: "Foundation course in intellectual property fundamentals.",
+      achievements: [],
+    },
+    {
+      period: "2021-2022",
+      title: "Copyright Law",
+      image: "/media/Copyright-Law-PBM9KWDYVQBS.png",
+      description: "Understanding copyright law principles and applications.",
+      achievements: [],
+    },
+    {
+      period: "2021-2022",
+      title: "Patent Law",
+      image: "/media/Patent-Law-TLAMXN9739GY.png",
+      description: "Patent law fundamentals and practical applications.",
+      achievements: [],
+    },
+    {
+      period: "2021-2022",
+      title: "Trademark Law",
+      image: "/media/Trademark-Law-QE76LA26BZSW.png",
+      description: "Trademark law principles and brand protection.",
+      achievements: [],
+    },
+    {
+      period: "2021-2022",
+      title: "Brand Management",
+      image: "/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png",
+      description: "Aligning business brand and behaviour strategies.",
+      achievements: [],
+    },
+    {
+      period: "2021-2022",
+      title: "Bookkeeping Basics",
+      image: "/media/Bookkeeping-Basics-ULPP2KDXC9VG.png",
+      description: "Fundamental bookkeeping principles and practices.",
+      achievements: [],
+    },
+    {
       period: "March 2024",
       title: "IBM AI Engineering Professional Certificate",
       company: "IBM",
@@ -1105,6 +1147,12 @@ function AboutPage() {
                           exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 141 :  // 50% larger
                           exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 141 :  // 50% larger
                           exp.image === '/media/honsBAEngCrWr.png' ? 141 :  // 50% larger
+                          exp.image === '/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png' ? 106 :  // 25% smaller than certs
+                          exp.image === '/media/Copyright-Law-PBM9KWDYVQBS.png' ? 106 :  // 25% smaller than certs
+                          exp.image === '/media/Patent-Law-TLAMXN9739GY.png' ? 106 :  // 25% smaller than certs
+                          exp.image === '/media/Trademark-Law-QE76LA26BZSW.png' ? 106 :  // 25% smaller than certs
+                          exp.image === '/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png' ? 106 :  // 25% smaller than certs
+                          exp.image === '/media/Bookkeeping-Basics-ULPP2KDXC9VG.png' ? 106 :  // 25% smaller than certs
                           exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
                           exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
                           exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
@@ -1120,6 +1168,12 @@ function AboutPage() {
                           exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 94 :  // 50% larger
                           exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 94 :  // 50% larger
                           exp.image === '/media/honsBAEngCrWr.png' ? 94 :  // 50% larger
+                          exp.image === '/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png' ? 71 :  // 25% smaller than certs
+                          exp.image === '/media/Copyright-Law-PBM9KWDYVQBS.png' ? 71 :  // 25% smaller than certs
+                          exp.image === '/media/Patent-Law-TLAMXN9739GY.png' ? 71 :  // 25% smaller than certs
+                          exp.image === '/media/Trademark-Law-QE76LA26BZSW.png' ? 71 :  // 25% smaller than certs
+                          exp.image === '/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png' ? 71 :  // 25% smaller than certs
+                          exp.image === '/media/Bookkeeping-Basics-ULPP2KDXC9VG.png' ? 71 :  // 25% smaller than certs
                           exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
                           exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
                           exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
