@@ -26,7 +26,7 @@ import { SiNodedotjs } from "react-icons/si";
 import { SiPython } from "react-icons/si";
 import { SiJavascript } from "react-icons/si";
 import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
-import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake, FaBrain, FaCode, FaServer, FaDatabase, FaPaintBrush, FaPencilAlt, FaCubes, FaGraduationCap, FaBookOpen, FaFlask, FaMicroscope, FaChartLine, FaCogs, FaNetworkWired, FaUserShield } from "react-icons/fa";
+import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake, FaBrain, FaCode, FaServer, FaDatabase, FaPaintBrush, FaPencilAlt, FaCubes, FaGraduationCap, FaBookOpen, FaFlask, FaMicroscope, FaChartLine, FaCogs, FaNetworkWired, FaUserShield, FaDumbbell, FaPalette, FaRunning } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 function AboutPage() {
@@ -286,6 +286,7 @@ function AboutPage() {
       title: "Youth & Athletics Trainer",
       company: "Fitness Center",
       location: "USA",
+      Icon: FaDumbbell,
       description:
         "Provided fitness training to youth and professional athletes.",
       achievements: [
@@ -298,6 +299,7 @@ function AboutPage() {
       title: "Corporate Media Design and Services",
       company: "Design Agency",
       location: "UAE",
+      Icon: FaPalette,
       description:
         "Created digital designs and visual identities for various clients across different industries.",
       achievements: [
@@ -310,6 +312,7 @@ function AboutPage() {
       title: "Youth Athletics Academy Trainer",
       company: "Athletics Academy",
       location: "UAE",
+      Icon: FaRunning,
       description:
         "Provided coaching to youth and professional athletes.",
       achievements: [
@@ -321,7 +324,7 @@ function AboutPage() {
       period: "May 2021",
       title: "Meta Social Media Marketing Certificate",
       company: "Meta",
-      Icon: SiMeta,
+      image: "/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png",
       description:
         "Completed the Meta Social Media Marketing Certificate, consisting of 6 courses.",
       achievements: [],
@@ -330,7 +333,7 @@ function AboutPage() {
       period: "March 2024",
       title: "IBM AI Engineering Professional Certificate",
       company: "IBM",
-      Icon: SiIbm,
+      image: "/media/IBM-AI-Engineering-.png",
       description:
         "Completed the IBM AI Engineering Professional Certificate, encompassing 6 courses including Machine Learning with Python, Deep Learning & Neural Networks, AI-Powered Chatbots, Computer Vision & Image Processing, PyTorch & TensorFlow Deep Learning, and an AI Capstone Project.",
       achievements: [],
@@ -339,7 +342,7 @@ function AboutPage() {
       period: "July 2024",
       title: "Bachelor of Arts (Honours) in English Literature and Creative Writing",
       company: "University",
-      Icon: FaGraduationCap,
+      image: "/media/honsBAEngCrWr.png",
       description:
         "Completed Bachelor of Arts (Honours) in English Literature and Creative Writing, with a focus on business studies.",
       achievements: [],
@@ -348,7 +351,7 @@ function AboutPage() {
       period: "August 2024",
       title: "IBM DevOps and Software Engineering Professional Certificate",
       company: "IBM",
-      Icon: SiIbm,
+      image: "/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png",
       description:
         "Completed the IBM DevOps and Software Engineering Professional Certificate, a comprehensive program of 14 courses.",
       achievements: [],
@@ -363,10 +366,10 @@ function AboutPage() {
       achievements: [],
     },
     {
-      period: "2025 - Ongoing",
+      period: "2024 - Ongoing",
       title: "Master of Science in Computer Science & AI (MSCS)",
       company: "University",
-      Icon: FaGraduationCap,
+      image: "brain-tekie-blue",
       description:
         "Currently pursuing a Master of Science in Computer Science & AI (MSCS).",
       achievements: [],
@@ -1100,7 +1103,7 @@ function AboutPage() {
                 <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
                   {exp.Icon && !exp.image && (
                     <div className="relative z-10 w-48 h-48 flex items-center justify-center">
-                      <exp.Icon className="text-4xl text-orange-200" />
+                      <exp.Icon className={`${exp.Icon === FaBrain && exp.title.includes('MSCS') ? 'text-8xl animate-pulse' : 'text-6xl'} text-orange-200`} />
                     </div>
                   )}
                   {exp.image && (
@@ -1109,7 +1112,12 @@ function AboutPage() {
                         src={exp.image}
                         alt={exp.title}
                         width={
-                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 94 :
+                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 141 :  // 50% larger
+                          exp.image === '/media/IBM-AI-Engineering-.png' ? 141 :  // 50% larger
+                          exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 141 :  // 50% larger
+                          exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 141 :  // 50% larger
+                          exp.image === '/media/honsBAEngCrWr.png' ? 141 :  // 50% larger
+                          exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
                           exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
                           exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
                           exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
@@ -1119,7 +1127,12 @@ function AboutPage() {
                           188  // All others: 25% larger (188px)
                         }
                         height={
-                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 63 :
+                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 94 :  // 50% larger
+                          exp.image === '/media/IBM-AI-Engineering-.png' ? 94 :  // 50% larger
+                          exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 94 :  // 50% larger
+                          exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 94 :  // 50% larger
+                          exp.image === '/media/honsBAEngCrWr.png' ? 94 :  // 50% larger
+                          exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
                           exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
                           exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
                           exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
@@ -1128,7 +1141,7 @@ function AboutPage() {
                           exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
                           125  // All others: 25% larger (125px)
                         }
-                        className="rounded-lg object-cover transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover:shadow-orange-200/20"
+                        className={`rounded-lg object-cover transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover:shadow-orange-200/20 ${exp.image === 'brain-tekie-blue' ? 'animate-pulse drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]' : ''}`}
                       />
                     </div>
                   )}
