@@ -198,7 +198,7 @@ function AboutPage() {
       period: "Early to Mid '80s",
       title: "TRS-80",
       image: "trs80-computer",
-      description: "- Coding journey begins. Mostly creating ASCII boxing programs\n- Model 4 (RadioShack)\n- Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives.",
+      description: "• Coding journey begins. Mostly creating ASCII boxing programs\n• Model 4 (RadioShack)\n• Level II BASIC, 64 KB RAM max, and dual 5¼″ floppy drives.",
       achievements: [],
     },
     {
@@ -252,11 +252,8 @@ function AboutPage() {
       company: "University",
       Icon: FaGraduationCap,
       description:
-        "Completed an International Business College Degree with a focus on business studies.",
-      achievements: [
-        "Business study focus here",
-        "Business study focus here",
-      ],
+        "• Completed an International Business College Degree\n• Focus on business studies\n• Business study specialization\n• International commerce curriculum",
+      achievements: [],
     },
     {
       period: "Mid '90s",
@@ -288,11 +285,8 @@ function AboutPage() {
       location: "USA",
       Icon: FaDumbbell,
       description:
-        "Provided fitness training to youth and professional athletes.",
-      achievements: [
-        "Large group class fitness",
-        "Individual Sport-Specific Professional Training",
-      ],
+        "• Provided fitness training to youth and professional athletes\n• Large group class fitness\n• Individual Sport-Specific Professional Training",
+      achievements: [],
     },
     {
       period: "2005 - 2010",
@@ -301,11 +295,8 @@ function AboutPage() {
       location: "UAE",
       Icon: FaPalette,
       description:
-        "Created digital designs and visual identities for various clients across different industries.",
-      achievements: [
-        "Designed 200+ digital assets",
-        "Worked with large brands and startups",
-      ],
+        "• Created digital designs and visual identities\n• Designed 200+ digital assets\n• Worked with large brands and startups\n• Various industries and sectors",
+      achievements: [],
     },
     {
       period: "2011-2017",
@@ -314,11 +305,8 @@ function AboutPage() {
       location: "UAE",
       Icon: FaRunning,
       description:
-        "Provided coaching to youth and professional athletes.",
-      achievements: [
-        "Large group classes and events",
-        "Individual coaching professional athletes",
-      ],
+        "• Provided coaching to youth and professional athletes\n• Large group classes and events\n• Individual coaching professional athletes",
+      achievements: [],
     },
     {
       period: "May 2021",
@@ -335,7 +323,7 @@ function AboutPage() {
       company: "IBM",
       image: "/media/IBM-AI-Engineering-.png",
       description:
-        "Completed the IBM AI Engineering Professional Certificate, encompassing 6 courses including Machine Learning with Python, Deep Learning & Neural Networks, AI-Powered Chatbots, Computer Vision & Image Processing, PyTorch & TensorFlow Deep Learning, and an AI Capstone Project.",
+        "• Machine Learning with Python\n• Deep Learning & Neural Networks\n• AI-Powered Chatbots\n• Computer Vision & Image Processing\n• PyTorch & TensorFlow Deep Learning\n• AI Capstone Project",
       achievements: [],
     },
     {
@@ -1100,7 +1088,7 @@ function AboutPage() {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Mobile + Desktop - Image */}
-                <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
+                <div className="w-full lg:w-1/3 flex justify-center">
                   {exp.Icon && !exp.image && (
                     <div className="relative z-10 w-48 h-48 flex items-center justify-center">
                       <exp.Icon className={`${exp.Icon === FaBrain && exp.title.includes('MSCS') ? 'text-8xl animate-pulse' : 'text-6xl'} text-orange-200`} />
