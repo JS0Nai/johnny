@@ -25,6 +25,7 @@ function PortfolioPage() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
+  const [isHoveringHero, setIsHoveringHero] = useState(false);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -378,29 +379,63 @@ function PortfolioPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with Video */}
       <div
         ref={heroRef}
-        className="flex justify-center items-center pt-32 pb-16"
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        onMouseEnter={() => setIsHoveringHero(true)}
+        onMouseLeave={() => setIsHoveringHero(false)}
       >
-        <div className="max-w-6xl mx-auto text-center px-4">
+        {/* Background - either image or video */}
+        <div className="absolute inset-0 bg-black">
+          {isHoveringHero ? (
+            <video
+              src="/media/dist-op.mp4"
+              className="absolute inset-0 w-full h-full object-contain"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          ) : (
+            <CloudflareImage
+              src="dist-op"
+              alt="Hero background"
+              width={1920}
+              height={1080}
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          )}
+        </div>
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto text-center px-4">
           <h1
-            className={`text-7xl md:text-8xl font-extralight bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent tracking-tighter mb-6 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            className={`text-7xl md:text-8xl font-extralight tracking-wide text-white mb-6 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            <span className="text-orange-200">Creative</span> Gallery
+            <span className="text-orange-200/90">Creative</span> Gallery
           </h1>
 
           <h2
-            className={`text-gray-400 text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
+            className={`text-gray-200 text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
             Explore my collection of AI art, character designs, digital creations,
             and creative experiments across various themes and styles
           </h2>
 
+        </div>
+      </div>
+
+      {/* Controls Section */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
           {/* View Mode Toggle */}
           <div
-            className={`flex justify-center gap-2 mb-8 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            className={`flex justify-center gap-2 mb-8`}
             style={{ transitionDelay: "300ms" }}
           >
             {['grid', 'masonry', 'infinite'].map(mode => (
@@ -423,8 +458,7 @@ function PortfolioPage() {
 
           {/* Search Bar */}
           <div
-            className={`max-w-2xl mx-auto mb-8 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "400ms" }}
+            className={`max-w-2xl mx-auto mb-8`}
           >
             <input
               type="text"
@@ -442,8 +476,7 @@ function PortfolioPage() {
 
           {/* Category Filters */}
           <div
-            className={`flex flex-wrap justify-center gap-3 mb-4 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "500ms" }}
+            className={`flex flex-wrap justify-center gap-3 mb-4`}
           >
             {categories.map(category => (
               <motion.button
@@ -463,12 +496,9 @@ function PortfolioPage() {
           </div>
 
           {/* Results Count */}
-          <div className={`text-gray-500 text-sm scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "600ms" }}
-          >
+          <div className="text-gray-500 text-sm text-center">
             Showing {filteredItems.length} {filteredItems.length === 1 ? 'work' : 'works'} | Category: {selectedCategory} | View: {viewMode}
           </div>
-        </div>
       </div>
 
       {/* Gallery Section */}

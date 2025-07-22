@@ -234,7 +234,7 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/20 backdrop-blur-sm">
         <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-20">
                 <Link href="/">
