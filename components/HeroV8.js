@@ -43,7 +43,7 @@ const HeroV8 = () => {
             <div className="absolute inset-0 bg-black"></div>
             <video
               ref={videoRef}
-              className="absolute inset-0 w-full h-full object-contain"
+              className="absolute inset-0 w-full h-full object-cover"
               src="/media/dist-op.mp4"
               autoPlay
               muted={isMuted}
@@ -70,8 +70,8 @@ const HeroV8 = () => {
             </button>
             
             <div className="relative flex flex-col items-center justify-center text-center h-full z-10">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-extralight tracking-wide text-orange-200/90"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wider text-orange-200/90"
+                  style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}>
                 The Monarkh Project
               </h1>
               <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
@@ -89,7 +89,7 @@ const HeroV8 = () => {
                 alt="Tech runner"
                 width={1920}
                 height={1080}
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-black/20"></div>
@@ -120,7 +120,7 @@ const HeroV8 = () => {
                 alt="Girl reading"
                 width={1920}
                 height={1080}
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-black/20"></div>
@@ -141,15 +141,15 @@ const HeroV8 = () => {
               <div className="text-orange-300 font-bold mb-6">
                 YOUR 1-iANDECOUND ENNERI
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
                 <Link href="/projects">
-                  <span className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg text-base hover:bg-white/20 transition-all duration-300 cursor-pointer border border-white/20">
-                    DEICENCE 10 DT UALBAN
+                  <span className="px-8 py-4 bg-cyan-400 text-slate-900 font-semibold rounded-full text-lg hover:bg-cyan-300 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                    Explore Projects
                   </span>
                 </Link>
                 <Link href="/research">
-                  <span className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg text-base hover:bg-white/20 transition-all duration-300 cursor-pointer border border-white/20">
-                    Old Ejenbing oval malnage
+                  <span className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full text-lg hover:bg-cyan-400/10 hover:border-cyan-300 transition-all duration-300 cursor-pointer">
+                    View Research
                   </span>
                 </Link>
               </div>
@@ -165,7 +165,7 @@ const HeroV8 = () => {
                 alt="Profile header"
                 width={1920}
                 height={1080}
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-black/20"></div>
