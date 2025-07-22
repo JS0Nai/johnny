@@ -7,6 +7,8 @@ import { SiGithub, SiLinkedin, SiTwitter } from "react-icons/si";
 const HeroV8 = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const videoRef = useRef(null);
   const [heroRef, heroInView] = useInView({ threshold: 0.3, triggerOnce: true });
 
@@ -28,8 +30,40 @@ const HeroV8 = () => {
     }
   }, [currentSlide]);
 
+  // Handle touch events
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  // Remove mouse wheel handler to allow normal page scrolling
+
   return (
-    <main ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
+    <main 
+      ref={heroRef} 
+      className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="absolute inset-0 z-0">
         <div className="shape-1"></div>
         <div className="shape-2"></div>
@@ -125,7 +159,7 @@ const HeroV8 = () => {
             </div>
             <div className="absolute inset-0 bg-black/20"></div>
             
-            <div className="relative flex flex-col items-start justify-center text-left h-full z-10 pl-12 md:pl-20">
+            <div className="relative flex flex-col items-start justify-center text-left h-full z-10 pl-16 md:pl-32 lg:pl-40">
               <span className="text-sm font-bold uppercase text-orange-200 tracking-widest mb-4">THE SCIENCE OF</span>
               <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-cyan-300 mb-6"
                   style={{ fontFamily: "'Arial', sans-serif" }}>
@@ -191,6 +225,27 @@ const HeroV8 = () => {
         </div>
       </div>
 
+      {/* Navigation arrows for desktop */}
+      <button
+        onClick={prevSlide}
+        className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center bg-white/5 backdrop-blur-sm rounded-full hover:bg-white/10 transition-all duration-300"
+        aria-label="Previous slide"
+      >
+        <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center bg-white/5 backdrop-blur-sm rounded-full hover:bg-white/10 transition-all duration-300"
+        aria-label="Next slide"
+      >
+        <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
       {/* Navigation dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {[0, 1, 2, 3].map((index) => (
@@ -201,6 +256,7 @@ const HeroV8 = () => {
           />
         ))}
       </div>
+
 
       <style jsx>{`
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
