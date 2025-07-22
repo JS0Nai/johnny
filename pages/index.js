@@ -252,19 +252,9 @@ function HomePage() {
 
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="p-2 w-8 h-8 flex items-center justify-center"
+                  className="px-4 py-2 bg-white/50 border border-gray-400 rounded-full text-black text-sm font-medium tracking-wider hover:bg-white/60 transition-all duration-300"
                 >
-                  {isMenuOpen ? (
-                    <div className="relative w-6 h-6">
-                      <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white rotate-45"></div>
-                      <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white -rotate-45"></div>
-                    </div>
-                  ) : (
-                    <div className="space-y-1">
-                      <div className="w-6 h-0.5 bg-green-500"></div>
-                      <div className="w-6 h-0.5 bg-green-500"></div>
-                    </div>
-                  )}
+                  MENU
                 </button>
               </div>
             </div>
@@ -595,22 +585,22 @@ function HomePage() {
                 {/* Static positioned icons for better visibility */}
                 <div className="tech-icon-wrapper">
                   <div className="tech-icon-item" style={{ top: '20%', left: '15%' }}>
-                    <SiReact className="w-8 h-8 text-blue-400" />
-                  </div>
-                  <div className="tech-icon-item" style={{ top: '20%', right: '15%' }}>
-                    <SiPython className="w-8 h-8 text-yellow-400" />
-                  </div>
-                  <div className="tech-icon-item" style={{ bottom: '20%', left: '15%' }}>
-                    <SiOpenai className="w-8 h-8 text-green-400" />
-                  </div>
-                  <div className="tech-icon-item" style={{ bottom: '20%', right: '15%' }}>
                     <SiDocker className="w-8 h-8 text-blue-500" />
                   </div>
+                  <div className="tech-icon-item" style={{ top: '20%', right: '15%' }}>
+                    <SiGithub className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="tech-icon-item" style={{ bottom: '20%', left: '15%' }}>
+                    <SiPython className="w-8 h-8 text-yellow-400" />
+                  </div>
+                  <div className="tech-icon-item" style={{ bottom: '20%', right: '15%' }}>
+                    <SiApple className="w-8 h-8 text-white" />
+                  </div>
                   <div className="tech-icon-item" style={{ top: '50%', left: '5%' }}>
-                    <SiAmazonaws className="w-8 h-8 text-orange-400" />
+                    <SiGoogle className="w-8 h-8 text-blue-400" />
                   </div>
                   <div className="tech-icon-item" style={{ top: '50%', right: '5%' }}>
-                    <SiNextdotjs className="w-8 h-8 text-white" />
+                    <SiAdobe className="w-8 h-8 text-red-500" />
                   </div>
                 </div>
               </div>

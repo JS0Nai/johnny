@@ -527,31 +527,30 @@ function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <div
-        ref={heroRef}
-        className="flex justify-center items-center pt-32 pb-16"
-      >
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h1
-            className={`text-7xl md:text-8xl font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter mb-6 scroll-animate ${heroInView ? "fade-in" : ""}`}
-          >
-            ABOUT ME
-          </h1>
-
+      <div ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-black">
+          <img
+            src="/media/profile-header.png"
+            alt="Profile header"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        <div className="relative flex flex-col items-center justify-center text-center h-full z-10 px-4">
           <h2
-            className={`text-white text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
+            className={`text-2xl md:text-3xl lg:text-4xl font-light text-orange-200/90 mb-8 max-w-4xl mx-auto leading-relaxed scroll-animate ${heroInView ? "fade-in" : ""}`}
+          >
+            Architecting Intelligent Futures at the intersection of cutting-edge technology, strategic vision, and human-centric innovation
+          </h2>
+          
+          <p
+            className={`text-lg md:text-xl text-gray-200 max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "200ms" }}
           >
-            Architecting Intelligent Futures at the intersection of cutting-edge technology,
-            strategic vision, and human-centric innovation
-          </h2>
-
-          <div
-            className={`text-gray-400 text-lg max-w-2xl mx-auto scroll-animate-right ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "400ms" }}
-          >
             Founder and Principal Consultant at AI Infrastructure & Integrations Consultancy (AIii), Abu Dhabi
-          </div>
+          </p>
         </div>
       </div>
 

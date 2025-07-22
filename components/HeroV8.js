@@ -160,10 +160,10 @@ const HeroV8 = () => {
             <div className="absolute inset-0 bg-black/20"></div>
             
             <div className="relative flex flex-col items-start justify-center text-left h-full z-10 pl-16 md:pl-32 lg:pl-40">
-              <span className="text-sm font-bold uppercase text-orange-200 tracking-widest mb-4">THE SCIENCE OF</span>
+              <span className="text-sm font-bold uppercase text-orange-200 tracking-widest mb-4">RESEARCH & DEVELOPMENT</span>
               <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-cyan-300 mb-6"
                   style={{ fontFamily: "'Arial', sans-serif" }}>
-                Science Reading
+                The Science of Reading
               </h2>
               <p className="text-base md:text-lg text-white max-w-2xl mb-8 leading-relaxed">
                 From investigating vanishing eleosoing op oasing applications programming 
