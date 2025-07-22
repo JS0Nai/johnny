@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
+import Header from "../components/Header";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
@@ -432,122 +433,46 @@ function AboutPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm">
-          <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <Link href="/">
-                <div className="cursor-pointer">
-                  <img
-                    src="/media/signature-webpagetopleft-logo.png"
-                    alt="John Li Logo"
-                    width={150}
-                    height={150}
-                    className="w-[65px] h-[65px] object-contain"
-                  />
-                </div>
-              </Link>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 w-8 h-8 flex items-center justify-center"
-              >
-                {isMenuOpen ? (
-                  <div className="relative w-6 h-6">
-                    <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white rotate-45"></div>
-                    <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white -rotate-45"></div>
-                  </div>
-                ) : (
-                  <div className="space-y-1">
-                    <div className="w-6 h-0.5 bg-green-500"></div>
-                    <div className="w-6 h-0.5 bg-green-500"></div>
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-        </header>
-      </div>
-
-      {/* Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/95 transition-transform duration-500 ease-in-out z-40
-          ${isMenuOpen ? "translate-y-0" : "-translate-y-full"}`}
-      >
-        <div className="container mx-auto px-4 pt-24">
-          <nav className="space-y-6">
-            {menuItems.map((item) => (
-              <div key={item.id} className="overflow-hidden">
-                {item.subItems.length > 0 ? (
-                  <button
-                    onClick={() =>
-                      setActiveMenu(activeMenu === item.id ? null : item.id)
-                    }
-                    className="w-full flex justify-between items-center text-white hover:text-green-500 transition-colors py-2"
-                  >
-                    <span className="text-2xl font-light">{item.label}</span>
-                    <span
-                      className={`text-green-500 transition-transform duration-300 
-                        ${activeMenu === item.id ? "rotate-180" : ""}`}
-                    >
-                      ▼
-                    </span>
-                  </button>
-                ) : (
-                  <Link href={item.href}>
-                    <button
-                      onClick={() => setIsMenuOpen(false)}
-                      className="w-full text-left text-white hover:text-green-500 transition-colors py-2"
-                    >
-                      <span className="text-2xl font-light">{item.label}</span>
-                    </button>
-                  </Link>
-                )}
-
-                {item.subItems.length > 0 && (
-                  <div
-                    className={`space-y-4 pl-4 transition-all duration-300 
-                      ${activeMenu === item.id ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
-                  >
-                    {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
-                      >
-                        {subItem}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
+      {/* Header */}
+      <Header 
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        menuItems={menuItems}
+      />
 
       {/* Hero Section */}
       <div ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
         {/* Background image */}
         <div className="absolute inset-0 bg-black">
-          <img
-            src="/media/profile-header.png"
+          <CloudflareImage
+            src="profile-header"
             alt="Profile header"
+            width={1920}
+            height={1080}
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
         <div className="absolute inset-0 bg-black/40"></div>
         
         <div className="relative flex flex-col items-center justify-center text-center h-full z-10 px-4">
+          <h1
+            className={`text-7xl md:text-8xl font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter mb-6 scroll-animate ${heroInView ? "fade-in" : ""}`}
+          >
+            JOHN LI
+          </h1>
+
           <h2
-            className={`text-2xl md:text-3xl lg:text-4xl font-light text-orange-200/90 mb-8 max-w-4xl mx-auto leading-relaxed scroll-animate ${heroInView ? "fade-in" : ""}`}
+            className={`text-2xl md:text-3xl lg:text-4xl font-light text-orange-200/90 mb-8 max-w-4xl mx-auto leading-relaxed scroll-animate-left ${heroInView ? "fade-in" : ""}`}
+            style={{ transitionDelay: "200ms" }}
           >
             Architecting Intelligent Futures at the intersection of cutting-edge technology, strategic vision, and human-centric innovation
           </h2>
           
           <p
-            className={`text-lg md:text-xl text-gray-200 max-w-3xl mx-auto scroll-animate-left ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "200ms" }}
+            className={`text-lg md:text-xl text-gray-200 max-w-3xl mx-auto scroll-animate-right ${heroInView ? "fade-in" : ""}`}
+            style={{ transitionDelay: "400ms" }}
           >
             Founder and Principal Consultant at AI Infrastructure & Integrations Consultancy (AIii), Abu Dhabi
           </p>
