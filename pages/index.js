@@ -5,6 +5,7 @@ import { useInView } from "../hooks/useInView";
 import { TbBrain, TbServer } from "react-icons/tb";
 import CloudflareImage from "../components/CloudflareImage";
 import HeroV8 from "../components/HeroV8";
+import Footer from "../components/Footer";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
@@ -401,7 +402,7 @@ function HomePage() {
                 <div className="box-overlay"></div>
                 <div className="box-content">
                   <div className="box-icon">🎯</div>
-                  <h3 className="box-title">Design & Branding</h3>
+                  <h3 className="box-title">Branding</h3>
                   <p className="box-preview">Visual identity & brand strategy</p>
                 </div>
               </div>
@@ -418,7 +419,7 @@ function HomePage() {
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             <span className="text-orange-200/90">AI</span>{" "}
-            <span className="text-white">Image Generations</span>
+            <span className="text-white">Generation</span>
           </h2>
         </div>
 
@@ -505,10 +506,10 @@ function HomePage() {
         {/* Explore Text */}
         <div className="text-center mt-12">
           <Link href="/portfolio">
-            <span className="group inline-flex items-center gap-2 text-gray-400 text-sm tracking-widest hover:text-orange-200 transition-colors cursor-pointer">
+            <span className="group inline-flex items-center gap-2 text-gray-400 text-lg tracking-widest hover:text-orange-200 transition-colors cursor-pointer">
               Explore The Portfolio
               <svg
-                className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                className="w-5 h-5 transition-transform group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -875,104 +876,7 @@ function HomePage() {
       </div>
 
       {/* Footer Section */}
-      <footer className="bg-gray-900 px-8 py-16 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <div className="text-3xl text-white font-light mb-6">John Li</div>
-            <p className="text-gray-400 mt-4">
-              Portfolio, Projects, and Resources{" "}
-              <span className="italic"></span>
-            </p>
-          </div>
-
-          {/* Location Section */}
-          <div className="mb-16">
-            <h3 className="text-3xl text-white font-light mb-6">Location</h3>
-            <address className="text-gray-400 not-italic">
-              Abu Dhabi,
-              <br />
-              United Arab Emirates
-            </address>
-          </div>
-
-          {/* Contact Section */}
-          <div className="mb-16">
-            <h3 className="text-3xl text-white font-light mb-6">
-              Let's Connect.
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="text-orange-200">✉</span>
-                <a
-                  href="mailto:hi@johnny.ae"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  hi@johnny.ae
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-orange-200">📞</span>
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Request Callback
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-4 mb-16">
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Facebook
-            </a>
-            <span className="text-gray-600">/</span>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              X/Twitter
-            </a>
-            <span className="text-gray-600">/</span>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Instagram
-            </a>
-          </div>
-
-          {/* Footer Credits */}
-          <div className="text-center text-gray-400 text-sm">
-            <p>
-              Designed by{" "}
-              <a
-                href="#"
-                className="text-white hover:text-orange-200 transition-colors"
-              >
-                Monarkh AI Design and Build
-              </a>
-              , Powered by{" "}
-              <a
-                href="#"
-                className="text-white hover:text-orange-200 transition-colors"
-              >
-                Monarkh
-              </a>
-            </p>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors mt-2 inline-block"
-            >
-              Privacy
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <style jsx global>{`
         /* Keep existing styles */
@@ -1001,7 +905,7 @@ function HomePage() {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             padding: 0 20px;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -1043,7 +947,7 @@ function HomePage() {
         }
 
         .box-icon {
-            font-size: 3.5rem;
+            font-size: 2.45rem;
             margin-bottom: 1.2rem;
             opacity: 0.8;
             transition: all 0.3s ease;
@@ -1267,7 +1171,7 @@ function HomePage() {
         @media (max-width: 1024px) {
             .bento-3d-grid {
                 grid-template-columns: repeat(2, 1fr);
-                max-width: 650px;
+                max-width: 750px;
             }
             
             .tech-icon-item {

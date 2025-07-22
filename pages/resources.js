@@ -710,14 +710,14 @@ function ResourcesPage() {
                 href="#"
                 className="text-white hover:text-orange-200 transition-colors"
               >
-                Monarkh AI Design and Build
+                AI Infrastructure & Integrations Consultancy
               </a>
               , Powered by{" "}
               <a
                 href="#"
                 className="text-white hover:text-orange-200 transition-colors"
               >
-                Monarkh
+                AIiii
               </a>
             </p>
             <a
