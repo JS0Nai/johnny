@@ -31,7 +31,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
 
       {/* Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/95 z-40">
+        <div className="fixed inset-0 bg-black/80 z-40">
           <div className="container mx-auto px-4 pt-24 h-full overflow-y-auto">
           {/* Mobile Menu */}
           <nav className="space-y-6 md:hidden">
@@ -44,7 +44,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     }
                     className="w-full flex justify-between items-center text-white hover:text-green-500 transition-colors py-2"
                   >
-                    <span className="text-2xl font-light">{item.label}</span>
+                    <span className="text-xl font-light">{item.label}</span>
                     <span
                       className={`text-green-500 transition-transform duration-300
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
@@ -58,7 +58,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                       onClick={() => setIsMenuOpen(false)}
                       className="w-full text-left text-white hover:text-green-500 transition-colors py-2"
                     >
-                      <span className="text-2xl font-light">{item.label}</span>
+                      <span className="text-xl font-light">{item.label}</span>
                     </button>
                   </Link>
                 )}
@@ -89,7 +89,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                 key={item.id} 
                 className="overflow-hidden"
                 style={{ 
-                  marginRight: `${index * 60}px`,
+                  marginRight: `${item.id === 'contact' ? (index * 60) - 120 : index * 60}px`,
                   animationDelay: `${index * 100}ms`
                 }}
               >
@@ -100,7 +100,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     }
                     className="flex justify-between items-center text-white hover:text-green-500 transition-colors py-3 text-right"
                   >
-                    <span className="text-4xl font-light tracking-wider">{item.label}</span>
+                    <span className="text-3xl font-light tracking-wider">{item.label}</span>
                     <span
                       className={`text-green-500 transition-transform duration-300 ml-4
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
@@ -114,7 +114,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                       onClick={() => setIsMenuOpen(false)}
                       className="text-right text-white hover:text-green-500 transition-colors py-3"
                     >
-                      <span className="text-4xl font-light tracking-wider">{item.label}</span>
+                      <span className="text-3xl font-light tracking-wider">{item.label}</span>
                     </button>
                   </Link>
                 )}

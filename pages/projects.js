@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import { SiGithub } from "react-icons/si";
+import Header from "../components/Header";
 
 function ProjectsPage() {
   const router = useRouter();
@@ -339,99 +340,13 @@ function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm">
-          <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <Link href="/">
-                <div className="cursor-pointer">
-                  <img
-                    src="/media/signature-webpagetopleft-logo.png"
-                    alt="John Li Logo"
-                    width={150}
-                    height={150}
-                    className="w-[65px] h-[65px] object-contain"
-                  />
-                </div>
-              </Link>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 w-8 h-8 flex items-center justify-center"
-              >
-                {isMenuOpen ? (
-                  <div className="relative w-6 h-6">
-                    <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white rotate-45"></div>
-                    <div className="absolute top-1/2 left-0 w-6 h-0.5 bg-white -rotate-45"></div>
-                  </div>
-                ) : (
-                  <div className="space-y-1">
-                    <div className="w-6 h-0.5 bg-green-500"></div>
-                    <div className="w-6 h-0.5 bg-green-500"></div>
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-        </header>
-      </div>
-
-      {/* Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/95 transition-transform duration-500 ease-in-out z-40
-          ${isMenuOpen ? "translate-y-0" : "-translate-y-full"}`}
-      >
-        <div className="container mx-auto px-4 pt-24">
-          <nav className="space-y-6">
-            {menuItems.map((item) => (
-              <div key={item.id} className="overflow-hidden">
-                {item.subItems.length > 0 ? (
-                  <button
-                    onClick={() =>
-                      setActiveMenu(activeMenu === item.id ? null : item.id)
-                    }
-                    className="w-full flex justify-between items-center text-white hover:text-green-500 transition-colors py-2"
-                  >
-                    <span className="text-2xl font-light">{item.label}</span>
-                    <span
-                      className={`text-green-500 transition-transform duration-300
-                        ${activeMenu === item.id ? "rotate-180" : ""}`}
-                    >
-                      ▼
-                    </span>
-                  </button>
-                ) : (
-                  <Link href={item.href}>
-                    <button
-                      onClick={() => setIsMenuOpen(false)}
-                      className="w-full text-left text-white hover:text-green-500 transition-colors py-2"
-                    >
-                      <span className="text-2xl font-light">{item.label}</span>
-                    </button>
-                  </Link>
-                )}
-
-                {item.subItems.length > 0 && (
-                  <div
-                    className={`space-y-4 pl-4 transition-all duration-300
-                      ${activeMenu === item.id ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
-                  >
-                    {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
-                      >
-                        {subItem}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
+      <Header 
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        menuItems={menuItems}
+      />
 
       {/* Hero Section */}
       <div
