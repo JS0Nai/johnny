@@ -1,21 +1,61 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItems }) => {
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [showJaison, setShowJaison] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Trigger flip animation on page change
+    setIsFlipping(true);
+    
+    // Check if we're on the research page
+    const isResearchPage = router.pathname === '/research';
+    
+    setTimeout(() => {
+      setShowJaison(isResearchPage);
+    }, 1000);
+    
+    setTimeout(() => {
+      setIsFlipping(false);
+    }, 2000);
+  }, [router.pathname]);
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/20 backdrop-blur-sm">
         <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/">
-              <div className="cursor-pointer">
-                <img
-                  src="/media/signature-webpagetopleft-logo.png"
-                  alt="John Li Logo"
-                  width={150}
-                  height={150}
-                  className="w-[65px] h-[65px] object-contain"
-                />
+              <div className="cursor-pointer relative w-[65px] h-[65px]" style={{ perspective: '1000px' }}>
+                <div 
+                  className={`absolute inset-0 transition-transform preserve-3d ${isFlipping ? 'animate-coin-flip' : ''}`}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Front side - original logo */}
+                  <img
+                    src="/media/signature-webpagetopleft-logo.png"
+                    alt="John Li Logo"
+                    className="absolute w-full h-full object-contain"
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      transform: showJaison ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                      transition: 'transform 0.6s'
+                    }}
+                  />
+                  {/* Back side - jaison image */}
+                  <img
+                    src="/media/profilepicjaison.png"
+                    alt="Jaison Logo"
+                    className="absolute w-full h-full object-contain"
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      transform: showJaison ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+                      transition: 'transform 0.6s'
+                    }}
+                  />
+                </div>
               </div>
             </Link>
 
