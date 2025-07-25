@@ -46,6 +46,8 @@ function AboutPage() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [activeExpertiseTab, setActiveExpertiseTab] = useState('ai'); // for Core Expertise tabs
   const [expandedCard, setExpandedCard] = useState(null); // for expandable cards
+  const [animationDuration1, setAnimationDuration1] = useState(15);
+  const [animationDuration2, setAnimationDuration2] = useState(12);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -76,6 +78,10 @@ function AboutPage() {
     
     // Check if device supports touch
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    
+    // Set random animation durations
+    setAnimationDuration1(15 + Math.random() * 10);
+    setAnimationDuration2(12 + Math.random() * 8);
     
     return () => timers.forEach((timer) => clearTimeout(timer));
   }, []);
@@ -479,20 +485,46 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* Profile Image Section */}
+      {/* Profile Image Section with Animation */}
       <div className="py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        <div className="max-w-4xl mx-auto px-4">
           <div
-            className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            className={`relative w-full h-64 overflow-hidden rounded-lg bg-gray-800/20 border border-gray-700/40 scroll-animate ${heroInView ? "fade-in" : ""}`}
             style={{ transitionDelay: "600ms" }}
           >
-            <CloudflareImage
-              src="profilepicjaison"
-              alt="Jaison Li"
-              width={400}
-              height={400}
-              className="w-full h-full object-cover"
-            />
+            {/* Jaison Image Moving */}
+            <div 
+              className="absolute w-48 h-48 rounded-full overflow-hidden border-4 border-orange-200/20"
+              style={{
+                animation: `moveHorizontal1 ${animationDuration1}s ease-in-out infinite`,
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            >
+              <CloudflareImage
+                src="jaison"
+                alt="Jaison Li"
+                width={200}
+                height={200}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Logo Image Moving */}
+            <div 
+              className="absolute w-32 h-32"
+              style={{
+                animation: `moveHorizontal2 ${animationDuration2}s ease-in-out infinite`,
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            >
+              <img
+                src="/media/signature-webpagetopleft-logo.png"
+                alt="John Li Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -1533,6 +1565,43 @@ function AboutPage() {
         .transition-all {
           transition-property: all;
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Horizontal movement animations */
+        @keyframes moveHorizontal1 {
+          0% {
+            left: -200px;
+          }
+          25% {
+            left: 20%;
+          }
+          50% {
+            left: calc(100% - 200px);
+          }
+          75% {
+            left: 60%;
+          }
+          100% {
+            left: -200px;
+          }
+        }
+
+        @keyframes moveHorizontal2 {
+          0% {
+            left: calc(100% + 100px);
+          }
+          25% {
+            left: 70%;
+          }
+          50% {
+            left: -150px;
+          }
+          75% {
+            left: 30%;
+          }
+          100% {
+            left: calc(100% + 100px);
+          }
         }
       `}</style>
     </div>
