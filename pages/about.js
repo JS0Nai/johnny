@@ -487,44 +487,41 @@ function AboutPage() {
 
       {/* Profile Image Section with Animation */}
       <div className="py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4">
-          <div
-            className={`relative w-full h-64 overflow-hidden rounded-lg bg-gray-800/20 border border-gray-700/40 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "600ms" }}
+        <div className="max-w-6xl mx-auto px-4 relative h-64">
+          {/* Jaison Image Moving */}
+          <div 
+            className={`absolute w-48 h-48 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            style={{
+              animation: `moveHorizontal1 ${animationDuration1}s ease-in-out infinite`,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              transitionDelay: "600ms"
+            }}
           >
-            {/* Jaison Image Moving */}
-            <div 
-              className="absolute w-48 h-48 rounded-full overflow-hidden border-4 border-orange-200/20"
-              style={{
-                animation: `moveHorizontal1 ${animationDuration1}s ease-in-out infinite`,
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              <CloudflareImage
-                src="jaison"
-                alt="Jaison Li"
-                width={200}
-                height={200}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            {/* Logo Image Moving */}
-            <div 
-              className="absolute w-32 h-32"
-              style={{
-                animation: `moveHorizontal2 ${animationDuration2}s ease-in-out infinite`,
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              <img
-                src="/media/signature-webpagetopleft-logo.png"
-                alt="John Li Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <CloudflareImage
+              src="jaison"
+              alt="Jaison Li"
+              width={200}
+              height={200}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Logo Image Moving */}
+          <div 
+            className={`absolute w-32 h-32 scroll-animate ${heroInView ? "fade-in" : ""}`}
+            style={{
+              animation: `moveHorizontal2 ${animationDuration2}s ease-in-out infinite`,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              transitionDelay: "600ms"
+            }}
+          >
+            <img
+              src="/media/signature-webpagetopleft-logo.png"
+              alt="John Li Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
       </div>
