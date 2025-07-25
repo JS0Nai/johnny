@@ -485,43 +485,66 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* Profile Image Section with Animation */}
+      {/* Profile Image Section with Spinning Coin */}
       <div className="py-16 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 relative h-64">
-          {/* Jaison Image Moving */}
-          <div 
-            className={`absolute w-48 h-48 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{
-              animation: `moveHorizontal1 ${animationDuration1}s ease-in-out infinite`,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              transitionDelay: "600ms"
-            }}
-          >
-            <CloudflareImage
-              src="jaison"
-              alt="Jaison Li"
-              width={200}
-              height={200}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* Logo Image Moving */}
-          <div 
-            className={`absolute w-32 h-32 scroll-animate ${heroInView ? "fade-in" : ""}`}
-            style={{
-              animation: `moveHorizontal2 ${animationDuration2}s ease-in-out infinite`,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              transitionDelay: "600ms"
-            }}
-          >
-            <img
-              src="/media/signature-webpagetopleft-logo.png"
-              alt="John Li Logo"
-              className="w-full h-full object-contain"
-            />
+        <div className="max-w-4xl mx-auto px-4">
+          <div className={`flex items-center justify-center gap-8 md:gap-16 scroll-animate ${heroInView ? "fade-in" : ""}`}
+               style={{ transitionDelay: "600ms" }}>
+            
+            {/* Left Static Logo */}
+            <div className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
+              <img
+                src="/media/signature-webpagetopleft-logo.png"
+                alt="John Li Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            
+            {/* Center Spinning Coin */}
+            <div className="relative w-32 h-32 md:w-48 md:h-48" style={{ perspective: '1000px' }}>
+              <div 
+                className="absolute inset-0 preserve-3d animate-coin-flip-continuous"
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Front side - original logo */}
+                <img
+                  src="/media/signature-webpagetopleft-logo.png"
+                  alt="John Li Logo"
+                  className="absolute w-full h-full object-contain"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                  }}
+                />
+                {/* Back side - jaison image */}
+                <div 
+                  className="absolute w-full h-full rounded-full overflow-hidden border-4 border-orange-200/20"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <CloudflareImage
+                    src="jaison"
+                    alt="Jaison Li"
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Static Jaison */}
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-orange-200/20">
+              <CloudflareImage
+                src="jaison"
+                alt="Jaison Li"
+                width={200}
+                height={200}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
           </div>
         </div>
       </div>
@@ -1564,41 +1587,27 @@ function AboutPage() {
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Horizontal movement animations */
-        @keyframes moveHorizontal1 {
+        /* Continuous coin flip animation */
+        @keyframes coin-flip-continuous {
           0% {
-            left: -200px;
+            transform: rotateY(0deg);
           }
-          25% {
-            left: 20%;
+          40% {
+            transform: rotateY(1800deg);
           }
           50% {
-            left: calc(100% - 200px);
+            transform: rotateY(1800deg);
           }
-          75% {
-            left: 60%;
+          90% {
+            transform: rotateY(3600deg);
           }
           100% {
-            left: -200px;
+            transform: rotateY(3600deg);
           }
         }
 
-        @keyframes moveHorizontal2 {
-          0% {
-            left: calc(100% + 100px);
-          }
-          25% {
-            left: 70%;
-          }
-          50% {
-            left: -150px;
-          }
-          75% {
-            left: 30%;
-          }
-          100% {
-            left: calc(100% + 100px);
-          }
+        .animate-coin-flip-continuous {
+          animation: coin-flip-continuous 8s ease-in-out infinite;
         }
       `}</style>
     </div>
