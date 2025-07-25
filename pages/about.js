@@ -491,12 +491,14 @@ function AboutPage() {
           <div className={`flex items-center justify-center gap-8 md:gap-16 scroll-animate ${heroInView ? "fade-in" : ""}`}
                style={{ transitionDelay: "600ms" }}>
             
-            {/* Left Static Logo */}
-            <div className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
-              <img
-                src="/media/signature-webpagetopleft-logo.png"
-                alt="John Li Logo"
-                className="w-full h-full object-contain"
+            {/* Left Static Jaison - 50% smaller */}
+            <div className="w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-orange-200/20">
+              <CloudflareImage
+                src="jaison"
+                alt="Jaison Li"
+                width={100}
+                height={100}
+                className="w-full h-full object-cover"
               />
             </div>
             
@@ -534,14 +536,12 @@ function AboutPage() {
               </div>
             </div>
             
-            {/* Right Static Jaison */}
-            <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-orange-200/20">
-              <CloudflareImage
-                src="jaison"
-                alt="Jaison Li"
-                width={200}
-                height={200}
-                className="w-full h-full object-cover"
+            {/* Right Static Logo - 50% smaller */}
+            <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center">
+              <img
+                src="/media/signature-webpagetopleft-logo.png"
+                alt="John Li Logo"
+                className="w-full h-full object-contain"
               />
             </div>
             
