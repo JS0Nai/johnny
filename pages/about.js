@@ -486,23 +486,12 @@ function AboutPage() {
       </div>
 
       {/* Profile Image Section with Spinning Coin */}
-      <div className="py-16 bg-gray-900">
+      <div id="spinner-section" className="py-16 bg-gray-900 relative">
         <div className="max-w-4xl mx-auto px-4">
-          <div className={`flex items-center justify-center gap-8 md:gap-16 scroll-animate ${heroInView ? "fade-in" : ""}`}
+          <div className={`flex items-center justify-center scroll-animate ${heroInView ? "fade-in" : ""}`}
                style={{ transitionDelay: "600ms" }}>
             
-            {/* Left Static Jaison - 50% smaller */}
-            <div className="w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-orange-200/20">
-              <CloudflareImage
-                src="jaison"
-                alt="Jaison Li"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            {/* Center Spinning Coin */}
+            {/* Center Spinning Coin Only */}
             <div className="relative w-32 h-32 md:w-48 md:h-48" style={{ perspective: '1000px' }}>
               <div 
                 className="absolute inset-0 preserve-3d animate-coin-flip-continuous"
@@ -534,15 +523,6 @@ function AboutPage() {
                   />
                 </div>
               </div>
-            </div>
-            
-            {/* Right Static Logo - 50% smaller */}
-            <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center">
-              <img
-                src="/media/signature-webpagetopleft-logo.png"
-                alt="John Li Logo"
-                className="w-full h-full object-contain"
-              />
             </div>
             
           </div>
@@ -697,7 +677,7 @@ function AboutPage() {
       </div>
 
       {/* Interactive Brain Section */}
-      <div ref={brainRef} className="py-16 bg-slate-900">
+      <div ref={brainRef} id="brain-section" className="py-16 bg-slate-900 relative">
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
             <div className="relative inline-block p-8">
@@ -745,7 +725,27 @@ function AboutPage() {
               </p>
 
               {/* Labels with click functionality */}
-              <div className="flex justify-between gap-3 mt-8 text-lg max-w-md mx-auto">
+              <div className="flex justify-between gap-3 mt-8 text-lg max-w-md mx-auto relative">
+                {/* Absolute positioned logos - 25% smaller with fade-in animation */}
+                <div className={`absolute -left-32 md:-left-44 lg:-left-52 top-1/2 -translate-y-1/2 w-12 h-12 md:w-[72px] md:h-[72px] rounded-full overflow-hidden border-2 border-orange-200/20 scroll-animate ${brainInView ? "fade-in" : ""}`}
+                     style={{ transitionDelay: "800ms" }}>
+                  <CloudflareImage
+                    src="jaison"
+                    alt="Jaison Li"
+                    width={75}
+                    height={75}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className={`absolute -right-32 md:-right-44 lg:-right-52 top-1/2 -translate-y-1/2 w-12 h-12 md:w-[72px] md:h-[72px] flex items-center justify-center scroll-animate ${brainInView ? "fade-in" : ""}`}
+                     style={{ transitionDelay: "800ms" }}>
+                  <img
+                    src="/media/signature-webpagetopleft-logo.png"
+                    alt="John Li Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                
                 <button
                   onClick={() => setSelectedBrainSide('left')}
                   className={`flex-1 text-center transition-all duration-300 group cursor-pointer px-4 py-3 rounded-lg relative overflow-hidden ${
