@@ -54,6 +54,7 @@ function HomePage() {
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [coreDisciplinesRef, coreDisciplinesInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [portfolioSliderRef, portfolioSliderInView] = useInView({ threshold: 0.3, triggerOnce: true });
   const [playgroundRef, playgroundInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
@@ -85,6 +86,41 @@ function HomePage() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Handle hover for portfolio slider
+  useEffect(() => {
+    const handleSliderHover = () => {
+      const slider = document.querySelector(".image-slider-left");
+      const sliderContent = slider?.querySelector('.flex');
+      
+      if (!slider || !sliderContent) return;
+
+      const handleMouseEnter = () => {
+        if (sliderContent.dataset.manuallyPaused !== "true") {
+          sliderContent.style.animationPlayState = "paused";
+        }
+      };
+
+      const handleMouseLeave = () => {
+        if (sliderContent.dataset.manuallyPaused !== "true") {
+          sliderContent.style.animationPlayState = "running";
+        }
+      };
+
+      slider.addEventListener('mouseenter', handleMouseEnter);
+      slider.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        slider.removeEventListener('mouseenter', handleMouseEnter);
+        slider.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    };
+
+    if (portfolioSliderInView) {
+      const cleanup = handleSliderHover();
+      return cleanup;
+    }
+  }, [portfolioSliderInView]);
 
   useEffect(() => {
     if (portfolioInView) {
@@ -180,11 +216,13 @@ function HomePage() {
 
   const handleSlideChange = (direction) => {
     const slider = document.querySelector(".image-slider-left");
+    const sliderContent = slider?.querySelector('.flex');
     const scrollAmount = direction === "left" ? -288 : 288;
 
-    if (slider) {
+    if (slider && sliderContent) {
       // Pause the animation when manually scrolling
-      slider.style.animationPlayState = "paused";
+      sliderContent.style.animationPlayState = "paused";
+      sliderContent.dataset.manuallyPaused = "true";
 
       const maxScroll = slider.scrollWidth - slider.clientWidth;
       const newScrollPosition = slider.scrollLeft + scrollAmount;
@@ -202,10 +240,16 @@ function HomePage() {
         });
       }
 
-      // Resume animation after scrolling
+      // Resume animation after scrolling (but only if not hovering)
       setTimeout(() => {
-        slider.style.animationPlayState = "running";
-      }, 1000);
+        if (sliderContent) {
+          sliderContent.dataset.manuallyPaused = "false";
+          // Check if we're hovering before resuming
+          if (!slider.matches(':hover')) {
+            sliderContent.style.animationPlayState = "running";
+          }
+        }
+      }, 3000);
     }
   };
 
@@ -330,7 +374,7 @@ function HomePage() {
       </div>
 
       {/* Portfolio Showcase Section */}
-      <div className="relative bg-gray-900 py-24 overflow-hidden">
+      <div ref={portfolioSliderRef} className="relative bg-gray-900 py-24 overflow-hidden">
         <div className="text-center mb-16">
           <h2
             className="text-7xl font-extralight mb-4 tracking-wide text-white dark:text-gray-200 font-garamond"
@@ -364,7 +408,7 @@ function HomePage() {
           </button>
 
           <div className="image-slider-left">
-            <div className="flex">
+            <div className={`flex ${portfolioSliderInView ? 'animate-slider-scroll' : ''}`}>
               {[1, 2].map((set) => (
                 <div key={set} className="flex gap-4 flex-nowrap">
                   {topSliderImages.map((img, index) => (
@@ -1027,6 +1071,15 @@ function HomePage() {
         @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+        
+        /* Portfolio Slider Auto-scroll Animation */
+        .animate-slider-scroll {
+            animation: scroll-left 90s linear infinite;
+        }
+        
+        .animate-slider-scroll:hover {
+            animation-play-state: paused;
         }
 
         /* Standalone Tech Stack Styles */
