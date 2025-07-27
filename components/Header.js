@@ -71,8 +71,15 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
 
       {/* Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/80 z-40">
-          <div className="container mx-auto px-4 pt-24 h-full overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 z-40">
+          <div className="container mx-auto px-4 pt-24 h-full overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute bottom-8 left-8 text-white hover:text-yellow-400 transition-colors text-2xl font-light border border-gray-400 rounded-full px-3 py-1"
+            >
+              close ✕
+            </button>
           {/* Mobile Menu */}
           <nav className="space-y-6 md:hidden">
             {menuItems.map((item) => (
@@ -82,9 +89,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     onClick={() =>
                       setActiveMenu(activeMenu === item.id ? null : item.id)
                     }
-                    className="w-full flex justify-between items-center text-white hover:text-green-500 transition-colors py-2"
+                    className={`w-full flex justify-between items-center hover:text-yellow-400 transition-colors py-2 ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                   >
-                    <span className="text-xl font-light">{item.label}</span>
+                    <span className="text-lg font-light">{item.label}</span>
                     <span
                       className={`text-green-500 transition-transform duration-300
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
@@ -96,9 +103,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                   <Link href={item.href}>
                     <button
                       onClick={() => setIsMenuOpen(false)}
-                      className="w-full text-left text-white hover:text-green-500 transition-colors py-2"
+                      className={`w-full text-left hover:text-yellow-400 transition-colors py-2 ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                     >
-                      <span className="text-xl font-light">{item.label}</span>
+                      <span className="text-lg font-light">{item.label}</span>
                     </button>
                   </Link>
                 )}
@@ -129,7 +136,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                 key={item.id} 
                 className="overflow-hidden"
                 style={{ 
-                  marginRight: `${item.id === 'contact' ? (index * 60) - 120 : index * 60}px`,
+                  marginRight: `${item.id === 'contact' ? (index * 60) + 60 : index * 60}px`,
                   animationDelay: `${index * 100}ms`
                 }}
               >
@@ -138,7 +145,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     onClick={() =>
                       setActiveMenu(activeMenu === item.id ? null : item.id)
                     }
-                    className="flex justify-between items-center text-white hover:text-green-500 transition-colors py-3 text-right"
+                    className={`flex justify-between items-center hover:text-yellow-400 transition-colors py-3 text-right ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                   >
                     <span className="text-3xl font-light tracking-wider">{item.label}</span>
                     <span
@@ -152,9 +159,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                   <Link href={item.href}>
                     <button
                       onClick={() => setIsMenuOpen(false)}
-                      className="text-right text-white hover:text-green-500 transition-colors py-3"
+                      className={`text-right hover:text-yellow-400 transition-colors py-3 ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                     >
-                      <span className="text-3xl font-light tracking-wider">{item.label}</span>
+                      <span className="text-2xl font-light tracking-wider">{item.label}</span>
                     </button>
                   </Link>
                 )}
