@@ -453,7 +453,7 @@ function AboutPage() {
         {/* Background image */}
         <div className="absolute inset-0 bg-black">
           <CloudflareImage
-            src="profile-header"
+            src="profile---header"
             alt="Profile header"
             width={1920}
             height={1080}
