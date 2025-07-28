@@ -103,7 +103,7 @@ const HeroV8 = () => {
               )}
             </button>
             
-            <div className="relative flex flex-col items-center justify-center text-center h-full z-10">
+            <div className="relative flex flex-col items-center justify-center text-center h-full z-10" style={{ marginTop: '-200px' }}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wider text-orange-200/90"
                   style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}>
                 The Monarkh Project

@@ -293,6 +293,18 @@ function HomePage() {
       <HeroV8 />
 
 
+      {/* The Monarch Project Section */}
+      <div className="py-24 bg-slate-900 relative z-10 text-center">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-6xl font-light text-white mb-4">
+            The Monarch Project
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Exploring the intersection of creativity and humanity
+          </p>
+        </div>
+      </div>
+
       {/* Core Disciplines Section with Tech Stack Visualizer */}
       <div ref={coreDisciplinesRef} className="py-24 bg-slate-900 relative z-10">
         <div className="max-w-6xl mx-auto px-4">
@@ -493,10 +505,10 @@ function HomePage() {
       <div ref={playgroundRef} className="py-24 bg-gradient-to-b from-slate-900 to-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-light mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent scroll-animate ${playgroundInView ? "fade-in" : ""}`}>
+            <h2 className={`text-6xl font-light mb-4 text-purple-400 scroll-animate ${playgroundInView ? "fade-in" : ""}`}>
               AI Playground
             </h2>
-            <p className={`text-xl text-gray-400 max-w-2xl mx-auto scroll-animate-left ${playgroundInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+            <p className={`text-xl text-gray-300 max-w-2xl mx-auto scroll-animate-left ${playgroundInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
               Experience the power of AI firsthand. Interactive demos coming soon!
             </p>
           </div>
