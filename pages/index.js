@@ -201,12 +201,13 @@ function HomePage() {
   ];
 
   // Define which images have video versions
-  const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy", "dist-op"]; // Add more image names here as you add videos
+  const imagesWithVideo = ["simplechaos", "batty", "bee", "mouthy", "dist-op", "surrealproductphotoshoot"]; // Add more image names here as you add videos
 
   // Map image names to video names (when they differ)
   const videoNameMap = {
     // Add mappings here when image and video names differ
     // Example: "image-name": "video-name",
+    "surrealproductphotoshoot": "surreal--photoshoot",
   };
 
   // Helper function to get video filename
