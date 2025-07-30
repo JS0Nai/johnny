@@ -38,12 +38,18 @@ package-lock.json
 /archive
 
 # Exclude image files from git, they'll be managed by Cloudflare Images
-media/*.png
-media/*.jpg
-media/*.jpeg
-media/*.gif
-media/*.webp
-media/*.svg
+public/media/*.png
+public/media/*.jpg
+public/media/*.jpeg
+public/media/*.gif
+public/media/*.webp
+public/media/*.svg
+
+# Exclude video files
+public/media/*.mp4
+public/media/*.mov
+public/media/*.avi
+public/media/*.webm
 
 # Cloudflare image config
 .cloudflare-images.json
