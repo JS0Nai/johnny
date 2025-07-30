@@ -46,7 +46,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                   />
                   {/* Back side - jaison image */}
                   <img
-                    src="/media/profilepicjaison.png"
+                    src="/media/jaison.png"
                     alt="Jaison Logo"
                     className="absolute w-full h-full object-contain"
                     style={{ 
