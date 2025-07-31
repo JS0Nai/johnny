@@ -7,6 +7,23 @@ import Footer from "../components/Footer";
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+// Logo Configuration - actual logos from the media folder
+const LOGO_URLS = [
+  '/media/fctnlle.png',
+  '/media/ezrsvplogosngl.png',
+  '/media/p-icon.png',
+  '/media/logo_800-200.png',
+  '/media/icogo150.png',
+  '/media/signature-logo-wht.png',
+  '/media/abstract-logo-1.png',
+  '/media/book-logo-2.png',
+  '/media/feve.png',
+  '/media/ffash.png',
+  '/media/jaison.png',
+  '/media/AB1200TR.png',
+  '/media/antigravitybook.png',
+];
+
 function BrandingPage() {
   const router = useRouter();
   const canvasRef = useRef(null);
@@ -76,23 +93,6 @@ function BrandingPage() {
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    // Logo Configuration - actual logos from the media folder
-    const LOGO_URLS = [
-      '/media/fctnlle.png',
-      '/media/ezrsvplogosngl.png',
-      '/media/p-icon.png',
-      '/media/logo_800-200.png',
-      '/media/icogo150.png',
-      '/media/signature-logo-wht.png',
-      '/media/abstract-logo-1.png',
-      '/media/book-logo-2.png',
-      '/media/feve.png',
-      '/media/ffash.png',
-      '/media/jaison.png',
-      '/media/AB1200TR.png',
-      '/media/antigravitybook.png',
-    ];
-
     const textureLoader = new THREE.TextureLoader();
     const logoMeshes = [];
     const clock = new THREE.Clock();
@@ -100,7 +100,12 @@ function BrandingPage() {
     // Create Logos
     LOGO_URLS.forEach((url, index) => {
       textureLoader.load(url, (texture) => {
-        const geometry = new THREE.PlaneGeometry(1.5, 1.5);
+        // Calculate aspect ratio to preserve original dimensions
+        const imageAspect = texture.image.width / texture.image.height;
+        const planeWidth = 1.5;
+        const planeHeight = planeWidth / imageAspect;
+        
+        const geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
         const material = new THREE.MeshBasicMaterial({
           map: texture,
           transparent: true,
@@ -274,53 +279,43 @@ function BrandingPage() {
             A selection of brand identities we've crafted
           </p>
 
-          {/* Portfolio grid placeholder */}
+          {/* Portfolio grid with actual logos */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+            {[
+              LOGO_URLS[0], // fctnlle.png
+              LOGO_URLS[1], // ezrsvplogosngl.png
+              LOGO_URLS[2], // p-icon.png
+              LOGO_URLS[3], // logo_800-200.png
+              LOGO_URLS[4], // icogo150.png
+              LOGO_URLS[5], // signature-logo-wht.png
+              '/media/AB1200TR.png', // Brand 7
+              '/media/antigravitybook.png', // Brand 8
+            ].map((logoUrl, index) => (
               <div
                 key={index}
                 className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 50}ms` }}
               >
-                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">Brand {item}</span>
+                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-8">
+                  <img 
+                    src={logoUrl} 
+                    alt={`Brand ${index + 1}`}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Link href="/portfolio">
-              <span className="group inline-flex items-center gap-2 text-gray-400 text-lg tracking-widest hover:text-orange-200 transition-colors cursor-pointer">
-                View Full Portfolio
-                <svg
-                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
 
       {/* Contact CTA Section */}
       <div className="bg-slate-900 py-24 text-center relative z-20">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
-            Ready to build your <span className="text-orange-200">brand</span>?
+          <h2 className="text-4xl md:text-5xl font-light text-white mb-12">
+            Ready to <span className="text-orange-200">Build</span>?
           </h2>
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            Let's create something extraordinary together. Your brand deserves to shine.
-          </p>
           <Link href="/contact">
             <span className="inline-block bg-orange-200 hover:bg-orange-300 text-gray-900 px-8 py-4 rounded-lg text-lg font-medium transition-colors cursor-pointer">
               Start Your Project
