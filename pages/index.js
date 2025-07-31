@@ -225,20 +225,50 @@ function HomePage() {
       sliderContent.style.animationPlayState = "paused";
       sliderContent.dataset.manuallyPaused = "true";
 
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
-      const newScrollPosition = slider.scrollLeft + scrollAmount;
+      const singleSetWidth = sliderContent.scrollWidth / 2; // Since we have 2 sets of images
+      const currentScroll = slider.scrollLeft;
+      const newScrollPosition = currentScroll + scrollAmount;
 
-      if (newScrollPosition >= 0 && newScrollPosition <= maxScroll) {
-        slider.scrollBy({
-          left: scrollAmount,
-          behavior: "smooth",
-        });
+      // Handle seamless looping
+      if (direction === "left") {
+        if (currentScroll <= 0) {
+          // If at the beginning, jump to the end of the first set
+          slider.scrollTo({
+            left: singleSetWidth - scrollAmount,
+            behavior: "auto"
+          });
+          setTimeout(() => {
+            slider.scrollBy({
+              left: scrollAmount,
+              behavior: "smooth"
+            });
+          }, 10);
+        } else {
+          slider.scrollBy({
+            left: scrollAmount,
+            behavior: "smooth"
+          });
+        }
       } else {
-        // If we're at the end, loop back to start
-        slider.scrollTo({
-          left: direction === "left" ? maxScroll : 0,
-          behavior: "smooth",
-        });
+        // Scrolling right
+        if (currentScroll >= singleSetWidth) {
+          // If we've scrolled past the first set, reset to beginning
+          slider.scrollTo({
+            left: 0,
+            behavior: "auto"
+          });
+          setTimeout(() => {
+            slider.scrollBy({
+              left: scrollAmount,
+              behavior: "smooth"
+            });
+          }, 10);
+        } else {
+          slider.scrollBy({
+            left: scrollAmount,
+            behavior: "smooth"
+          });
+        }
       }
 
       // Resume animation after scrolling (but only if not hovering)
