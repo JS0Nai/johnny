@@ -87,6 +87,17 @@ function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Initialize slider position
+  useEffect(() => {
+    if (portfolioSliderInView) {
+      const slider = document.querySelector(".image-slider-left");
+      if (slider) {
+        // Start at the beginning of the first set
+        slider.scrollLeft = 0;
+      }
+    }
+  }, [portfolioSliderInView]);
+
   // Handle hover for portfolio slider
   useEffect(() => {
     const handleSliderHover = () => {
@@ -227,7 +238,6 @@ function HomePage() {
 
       const singleSetWidth = sliderContent.scrollWidth / 2; // Since we have 2 sets of images
       const currentScroll = slider.scrollLeft;
-      const newScrollPosition = currentScroll + scrollAmount;
 
       // Handle seamless looping
       if (direction === "left") {
@@ -429,7 +439,7 @@ function HomePage() {
         </div>
 
         {/* Top Slider */}
-        <div className="relative overflow-hidden mb-8 py-4">
+        <div className="relative overflow-hidden mb-8 py-4" style={{ overflowX: 'hidden' }}>
           <button
             onClick={() => handleSlideChange("left")}
             className="slider-button absolute left-2 sm:left-4"
@@ -451,9 +461,9 @@ function HomePage() {
           </button>
 
           <div className="image-slider-left">
-            <div className={`flex ${portfolioSliderInView ? 'animate-slider-scroll' : ''}`}>
+            <div className={`flex ${portfolioSliderInView ? 'animate-slider-scroll' : ''}`} style={{ gap: '16px' }}>
               {[1, 2].map((set) => (
-                <div key={set} className="flex gap-4 flex-nowrap">
+                <div key={set} className="flex gap-4 flex-nowrap" style={{ paddingRight: set === 1 ? '16px' : '0' }}>
                   {topSliderImages.map((img, index) => (
                     <div
                       key={`${set}-${index}`}
