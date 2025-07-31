@@ -76,20 +76,21 @@ function BrandingPage() {
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    // Logo Configuration - placeholder URLs for now
+    // Logo Configuration - actual logos from the media folder
     const LOGO_URLS = [
-      'https://placehold.co/300x300/1a1a1a/ffffff?text=Brand+1',
-      'https://placehold.co/300x300/3a3a3a/ffffff?text=Brand+2',
-      'https://placehold.co/300x300/5a5a5a/ffffff?text=Brand+3',
-      'https://placehold.co/300x300/7a7a7a/ffffff?text=Brand+4',
-      'https://placehold.co/300x300/9a9a9a/000000?text=Brand+5',
-      'https://placehold.co/300x300/bababa/000000?text=Brand+6',
-      'https://placehold.co/300x300/dadada/000000?text=Brand+7',
-      'https://placehold.co/300x300/fafafa/000000?text=Brand+8',
-      'https://placehold.co/300x300/1a1a1a/ffffff?text=Brand+9',
-      'https://placehold.co/300x300/3a3a3a/ffffff?text=Brand+10',
-      'https://placehold.co/300x300/5a5a5a/ffffff?text=Brand+11',
-      'https://placehold.co/300x300/7a7a7a/ffffff?text=Brand+12',
+      '/media/fctnlle.png',
+      '/media/ezrsvplogosngl.png',
+      '/media/p-icon.png',
+      '/media/logo_800-200.png',
+      '/media/icogo150.png',
+      '/media/signature-logo-wht.png',
+      '/media/abstract-logo-1.png',
+      '/media/book-logo-2.png',
+      '/media/feve.png',
+      '/media/ffash.png',
+      '/media/jaison.png',
+      '/media/AB1200TR.png',
+      '/media/antigravitybook.png',
     ];
 
     const textureLoader = new THREE.TextureLoader();
@@ -190,11 +191,10 @@ function BrandingPage() {
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-30 pointer-events-none">
           <div className={`pointer-events-auto scroll-animate ${heroInView ? "fade-in" : ""}`}>
             <h1 className="text-5xl font-light tracking-tight text-white md:text-7xl lg:text-8xl mb-4">
-              Our Brand <span className="text-orange-200">Universe</span>
+              Branding <span className="text-orange-200">& Design</span>
             </h1>
             <p className="max-w-2xl mt-6 text-lg text-gray-300 md:text-xl">
-              We partner with a diverse galaxy of innovative brands, each a star in its own right. 
-              Explore the ecosystem of excellence we've built together.
+              Promotional content and innovative design.
             </p>
             <div className="mt-10">
               <Link href="#services">
