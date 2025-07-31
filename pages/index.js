@@ -412,7 +412,7 @@ function HomePage() {
               </div>
             </Link>
             
-            <Link href="/design-branding">
+            <Link href="/branding">
               <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '600ms' }}>
                 <div className="box-overlay"></div>
                 <div className="box-content">
