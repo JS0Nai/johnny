@@ -125,6 +125,53 @@ Add upload script:
 
 ## Usage
 
+### STRICT CLOUDFLARE IMAGE RULES - MUST FOLLOW
+
+**IMPORTANT**: Images will NOT display on production (johnny.ae) unless these rules are followed exactly!
+
+#### Rule 1: Always Use CloudflareImage Component
+For standard image display, ALWAYS use the CloudflareImage component:
+```jsx
+import CloudflareImage from '../components/CloudflareImage';
+
+<CloudflareImage
+  src="my-image"  // Just the filename, NO path, NO extension
+  alt="Description"
+  width={800}
+  height={600}
+/>
+```
+
+#### Rule 2: Special Cases (Three.js, Canvas, Direct URLs)
+When you CANNOT use CloudflareImage component (e.g., Three.js TextureLoader, Canvas, or libraries requiring direct URLs):
+
+```jsx
+// REQUIRED: Add these at the top of your component
+const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
+const variant = 'public';
+
+// Helper function to get proper image URL
+function getImageUrl(imageName) {
+  if (isDevelopment) {
+    return `/media/${imageName}.png`;
+  } else {
+    return `https://imagedelivery.net/${cloudflareAccountHash}/${imageName}/${variant}`;
+  }
+}
+
+// Example usage in Three.js:
+const textureLoader = new THREE.TextureLoader();
+textureLoader.load(getImageUrl('logo-name'), (texture) => {
+  // Use texture
+});
+```
+
+#### Rule 3: Image Naming Convention
+- Use only lowercase letters, numbers, and hyphens
+- NO spaces, NO underscores in production image names
+- Examples: `tech-runner-blue`, `hero-banner`, `logo-main`
+
 ### Adding New Images
 
 1. Place images in `/public/media/`:
@@ -137,17 +184,7 @@ Add upload script:
    npm run upload-images or node scripts/upload-images.js
    ```
 
-3. Use in your components:
-   ```jsx
-   import CloudflareImage from '../components/CloudflareImage';
-
-   <CloudflareImage
-     src="my-image"  // No extension needed
-     alt="Description"
-     width={800}
-     height={600}
-   />
-   ```
+3. Use in your components following the STRICT RULES above
 
 ## Getting Your Account Hash
 
@@ -172,9 +209,26 @@ project/
 └── .env                        # API credentials (not in Git)
 ```
 
+## Common Mistakes to Avoid
+
+1. **Using direct paths in production**: `/media/image.png` will NOT work on production
+2. **Including file extensions in CloudflareImage src**: Use `src="logo"` not `src="logo.png"`
+3. **Forgetting environment detection for Three.js/Canvas**: Always use the helper function
+4. **Using spaces or underscores in filenames**: Use hyphens instead
+
 ## Best Practices
 
 - Use descriptive filenames with hyphens: `hero-banner-home.png`
 - Optimize images before placing in `/media`
 - Always provide `width` and `height` props to prevent layout shifts
 - Don't commit images to Git - they're automatically managed
+- Test image display in production build: `npm run build && npm start`
+
+## Quick Reference
+
+| Use Case | Method | Example |
+|----------|---------|---------|
+| Regular images | CloudflareImage component | `<CloudflareImage src="logo" width={200} height={100} />` |
+| Three.js textures | getImageUrl helper | `textureLoader.load(getImageUrl('texture-name'))` |
+| CSS backgrounds | getImageUrl helper | `backgroundImage: \`url(\${getImageUrl('bg-pattern')})\`` |
+| Canvas/WebGL | getImageUrl helper | `image.src = getImageUrl('sprite-sheet')` |
