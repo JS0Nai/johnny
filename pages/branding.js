@@ -6,23 +6,42 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import CloudflareImage from "../components/CloudflareImage";
 
-// Logo Configuration - actual logos from the media folder
-const LOGO_URLS = [
-  '/media/fctnlle.png',
-  '/media/ezrsvplogosngl.png',
-  '/media/p-icon.png',
-  '/media/logo_800-200.png',
-  '/media/icogo150.png',
-  '/media/signature-logo-wht.png',
-  '/media/abstract-logo-1.png',
-  '/media/book-logo-2.png',
-  '/media/feve.png',
-  '/media/ffash.png',
-  '/media/jaison.png',
-  '/media/AB1200TR.png',
-  '/media/antigravitybook.png',
+// Environment detection
+const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
+const variant = 'public';
+
+// Helper function to get proper image URL
+function getImageUrl(imageName) {
+  if (isDevelopment) {
+    return `/media/${imageName}.png`;
+  } else {
+    // In production, use Cloudflare CDN
+    return `https://imagedelivery.net/${cloudflareAccountHash}/${imageName}/${variant}`;
+  }
+}
+
+// Logo Configuration - image names without extension
+const LOGO_NAMES = [
+  'fctnlle',
+  'ezrsvplogosngl',
+  'p-icon',
+  'logo_800-200',
+  'icogo150',
+  'signature-logo-wht',
+  'abstract-logo-1',
+  'book-logo-2',
+  'feve',
+  'ffash',
+  'jaison',
+  'AB1200TR',
+  'antigravitybook',
 ];
+
+// Get full URLs for Three.js
+const LOGO_URLS = LOGO_NAMES.map(name => getImageUrl(name));
 
 function BrandingPage() {
   const router = useRouter();
@@ -282,24 +301,26 @@ function BrandingPage() {
           {/* Portfolio grid with actual logos */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
-              LOGO_URLS[0], // fctnlle.png
-              LOGO_URLS[1], // ezrsvplogosngl.png
-              LOGO_URLS[2], // p-icon.png
-              LOGO_URLS[3], // logo_800-200.png
-              LOGO_URLS[4], // icogo150.png
-              LOGO_URLS[5], // signature-logo-wht.png
-              '/media/AB1200TR.png', // Brand 7
-              '/media/antigravitybook.png', // Brand 8
-            ].map((logoUrl, index) => (
+              LOGO_NAMES[0], // fctnlle
+              LOGO_NAMES[1], // ezrsvplogosngl
+              LOGO_NAMES[2], // p-icon
+              LOGO_NAMES[3], // logo_800-200
+              LOGO_NAMES[4], // icogo150
+              LOGO_NAMES[5], // signature-logo-wht
+              'AB1200TR', // Brand 7
+              'antigravitybook', // Brand 8
+            ].map((logoName, index) => (
               <div
                 key={index}
                 className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 50}ms` }}
               >
                 <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-8">
-                  <img 
-                    src={logoUrl} 
+                  <CloudflareImage 
+                    src={logoName} 
                     alt={`Brand ${index + 1}`}
+                    width={400}
+                    height={400}
                     className="w-full h-full object-contain"
                   />
                 </div>
