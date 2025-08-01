@@ -295,7 +295,7 @@ function BrandingPage() {
             Brand <span className="text-orange-200">Portfolio</span>
           </h2>
           <p className={`text-center text-gray-400 mb-12 text-lg scroll-animate ${portfolioInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
-            A selection of brand identities we've crafted
+            A selection of brand identities.
           </p>
 
           {/* Portfolio grid with actual logos */}
@@ -315,13 +315,13 @@ function BrandingPage() {
                 className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 50}ms` }}
               >
-                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-8">
+                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-4">
                   <CloudflareImage 
                     src={logoName} 
                     alt={`Brand ${index + 1}`}
                     width={400}
                     height={400}
-                    className="w-full h-full object-contain"
+                    className="max-w-full max-h-full object-contain"
                   />
                 </div>
               </div>
@@ -339,7 +339,7 @@ function BrandingPage() {
           </h2>
           <Link href="/contact">
             <span className="inline-block bg-orange-200 hover:bg-orange-300 text-gray-900 px-8 py-4 rounded-lg text-lg font-medium transition-colors cursor-pointer">
-              Start Your Project
+              Start A Project
             </span>
           </Link>
         </div>
