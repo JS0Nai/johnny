@@ -241,6 +241,7 @@ project/
 5. **Using uppercase letters in image names**: ALL image names must be lowercase
 6. **Confusing folder paths**: Files go in `/public/media/` but are accessed via `/media/`
 7. **Not testing image names before production**: Image names that work locally may fail on Cloudflare if they contain uppercase or underscores
+8. **CRITICAL: CloudflareImage assumes .png extension**: The component is hardcoded to look for .png files in development
 
 ## Real-World Issues We've Encountered
 
@@ -248,6 +249,36 @@ project/
 2. **Portfolio grids**: When using CloudflareImage in grids, ensure proper responsive sizing
 3. **Image cutoff**: Use `object-contain` instead of `object-cover` for logos to prevent cropping
 4. **Broken production images**: Usually caused by uppercase letters or underscores in filenames
+5. **Mixed file extensions**: CloudflareImage component assumes .png, but if you have .jpg/.jpeg files, you must use direct img tags with environment detection
+6. **File name case sensitivity**: 'logo_800-200' vs 'logo-800-200', 'Bb_logo' vs 'bb-logo' - the actual filename must match exactly
+
+## CRITICAL LIMITATION: CloudflareImage Component Only Supports PNG
+
+The current CloudflareImage component has a hardcoded `.png` extension for development mode. If you have images with other extensions (.jpg, .jpeg, .gif, etc.), you have two options:
+
+### Option 1: Use Direct Image Tags with Environment Detection
+```jsx
+const isDevelopment = process.env.NODE_ENV === 'development';
+const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
+
+{isDevelopment ? (
+  <img src={`/media/${imageName}.jpg`} alt="..." />
+) : (
+  <img src={`https://imagedelivery.net/${cloudflareAccountHash}/${imageName}/public`} alt="..." />
+)}
+```
+
+### Option 2: Modify CloudflareImage Component (Recommended)
+Update the component to accept an optional extension prop or auto-detect the extension.
+
+## Debugging Checklist for Non-Displaying Images
+
+1. ✓ Check the actual filename in `/public/media/` - is it exactly what you're referencing?
+2. ✓ Check the file extension - is it .png, .jpg, .jpeg, .PNG, .JPG?
+3. ✓ Check for underscores vs hyphens in the filename
+4. ✓ Check for uppercase vs lowercase letters
+5. ✓ If using CloudflareImage with non-PNG files, switch to direct img tags
+6. ✓ Verify the image is uploaded to Cloudflare for production
 
 ## Best Practices
 

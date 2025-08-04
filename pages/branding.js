@@ -149,7 +149,12 @@ function BrandingPage() {
         mesh.userData.speed = 0.05 + Math.random() * 0.15;
         mesh.userData.initialAngle = (index / LOGO_URLS.length) * Math.PI * 2;
         mesh.userData.yPosition = (Math.random() - 0.5) * 8;
-        const scale = 0.8 + Math.random() * 0.8;
+        
+        // Make Bb_logo larger to match other round logos
+        let scale = 0.8 + Math.random() * 0.8;
+        if (url.includes('Bb_logo')) {
+          scale = 1.5 + Math.random() * 0.3; // Larger scale for Bb_logo
+        }
         mesh.scale.set(scale, scale, scale);
 
         logoMeshes.push(mesh);
@@ -314,13 +319,14 @@ function BrandingPage() {
                 className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 50}ms` }}
               >
-                <div className="aspect-square bg-gray-800 flex items-center justify-center p-4">
+                <div className="bg-gray-800 flex items-center justify-center p-6" style={{ minHeight: '200px' }}>
                   <CloudflareImage 
                     src={logoName} 
                     alt={`Brand ${index + 1}`}
                     width={400}
                     height={400}
                     className="max-w-full max-h-full object-contain"
+                    style={{ maxHeight: '180px', width: 'auto' }}
                   />
                 </div>
               </div>
@@ -334,7 +340,7 @@ function BrandingPage() {
       <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${designInView ? "fade-in" : ""}`}>
-            <span className="text-orange-200">Design</span>
+            Design <span className="text-orange-200">Portfolio</span>
           </h2>
           <p className={`text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto scroll-animate ${designInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
             Apparel, merchandise, websites, web and mobile apps, social media, advertising, custom and conceptual art.
@@ -343,48 +349,54 @@ function BrandingPage() {
           {/* Design showcase grid - responsive with varied sizes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              '404-page',
-              'apparel-creepy',
-              'apparel-hollow',
-              'apparel-shoes',
-              'art-print',
-              'bdaybkcvr',
-              'blngstobk',
-              'halloscene',
-              'ig-ad-creative',
-              'lo-fareve',
-              'oil-painting-portrait-realistic-abstract',
-              'pbwsh',
-              'phoneback',
-              'pillows',
-              'portalpage-blnk-ht-i',
-              'strybook',
-              'sweetsplash',
-              'toonify',
-              'tote-bag',
-              'trcktrt',
-              'tshirt-daisy-Beethvn-black',
-              'virtual-webpage',
-              'vnstbks',
-              'genexpan',
-              'leggings',
-              'lo-fiid',
-              'notebook',
-              'pbwhappscrn',
-            ].map((src, index) => (
+              { name: '404-page', ext: 'png' },
+              { name: 'apparel-creepy', ext: 'PNG' },
+              { name: 'apparel-hollow', ext: 'PNG' },
+              { name: 'apparel-shoes', ext: 'PNG' },
+              { name: 'art-print', ext: 'png' },
+              { name: 'bdaybkcvr', ext: 'jpeg' },
+              { name: 'blngstobk', ext: 'png' },
+              { name: 'halloscene', ext: 'png' },
+              { name: 'IG-Ad-Creative_', ext: 'png' },
+              { name: 'lo-fareve', ext: 'png' },
+              { name: 'Oil-Painting-Portrait-Realistic-Abstract', ext: 'jpg' },
+              { name: 'pbwsh', ext: 'png' },
+              { name: 'phoneback', ext: 'png' },
+              { name: 'pillows', ext: 'png' },
+              { name: 'portalpage_blnk_ht-i', ext: 'jpg' },
+              { name: 'strybook', ext: 'png' },
+              { name: 'sweetsplash', ext: 'png' },
+              { name: 'toonify', ext: 'jpg' },
+              { name: 'Tote-bag', ext: 'png' },
+              { name: 'trcktrt', ext: 'jpg' },
+              { name: 'tshirt-daisy-Beethvn-black', ext: 'jpg' },
+              { name: 'virtual-webpage', ext: 'jpg' },
+              { name: 'vnstbks', ext: 'jpg' },
+              { name: 'genexpan', ext: 'png' },
+              { name: 'pbwhappscrn', ext: 'png' },
+              { name: 'lo-fiid', ext: 'png' },
+              { name: 'notebook', ext: 'png' },
+              { name: 'leggings', ext: 'png', fullWidth: true },
+            ].map((item, index) => (
               <div
                 key={index}
-                className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
+                className={`${item.fullWidth ? 'col-span-full flex justify-center' : ''} bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${Math.min(index * 30, 800)}ms` }}
               >
-                <div className="relative aspect-[4/3]">
-                  <CloudflareImage 
-                    src={src}
-                    alt={`Design ${index + 1}`}
-                    width={800}
-                    height={600}
-                    className="w-full h-full object-contain"
-                  />
+                <div className={`relative ${item.fullWidth ? 'aspect-[8/3] max-w-4xl mx-auto' : 'aspect-[4/3]'}`}>
+                  {isDevelopment ? (
+                    <img 
+                      src={`/media/${item.name}.${item.ext}`}
+                      alt={`Design ${index + 1}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                    />
+                  ) : (
+                    <img 
+                      src={`https://imagedelivery.net/${cloudflareAccountHash}/${item.name}/${variant}`}
+                      alt={`Design ${index + 1}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                    />
+                  )}
                 </div>
               </div>
             ))}
