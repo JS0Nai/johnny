@@ -28,14 +28,14 @@ const ANIMATION_LOGO_NAMES = [
   'bA', // was ezrsvplogosngl
   'p-icon',
   'logo_800-200',
-  'icogo150',
+  'monarkh', // was icogo150
   'signature-logo-wht',
-  'abstract-logo-1',
+  'lo-faa',
   'book-logo-2',
   'lo-fareve', // was feve
-  'lo-faa', // was ffash
+  'lo-fas', // was ffash
   'jaison',
-  'ab1200tr',
+  'ab-8',
   'agb', // was antigravitybook
   'Bb_logo', // new addition
   'ffashEm', // new addition
@@ -43,13 +43,13 @@ const ANIMATION_LOGO_NAMES = [
 
 // Portfolio specific logos (some are different from animation)
 const PORTFOLIO_LOGO_NAMES = [
-  'fctnlle',
+  'log-fasb',
   'bA', // was ezrsvplogosngl
   'p-icon',
-  'logo_800-200',
+  'monarkh', // was logo_800-200
   'wck', // was icogo150
-  'Bb_logo', // was signature-logo-wht
-  'ab1200tr',
+  'ab-8', // was signature-logo-wht
+  'Bb_logo',
   'agb', // was antigravitybook
 ];
 
@@ -225,7 +225,7 @@ function BrandingPage() {
         />
 
         {/* Hero Text Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-10 pointer-events-none">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-5 pointer-events-none">
           <div className={`pointer-events-auto scroll-animate ${heroInView ? "fade-in" : ""}`}>
             <h1 className="text-5xl font-light tracking-tight text-white md:text-7xl lg:text-8xl mb-4">
               Branding <span className="text-orange-200">& Design</span>
