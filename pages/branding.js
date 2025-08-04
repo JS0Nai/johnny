@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -23,28 +22,41 @@ function getImageUrl(imageName) {
   }
 }
 
-// Logo Configuration - image names without extension
-const LOGO_NAMES = [
+// Logo Configuration - separate for animation and portfolio
+const ANIMATION_LOGO_NAMES = [
   'fctnlle',
-  'ezrsvplogosngl',
+  'bA', // was ezrsvplogosngl
   'p-icon',
   'logo_800-200',
   'icogo150',
   'signature-logo-wht',
   'abstract-logo-1',
   'book-logo-2',
-  'feve',
-  'ffash',
+  'lo-fareve', // was feve
+  'lo-faa', // was ffash
   'jaison',
-  'AB1200TR',
-  'antigravitybook',
+  'ab1200tr',
+  'agb', // was antigravitybook
+  'Bb_logo', // new addition
+  'ffashEm', // new addition
 ];
 
-// Get full URLs for Three.js
-const LOGO_URLS = LOGO_NAMES.map(name => getImageUrl(name));
+// Portfolio specific logos (some are different from animation)
+const PORTFOLIO_LOGO_NAMES = [
+  'fctnlle',
+  'bA', // was ezrsvplogosngl
+  'p-icon',
+  'logo_800-200',
+  'wck', // was icogo150
+  'Bb_logo', // was signature-logo-wht
+  'ab1200tr',
+  'agb', // was antigravitybook
+];
+
+// Get full URLs for Three.js animation
+const LOGO_URLS = ANIMATION_LOGO_NAMES.map(name => getImageUrl(name));
 
 function BrandingPage() {
-  const router = useRouter();
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
@@ -53,12 +65,12 @@ function BrandingPage() {
   // State declarations
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("branding");
-  const [brandsLoaded, setBrandsLoaded] = useState(false);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [servicesRef, servicesInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [designRef, designInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   const menuItems = [
     { id: "home", label: "HOME", href: "/", subItems: [] },
@@ -142,10 +154,6 @@ function BrandingPage() {
 
         logoMeshes.push(mesh);
         scene.add(mesh);
-        
-        if (logoMeshes.length === LOGO_URLS.length) {
-          setBrandsLoaded(true);
-        }
       });
     });
 
@@ -300,22 +308,13 @@ function BrandingPage() {
 
           {/* Portfolio grid with actual logos */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[
-              LOGO_NAMES[0], // fctnlle
-              LOGO_NAMES[1], // ezrsvplogosngl
-              LOGO_NAMES[2], // p-icon
-              LOGO_NAMES[3], // logo_800-200
-              LOGO_NAMES[4], // icogo150
-              LOGO_NAMES[5], // signature-logo-wht
-              'AB1200TR', // Brand 7
-              'antigravitybook', // Brand 8
-            ].map((logoName, index) => (
+            {PORTFOLIO_LOGO_NAMES.map((logoName, index) => (
               <div
                 key={index}
                 className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 50}ms` }}
               >
-                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-4">
+                <div className="aspect-square bg-gray-800 flex items-center justify-center p-4">
                   <CloudflareImage 
                     src={logoName} 
                     alt={`Brand ${index + 1}`}
@@ -331,8 +330,70 @@ function BrandingPage() {
         </div>
       </div>
 
+      {/* Design Section */}
+      <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${designInView ? "fade-in" : ""}`}>
+            <span className="text-orange-200">Design</span>
+          </h2>
+          <p className={`text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto scroll-animate ${designInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+            Apparel, merchandise, websites, web and mobile apps, social media, advertising, custom and conceptual art.
+          </p>
+
+          {/* Design showcase grid - responsive with varied sizes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              '404-page',
+              'apparel-creepy',
+              'apparel-hollow',
+              'apparel-shoes',
+              'art-print',
+              'bdaybkcvr',
+              'blngstobk',
+              'halloscene',
+              'ig-ad-creative',
+              'lo-fareve',
+              'oil-painting-portrait-realistic-abstract',
+              'pbwsh',
+              'phoneback',
+              'pillows',
+              'portalpage-blnk-ht-i',
+              'strybook',
+              'sweetsplash',
+              'toonify',
+              'tote-bag',
+              'trcktrt',
+              'tshirt-daisy-Beethvn-black',
+              'virtual-webpage',
+              'vnstbks',
+              'genexpan',
+              'leggings',
+              'lo-fiid',
+              'notebook',
+              'pbwhappscrn',
+            ].map((src, index) => (
+              <div
+                key={index}
+                className={`bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
+                style={{ transitionDelay: `${Math.min(index * 30, 800)}ms` }}
+              >
+                <div className="relative aspect-[4/3]">
+                  <CloudflareImage 
+                    src={src}
+                    alt={`Design ${index + 1}`}
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Contact CTA Section */}
-      <div className="bg-slate-900 py-24 text-center relative z-20">
+      <div className="bg-slate-900 py-24 text-center relative z-20 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-12">
             Ready to <span className="text-orange-200">Build</span>?

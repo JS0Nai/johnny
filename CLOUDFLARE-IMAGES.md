@@ -4,9 +4,10 @@ Complete setup guide for integrating Cloudflare Images in Next.js projects.
 
 ## Overview
 
-- **Development**: Images load from local `/public/media` folder
+- **Development**: Images are stored in `/public/media` folder and accessed via `/media/` URL path
 - **Production**: Images are served from Cloudflare's global CDN
 - **Smart Component**: Automatically switches between local and CDN based on environment
+- **IMPORTANT**: Physical files go in `/public/media/`, but URLs use `/media/` (Next.js serves public folder contents)
 
 ## Complete Setup Guide
 
@@ -154,6 +155,7 @@ const variant = 'public';
 // Helper function to get proper image URL
 function getImageUrl(imageName) {
   if (isDevelopment) {
+    // Note: Files are in /public/media/ but served at /media/
     return `/media/${imageName}.png`;
   } else {
     return `https://imagedelivery.net/${cloudflareAccountHash}/${imageName}/${variant}`;
@@ -167,17 +169,33 @@ textureLoader.load(getImageUrl('logo-name'), (texture) => {
 });
 ```
 
-#### Rule 3: Image Naming Convention
-- Use only lowercase letters, numbers, and hyphens
-- NO spaces, NO underscores in production image names
-- Examples: `tech-runner-blue`, `hero-banner`, `logo-main`
+#### Rule 3: Image Naming Convention - CRITICAL FOR PRODUCTION
+- **MUST use only lowercase letters, numbers, and hyphens**
+- **NO spaces, NO underscores, NO uppercase letters**
+- **NO special characters or dots (except for file extension)**
+
+Examples of CORRECT names:
+- ✅ `tech-runner-blue`
+- ✅ `hero-banner`
+- ✅ `logo-main`
+- ✅ `ab1200tr` (all lowercase)
+- ✅ `ig-ad-creative`
+
+Examples of INCORRECT names that WILL FAIL in production:
+- ❌ `logo_800-200` (has underscore)
+- ❌ `AB1200TR` (uppercase letters)
+- ❌ `Bb_logo` (uppercase and underscore)
+- ❌ `IG-Ad-Creative` (uppercase letters)
+- ❌ `Oil-Painting-Portrait` (uppercase letters)
 
 ### Adding New Images
 
-1. Place images in `/public/media/`:
+1. Place images in `/public/media/` (NOT just `/media/`):
    ```bash
    cp my-image.png public/media/
    ```
+   
+   **IMPORTANT**: The physical folder is `/public/media/` but in your code you'll reference them as `/media/`
 
 2. Upload to Cloudflare:
    ```bash
@@ -200,7 +218,7 @@ textureLoader.load(getImageUrl('logo-name'), (texture) => {
 ```
 project/
 ├── public/
-│   └── media/                  # All images here
+│   └── media/                  # All images physically stored here
 ├── components/
 │   └── CloudflareImage.js      # Smart component
 ├── scripts/
@@ -209,12 +227,27 @@ project/
 └── .env                        # API credentials (not in Git)
 ```
 
+**Path Reference:**
+- Physical location: `/public/media/your-image.png`
+- URL in code: `/media/your-image.png`
+- CloudflareImage src: `your-image` (no path, no extension)
+
 ## Common Mistakes to Avoid
 
-1. **Using direct paths in production**: `/media/image.png` will NOT work on production
+1. **Using direct paths in production**: `/media/image.png` will NOT work on production without environment detection
 2. **Including file extensions in CloudflareImage src**: Use `src="logo"` not `src="logo.png"`
 3. **Forgetting environment detection for Three.js/Canvas**: Always use the helper function
 4. **Using spaces or underscores in filenames**: Use hyphens instead
+5. **Using uppercase letters in image names**: ALL image names must be lowercase
+6. **Confusing folder paths**: Files go in `/public/media/` but are accessed via `/media/`
+7. **Not testing image names before production**: Image names that work locally may fail on Cloudflare if they contain uppercase or underscores
+
+## Real-World Issues We've Encountered
+
+1. **Three.js texture loading**: Must use getImageUrl() helper, not CloudflareImage component
+2. **Portfolio grids**: When using CloudflareImage in grids, ensure proper responsive sizing
+3. **Image cutoff**: Use `object-contain` instead of `object-cover` for logos to prevent cropping
+4. **Broken production images**: Usually caused by uppercase letters or underscores in filenames
 
 ## Best Practices
 
