@@ -7,9 +7,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
 
+// Environment detection
+const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
+const variant = 'public';
+
+// Helper function to get proper image URL
+function getImageUrl(imageName) {
+  if (isDevelopment) {
+    return `/media/${imageName}.png`;
+  } else {
+    // In production, use Cloudflare CDN
+    return `https://imagedelivery.net/${cloudflareAccountHash}/${imageName}/${variant}`;
+  }
+}
 
 function PortfolioPage() {
   const router = useRouter();
+
+  // Digital Painting images array
+  const digitalPaintingImages = [
+    { src: "arm-our", alt: "Arm Our" },
+    { src: "fe-line", alt: "Fe Line" },
+    { src: "gr-and", alt: "Gr And" },
+    { src: "gr-eek", alt: "Gr Eek" },
+    { src: "hong-kong", alt: "Hong Kong" },
+    { src: "it-aly", alt: "It Aly" },
+    { src: "lon-don", alt: "London" },
+    { src: "m-os", alt: "M Os" },
+    { src: "out-side", alt: "Outside" },
+    { src: "p-ens", alt: "P Ens" },
+    { src: "sun-flower", alt: "Sunflower" },
+    { src: "t-rex", alt: "T Rex" },
+    { src: "the-pier", alt: "The Pier" },
+    { src: "to-wer", alt: "To Wer" },
+    { src: "tr-evi", alt: "Tr Evi" }
+  ];
 
   // State declarations
   const [showHeader, setShowHeader] = useState(false);
@@ -27,10 +60,13 @@ function PortfolioPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [isHoveringHero, setIsHoveringHero] = useState(false);
+  const [selectedDigitalPainting, setSelectedDigitalPainting] = useState(null);
+  const [isDigitalPaintingLightboxOpen, setIsDigitalPaintingLightboxOpen] = useState(false);
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [galleryRef, galleryInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [designRef, designInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
@@ -203,17 +239,35 @@ function PortfolioPage() {
     document.body.style.overflow = "unset";
   };
 
+  // Digital Painting Lightbox functions
+  const openDigitalPaintingLightbox = (image) => {
+    setSelectedDigitalPainting(image);
+    setIsDigitalPaintingLightboxOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeDigitalPaintingLightbox = () => {
+    setIsDigitalPaintingLightboxOpen(false);
+    setSelectedDigitalPainting(null);
+    document.body.style.overflow = "unset";
+  };
+
   // Close lightbox on escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape" && isLightboxOpen) {
-        closeLightbox();
+      if (e.key === "Escape") {
+        if (isLightboxOpen) {
+          closeLightbox();
+        }
+        if (isDigitalPaintingLightboxOpen) {
+          closeDigitalPaintingLightbox();
+        }
       }
     };
 
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [isLightboxOpen]);
+  }, [isLightboxOpen, isDigitalPaintingLightboxOpen]);
 
   // Shuffle function for better visual mixing
   const shuffleArray = (array) => {
@@ -231,6 +285,8 @@ function PortfolioPage() {
   const [col1Items, setCol1Items] = useState([]);
   const [col2Items, setCol2Items] = useState([]);
   const [col3Items, setCol3Items] = useState([]);
+  const [shuffledTopRow, setShuffledTopRow] = useState([]);
+  const [shuffledBottomRow, setShuffledBottomRow] = useState([]);
 
   // Initialize shuffled arrays only once when filteredItems changes
   useEffect(() => {
@@ -242,6 +298,12 @@ function PortfolioPage() {
       setCol3Items(shuffleArray(filteredItems));
     }
   }, [filteredItems.length, selectedCategory, searchTerm]);
+
+  // Initialize shuffled arrays for digital painting sliders
+  useEffect(() => {
+    setShuffledTopRow(shuffleArray(digitalPaintingImages));
+    setShuffledBottomRow(shuffleArray(digitalPaintingImages));
+  }, []);
 
   // For pagination
   const itemsPerPage = viewMode === 'infinite' ? filteredItems.length : 15;
@@ -847,7 +909,131 @@ function PortfolioPage() {
         </div>
       </div>
 
-      
+      {/* Design Portfolio Section */}
+      <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${designInView ? "fade-in" : ""}`}>
+            Design <span className="text-orange-200">Portfolio</span>
+          </h2>
+          <p className={`text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto scroll-animate ${designInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+            Apparel, merchandise, websites, web and mobile apps, social media, advertising, custom and conceptual art.
+          </p>
+
+          {/* Design showcase grid - responsive with varied sizes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: '404-page', ext: 'png' },
+              { name: 'apparel-creepy', ext: 'PNG' },
+              { name: 'apparel-hollow', ext: 'PNG' },
+              { name: 'apparel-shoes', ext: 'PNG' },
+              { name: 'art-print', ext: 'png' },
+              { name: 'bdaybkcvr', ext: 'jpeg' },
+              { name: 'blngstobk', ext: 'png' },
+              { name: 'halloscene', ext: 'png' },
+              { name: 'IG-Ad-Creative_', ext: 'png' },
+              { name: 'lo-fareve', ext: 'png' },
+              { name: 'Oil-Painting-Portrait-Realistic-Abstract', ext: 'jpg' },
+              { name: 'pbwsh', ext: 'png' },
+              { name: 'phoneback', ext: 'png' },
+              { name: 'pillows', ext: 'png' },
+              { name: 'portalpage_blnk_ht-i', ext: 'jpg' },
+              { name: 'strybook', ext: 'png' },
+              { name: 'sweetsplash', ext: 'png' },
+              { name: 'toonify', ext: 'jpg' },
+              { name: 'Tote-bag', ext: 'png' },
+              { name: 'trcktrt', ext: 'jpg' },
+              { name: 'tshirt-daisy-Beethvn-black', ext: 'jpg' },
+              { name: 'virtual-webpage', ext: 'jpg' },
+              { name: 'vnstbks', ext: 'jpg' },
+              { name: 'genexpan', ext: 'png' },
+              { name: 'pbwhappscrn', ext: 'png' },
+              { name: 'lo-fiid', ext: 'png' },
+              { name: 'notebook', ext: 'png' },
+              { name: 'leggings', ext: 'png', fullWidth: true },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className={`${item.fullWidth ? 'col-span-full flex justify-center' : ''} bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
+                style={{ transitionDelay: `${Math.min(index * 30, 800)}ms` }}
+              >
+                <div className={`relative ${item.fullWidth ? 'aspect-[8/3] max-w-4xl mx-auto' : 'aspect-[4/3]'}`}>
+                  {isDevelopment ? (
+                    <img 
+                      src={`/media/${item.name}.${item.ext}`}
+                      alt={`Design ${index + 1}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                    />
+                  ) : (
+                    <img 
+                      src={`https://imagedelivery.net/${cloudflareAccountHash}/${item.name}/${variant}`}
+                      alt={`Design ${index + 1}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Digital Painting Section */}
+      <div className="py-20 bg-gray-900/50">
+        <div className="max-w-6xl mx-auto px-4 text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-extralight tracking-wide text-white mb-8"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <span className="text-orange-200/90">Digital</span> Painting
+          </h2>
+          <p className="text-gray-300 text-xl md:text-2xl font-light max-w-4xl mx-auto leading-relaxed">
+            Painted art using Procreate software and personal photos - iPad Pro with Apple pencil
+          </p>
+        </div>
+
+        {/* Single Slider Gallery - Working Version */}
+        <div className="relative h-[400px] overflow-hidden">
+          <div className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full h-[320px] overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 w-max animate-scroll-infinite">
+              {/* Repeat the image set 10 times for true infinite scroll */}
+              {Array.from({ length: 10 }, (_, setIndex) => 
+                [
+                  { src: "arm-our", alt: "Arm Our" },
+                  { src: "fe-line", alt: "Fe Line" },
+                  { src: "gr-and", alt: "Gr And" },
+                  { src: "gr-eek", alt: "Gr Eek" },
+                  { src: "hong-kong", alt: "Hong Kong" },
+                  { src: "it-aly", alt: "It Aly" },
+                  { src: "lon-don", alt: "London" },
+                  { src: "m-os", alt: "M Os" },
+                  { src: "out-side", alt: "Outside" },
+                  { src: "p-ens", alt: "P Ens" },
+                  { src: "sun-flower", alt: "Sunflower" },
+                  { src: "t-rex", alt: "T Rex" },
+                  { src: "the-pier", alt: "The Pier" },
+                  { src: "to-wer", alt: "To Wer" },
+                  { src: "tr-evi", alt: "Tr Evi" }
+                ].map((image, imageIndex) => (
+                  <div 
+                    key={`${setIndex}-${imageIndex}`}
+                    className="flex-shrink-0 cursor-pointer group relative"
+                    onClick={() => openDigitalPaintingLightbox(image)}
+                  >
+                    <div className="rounded-lg overflow-hidden flex items-center justify-center bg-gray-800/20">
+                      <CloudflareImage
+                        src={image.src}
+                        alt={image.alt}
+                        width={320}
+                        height={320}
+                        className="max-w-80 max-h-80 w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg"></div>
+                  </div>
+                ))
+              ).flat()}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Newsletter Section */}
       <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
@@ -1005,6 +1191,77 @@ function PortfolioPage() {
         </div>
       )}
 
+      {/* Digital Painting Lightbox Modal */}
+      {isDigitalPaintingLightboxOpen && selectedDigitalPainting && (
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={closeDigitalPaintingLightbox}
+        >
+          <div className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center">
+            {/* Close button */}
+            <button
+              onClick={closeDigitalPaintingLightbox}
+              className="absolute top-4 right-4 z-10 text-white hover:text-orange-200 transition-colors"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Image container */}
+            <div
+              className="relative rounded-lg overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CloudflareImage
+                src={selectedDigitalPainting.src}
+                alt={selectedDigitalPainting.alt}
+                width={1200}
+                height={1200}
+                className="max-w-[90vw] max-h-[85vh] w-auto h-auto object-contain"
+              />
+
+              {/* Image details overlay */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs px-3 py-1 bg-orange-200/20 text-orange-200 rounded-full">
+                    Digital Painting
+                  </span>
+                </div>
+                <p className="text-gray-300 mb-4">
+                  Painted using Procreate software and personal photos - iPad Pro with Apple pencil
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Digital Art", "iPad Pro", "Procreate", "Apple Pencil", "Digital Painting"].map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-2 py-1 bg-gray-700/50 text-orange-200 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation hint */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm">
+              Press ESC or click outside to close
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer Section */}
       <footer className="bg-gray-900 px-8 py-16 border-t border-gray-800">
         <div className="max-w-6xl mx-auto">
@@ -1135,11 +1392,28 @@ function PortfolioPage() {
         }
 
         .animate-scroll-left {
-          animation: scrollLeft 20s linear infinite;
+          animation: scrollLeft 40s linear infinite;
         }
 
         .animate-scroll-right {
           animation: scrollRight 20s linear infinite;
+        }
+
+        .animate-scroll-infinite {
+          animation: infiniteScroll 250s linear infinite;
+        }
+
+        .animate-scroll-infinite:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes infiniteScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
         }
         
         .animate-scroll-up {
@@ -1162,6 +1436,37 @@ function PortfolioPage() {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+
+        .scroll-animate {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.fade-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .hover\\:animation-pause:hover {
+          animation-play-state: paused;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+          .animate-scroll-left,
+          .animate-scroll-right {
+            animation-play-state: paused;
+          }
         }
       `}</style>
     </div>

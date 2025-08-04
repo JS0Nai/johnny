@@ -225,7 +225,7 @@ function BrandingPage() {
         />
 
         {/* Hero Text Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-30 pointer-events-none">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-10 pointer-events-none">
           <div className={`pointer-events-auto scroll-animate ${heroInView ? "fade-in" : ""}`}>
             <h1 className="text-5xl font-light tracking-tight text-white md:text-7xl lg:text-8xl mb-4">
               Branding <span className="text-orange-200">& Design</span>
