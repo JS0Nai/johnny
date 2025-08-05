@@ -89,15 +89,15 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     onClick={() =>
                       setActiveMenu(activeMenu === item.id ? null : item.id)
                     }
-                    className={`w-full flex justify-between items-center hover:text-yellow-400 transition-colors py-2 ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
+                    className={`w-full flex items-center hover:text-yellow-400 transition-colors py-2 ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                   >
-                    <span className="text-lg font-light">{item.label}</span>
                     <span
-                      className={`text-green-500 transition-transform duration-300
+                      className={`text-green-500 transition-transform duration-300 mr-3
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
                     >
                       ▼
                     </span>
+                    <span className="text-lg font-light">{item.label}</span>
                   </button>
                 ) : (
                   <Link href={item.href}>
@@ -146,15 +146,15 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     onClick={() =>
                       setActiveMenu(activeMenu === item.id ? null : item.id)
                     }
-                    className={`flex justify-between items-center hover:text-yellow-400 transition-colors py-3 text-right ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
+                    className={`flex items-center hover:text-yellow-400 transition-colors py-3 text-right ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                   >
-                    <span className="text-2xl font-light tracking-wider">{item.label}</span>
                     <span
-                      className={`text-green-500 transition-transform duration-300 ml-4
+                      className={`text-green-500 transition-transform duration-300 mr-4
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
                     >
                       ▼
                     </span>
+                    <span className="text-2xl font-light tracking-wider">{item.label}</span>
                   </button>
                 ) : (
                   <Link href={item.href}>

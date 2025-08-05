@@ -7,7 +7,7 @@ import { SiGithub } from "react-icons/si";
 import Header from "../components/Header";
 import { menuItems } from "../config/menuItems";
 
-function ProjectsPage() {
+function AIPage() {
   const router = useRouter();
 
   // State declarations
@@ -349,7 +349,7 @@ function ProjectsPage() {
           <h1
             className={`text-7xl md:text-8xl font-bold bg-gradient-to-b from-gray-600 to-transparent bg-clip-text text-transparent tracking-tighter mb-6 scroll-animate ${heroInView ? "fade-in" : ""}`}
           >
-            PROJECTS
+            ARTIFICIAL INTELLIGENCE
           </h1>
 
           <h2
@@ -760,4 +760,4 @@ function ProjectsPage() {
   );
 }
 
-export default ProjectsPage;
+export default AIPage;

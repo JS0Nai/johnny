@@ -28,12 +28,15 @@ function ArticlesPage() {
 
 
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setShowImage(true), 500),
-      setTimeout(() => setShowHeader(true), 1000),
-      setTimeout(() => setShowSubheader(true), 1500),
-    ];
-    return () => timers.forEach((timer) => clearTimeout(timer));
+    // Only run animation timers once when component mounts
+    if (!showHeader && !showSubheader && !showImage) {
+      const timers = [
+        setTimeout(() => setShowImage(true), 500),
+        setTimeout(() => setShowHeader(true), 1000),
+        setTimeout(() => setShowSubheader(true), 1500),
+      ];
+      return () => timers.forEach((timer) => clearTimeout(timer));
+    }
   }, []);
 
   const articles = [
