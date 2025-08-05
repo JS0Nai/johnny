@@ -63,6 +63,7 @@ function AboutPage() {
     { id: "home", label: "HOME", href: "/", subItems: [] },
     { id: "about", label: "ABOUT", href: "/about", subItems: [] },
     { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
+    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
     { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
     { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
     { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },

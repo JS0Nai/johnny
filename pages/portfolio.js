@@ -73,6 +73,7 @@ function PortfolioPage() {
     { id: "home", label: "HOME", href: "/", subItems: [] },
     { id: "about", label: "ABOUT", href: "/about", subItems: [] },
     { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
+    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
     { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
     { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
     { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
@@ -369,7 +370,7 @@ function PortfolioPage() {
           {isHoveringHero ? (
             <video
               src="/media/dist-op.mp4"
-              className="absolute inset-0 w-full h-full object-contain"
+              className="absolute inset-0 w-full h-full object-cover"
               autoPlay
               muted
               loop
@@ -381,7 +382,7 @@ function PortfolioPage() {
               alt="Hero background"
               width={1920}
               height={1080}
-              className="absolute inset-0 w-full h-full object-contain"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           )}
         </div>
@@ -1233,14 +1234,6 @@ function PortfolioPage() {
 
               {/* Image details overlay */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs px-3 py-1 bg-orange-200/20 text-orange-200 rounded-full">
-                    Digital Painting
-                  </span>
-                </div>
-                <p className="text-gray-300 mb-4">
-                  Painted using Procreate software and personal photos - iPad Pro with Apple pencil
-                </p>
                 <div className="flex flex-wrap gap-2">
                   {["Digital Art", "iPad Pro", "Procreate", "Apple Pencil", "Digital Painting"].map((tag, i) => (
                     <span

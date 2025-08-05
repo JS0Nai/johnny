@@ -7,6 +7,7 @@ import CloudflareImage from "../components/CloudflareImage";
 import HeroV8 from "../components/HeroV8";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { menuItems } from "../config/menuItems";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
@@ -58,15 +59,6 @@ function HomePage() {
   const [playgroundRef, playgroundInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
 
   useEffect(() => {
     const timers = [

@@ -376,6 +376,9 @@ function BrandingPage() {
               { name: 'pbwhappscrn', ext: 'png' },
               { name: 'lo-fifi', ext: 'png' },
               { name: 'notebook', ext: 'png' },
+              { name: 'book-page', ext: 'png' },
+              { name: 'night-sky', ext: 'png' },
+              { name: 'blackwolf-forest', ext: 'png' },
               { name: 'leggings', ext: 'png', fullWidth: true },
             ].map((item, index) => (
               <div
