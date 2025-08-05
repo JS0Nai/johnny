@@ -15,11 +15,11 @@ function LiteraturePage() {
     { src: 'creative-3', alt: 'Signature logo overlay' }
   ];
 
-  // Hero animation cycle - much slower for smooth logo emergence
+  // Hero animation cycle - faster for more dynamic logo emergence
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length);
-    }, 8000); // Change image every 8 seconds for slower, more deliberate transition
+    }, 4000); // Change image every 4 seconds for quicker transition
 
     return () => clearInterval(interval);
   }, []);
