@@ -36,7 +36,7 @@ const ANIMATION_LOGO_NAMES = [
   'lo-fas', // was ffash
   'jaison',
   'ab-8',
-  'agb', // was antigravitybook
+  'ag-b', // was agb
   'Bb_logo', // new addition
   'ffashEm', // new addition
 ];
@@ -50,7 +50,7 @@ const PORTFOLIO_LOGO_NAMES = [
   'wck', // was icogo150
   'ab-8', // was signature-logo-wht
   'Bb_logo',
-  'agb', // was antigravitybook
+  'ag-b', // was agb
 ];
 
 // Get full URLs for Three.js animation
@@ -374,7 +374,7 @@ function BrandingPage() {
               { name: 'vnstbks', ext: 'jpg' },
               { name: 'genexpan', ext: 'png' },
               { name: 'pbwhappscrn', ext: 'png' },
-              { name: 'lo-fiid', ext: 'png' },
+              { name: 'lo-fifi', ext: 'png' },
               { name: 'notebook', ext: 'png' },
               { name: 'leggings', ext: 'png', fullWidth: true },
             ].map((item, index) => (

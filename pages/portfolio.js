@@ -947,7 +947,7 @@ function PortfolioPage() {
               { name: 'vnstbks', ext: 'jpg' },
               { name: 'genexpan', ext: 'png' },
               { name: 'pbwhappscrn', ext: 'png' },
-              { name: 'lo-fiid', ext: 'png' },
+              { name: 'lo-fifi', ext: 'png' },
               { name: 'notebook', ext: 'png' },
               { name: 'leggings', ext: 'png', fullWidth: true },
             ].map((item, index) => (
