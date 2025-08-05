@@ -131,14 +131,13 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
             ))}
           </nav>
 
-          {/* Desktop Menu - Staircase Layout */}
+          {/* Desktop Menu - Right Aligned */}
           <nav className="hidden md:flex flex-col items-end space-y-4 pt-12">
             {menuItems.map((item, index) => (
               <div 
                 key={item.id} 
                 className="overflow-hidden"
                 style={{ 
-                  marginRight: `${item.id === 'contact' ? (index * 40) + 40 : index * 40}px`,
                   animationDelay: `${index * 100}ms`
                 }}
               >
@@ -149,7 +148,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                     }
                     className={`flex justify-between items-center hover:text-yellow-400 transition-colors py-3 text-right ${router.pathname === item.href ? 'text-yellow-400' : 'text-white'}`}
                   >
-                    <span className="text-3xl font-light tracking-wider">{item.label}</span>
+                    <span className="text-2xl font-light tracking-wider">{item.label}</span>
                     <span
                       className={`text-green-500 transition-transform duration-300 ml-4
                         ${activeMenu === item.id ? "rotate-180" : ""}`}
