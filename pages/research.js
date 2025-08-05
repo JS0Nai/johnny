@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from "../components/Header";
+import { menuItems as baseMenuItems } from "../config/menuItems";
 
 function ResearchPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("research");
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "research", label: "RESEARCH", href: "/research", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
+  // Custom menu items for research page - replace "RESOURCES" with "RESEARCH" and add back "RESOURCES"
+  const menuItems = baseMenuItems.map(item => 
+    item.id === "resources" 
+      ? { id: "research", label: "RESEARCH", href: "/research", subItems: [] }
+      : item
+  ).concat([{ id: "resources", label: "RESOURCES", href: "/resources", subItems: [] }]);
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">

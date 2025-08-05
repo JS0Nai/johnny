@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import CloudflareImage from "../components/CloudflareImage";
+import { menuItems } from "../config/menuItems";
 
 // Environment detection
 const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
@@ -72,15 +73,6 @@ function BrandingPage() {
   const [portfolioRef, portfolioInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [designRef, designInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
 
   // Three.js brand animation setup
   useEffect(() => {

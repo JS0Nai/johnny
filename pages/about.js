@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
+import { menuItems } from "../config/menuItems";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
@@ -59,16 +60,6 @@ function AboutPage() {
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [expertiseRef, expertiseInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
 
   useEffect(() => {
     const timers = [

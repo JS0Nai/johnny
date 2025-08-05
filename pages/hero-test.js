@@ -5,6 +5,7 @@ import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import { SiGithub, SiLinkedin, SiTwitter } from "react-icons/si";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { menuItems } from "../config/menuItems";
 
 // --- Hero Section V1 ---
 const HeroV1 = () => {
@@ -561,15 +562,6 @@ function HeroTestPage() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
 
   return (
     <div className="bg-slate-900 text-white relative w-full overflow-x-hidden">

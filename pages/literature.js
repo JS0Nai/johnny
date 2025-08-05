@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from "../components/Header";
+import { menuItems as baseMenuItems } from "../config/menuItems";
 
 function LiteraturePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("literature");
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "literature", label: "LITERATURE", href: "/literature", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
+  // Custom menu items for literature page - replace "RESOURCES" with "LITERATURE"
+  const menuItems = baseMenuItems.map(item => 
+    item.id === "resources" 
+      ? { id: "literature", label: "LITERATURE", href: "/literature", subItems: [] }
+      : item
+  );
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">

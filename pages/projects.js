@@ -5,6 +5,7 @@ import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import { SiGithub } from "react-icons/si";
 import Header from "../components/Header";
+import { menuItems } from "../config/menuItems";
 
 function ProjectsPage() {
   const router = useRouter();
@@ -25,16 +26,6 @@ function ProjectsPage() {
   const [projectsRef, projectsInView] = useInView({ threshold: 0.05, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const menuItems = [
-    { id: "home", label: "HOME", href: "/", subItems: [] },
-    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
-    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
-    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
-    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
-    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
-    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
-    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
-  ];
 
   useEffect(() => {
     const timers = [

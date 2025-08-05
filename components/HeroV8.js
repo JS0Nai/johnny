@@ -216,7 +216,7 @@ const HeroV8 = () => {
                 <Link href="/contact"><span className="px-8 py-4 border-2 border-gray-500 text-white font-semibold rounded-full text-lg hover:bg-gray-800 hover:border-gray-700 transition-all duration-300 cursor-pointer">Get In Touch</span></Link>
               </div>
               <div className="flex justify-center gap-8 mt-16">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><SiGithub size={28} /></a>
+                <a href="https://github.com/JS0Nai" className="text-gray-400 hover:text-white transition-colors"><SiGithub size={28} /></a>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors"><SiLinkedin size={28} /></a>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors"><SiTwitter size={28} /></a>
               </div>
