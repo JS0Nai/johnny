@@ -490,14 +490,20 @@ function AboutPage() {
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 {/* Front side - original logo */}
-                <img
-                  src="/media/signature-webpagetopleft-logo.png"
-                  alt="John Li Logo"
-                  className="absolute w-full h-full object-contain"
+                <div 
+                  className="absolute w-full h-full"
                   style={{ 
                     backfaceVisibility: 'hidden',
                   }}
-                />
+                >
+                  <CloudflareImage
+                    src="signature-webpagetopleft-logo"
+                    alt="John Li Logo"
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 {/* Back side - jaison image */}
                 <div 
                   className="absolute w-full h-full rounded-full overflow-hidden border-4 border-orange-200/20"
@@ -731,9 +737,11 @@ function AboutPage() {
                 </div>
                 <div className={`absolute -right-32 md:-right-44 lg:-right-52 top-1/2 -translate-y-1/2 w-12 h-12 md:w-[72px] md:h-[72px] flex items-center justify-center scroll-animate ${brainInView ? "fade-in" : ""}`}
                      style={{ transitionDelay: "800ms" }}>
-                  <img
-                    src="/media/signature-webpagetopleft-logo.png"
+                  <CloudflareImage
+                    src="signature-webpagetopleft-logo"
                     alt="John Li Logo"
+                    width={72}
+                    height={72}
                     className="w-full h-full object-contain"
                   />
                 </div>

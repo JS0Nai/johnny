@@ -116,12 +116,14 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                       ${activeMenu === item.id ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
                   >
                     {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
-                      >
-                        {subItem}
-                      </button>
+                      <Link href={subItem.href} key={subItem.label}>
+                        <button
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
+                        >
+                          {subItem.label}
+                        </button>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -130,13 +132,13 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
           </nav>
 
           {/* Desktop Menu - Staircase Layout */}
-          <nav className="hidden md:flex flex-col items-end space-y-8 pt-12">
+          <nav className="hidden md:flex flex-col items-end space-y-4 pt-12">
             {menuItems.map((item, index) => (
               <div 
                 key={item.id} 
                 className="overflow-hidden"
                 style={{ 
-                  marginRight: `${item.id === 'contact' ? (index * 60) + 60 : index * 60}px`,
+                  marginRight: `${item.id === 'contact' ? (index * 40) + 40 : index * 40}px`,
                   animationDelay: `${index * 100}ms`
                 }}
               >
@@ -172,12 +174,14 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                       ${activeMenu === item.id ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
                   >
                     {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        className="block w-full text-right text-gray-400 hover:text-white transition-colors py-1"
-                      >
-                        {subItem}
-                      </button>
+                      <Link href={subItem.href} key={subItem.label}>
+                        <button
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full text-right text-gray-400 hover:text-white transition-colors py-1"
+                        >
+                          {subItem.label}
+                        </button>
+                      </Link>
                     ))}
                   </div>
                 )}
