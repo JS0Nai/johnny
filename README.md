@@ -133,6 +133,9 @@ creativeo-site/
    ```
 3. They'll be automatically uploaded to Cloudflare on build
 
+**IMPORTANT**
+ALL image integrations MUST follow the image integration rules outlined in 'CLOUDFLARE-IMAGES.md'
+
 ### Updating Content
 
 - **Homepage**: Edit `pages/index.js`
