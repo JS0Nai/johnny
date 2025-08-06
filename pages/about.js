@@ -1527,7 +1527,6 @@ function AboutPage() {
 
         .perspective-container {
           perspective: 1000px;
-          -webkit-perspective: 1000px;
         }
 
         .rotate-container {
@@ -1535,14 +1534,11 @@ function AboutPage() {
           width: 100%;
           height: 100%;
           transform-style: preserve-3d;
-          -webkit-transform-style: preserve-3d;
           transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-          -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rotate-container.rotated {
           transform: rotateY(180deg);
-          -webkit-transform: rotateY(180deg);
         }
 
         .brain-side {
@@ -1555,27 +1551,6 @@ function AboutPage() {
 
         .brain-back {
           transform: rotateY(180deg);
-          -webkit-transform: rotateY(180deg);
-        }
-
-        /* Mobile-specific fixes for 3D transforms */
-        @media (max-width: 768px) {
-          .perspective-container {
-            perspective: 800px;
-            -webkit-perspective: 800px;
-          }
-          
-          .rotate-container {
-            transform-style: preserve-3d;
-            -webkit-transform-style: preserve-3d;
-            will-change: transform;
-          }
-          
-          .brain-side {
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-font-smoothing: antialiased;
-          }
         }
 
         @keyframes float {
