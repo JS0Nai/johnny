@@ -266,7 +266,7 @@ function AboutPage() {
                   >
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
-                      <CloudflareImage
+                      <img
                         src="brain-tekie-blue"
                         alt="TEKKIE"
                         width={400}
@@ -278,7 +278,7 @@ function AboutPage() {
 
                     {/* Creative Brain (Back - flipped) */}
                     <div className="brain-side brain-back">
-                      <CloudflareImage
+                      <img
                         src="brain-creative-pink"
                         alt="PANTSER"
                         width={400}
@@ -441,7 +441,7 @@ function AboutPage() {
           <div
             className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${skillsInView ? "fade-in" : ""}`}
           >
-            <CloudflareImage
+            <img
               src="profilepicjaison"
               alt="John Li"
               width={400}
