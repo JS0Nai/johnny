@@ -946,20 +946,22 @@ function PortfolioPage() {
               <div
                 key={index}
                 className={`${item.fullWidth ? 'col-span-full flex justify-center' : ''} bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${Math.min(index * 30, 800)}ms` }}
+                style={{ transitionDelay: `${Math.min(index * 30, 800)}ms`, minHeight: '200px' }}
               >
-                <div className={`relative ${item.fullWidth ? 'aspect-[8/3] max-w-4xl mx-auto' : 'aspect-[4/3]'}`}>
+                <div className={`relative w-full ${item.fullWidth ? 'aspect-[8/3] max-w-4xl mx-auto' : 'aspect-[4/3]'}`}>
                   {isDevelopment ? (
                     <img 
                       src={`/media/${item.name}.${item.ext}`}
                       alt={`Design ${index + 1}`}
-                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      className={`absolute inset-0 w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      loading="lazy"
                     />
                   ) : (
                     <img 
                       src={`https://imagedelivery.net/${cloudflareAccountHash}/${item.name}/${variant}`}
                       alt={`Design ${index + 1}`}
-                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      className={`absolute inset-0 w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      loading="lazy"
                     />
                   )}
                 </div>
