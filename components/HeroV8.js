@@ -82,6 +82,7 @@ const HeroV8 = () => {
               autoPlay
               muted={isMuted}
               playsInline
+              preload="metadata"
             />
             <div className="absolute inset-0 bg-black/20"></div>
             

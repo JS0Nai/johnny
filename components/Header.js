@@ -28,7 +28,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
         <div className="mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/">
-              <div className="cursor-pointer relative w-[65px] h-[65px]" style={{ perspective: '1000px' }}>
+              <div className="cursor-pointer relative w-[65px] h-[65px] z-50" style={{ perspective: '1000px' }}>
                 <div 
                   className={`absolute inset-0 transition-transform preserve-3d ${isFlipping ? 'animate-coin-flip' : ''}`}
                   style={{ transformStyle: 'preserve-3d' }}
