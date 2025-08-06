@@ -388,7 +388,7 @@ body {
   }
 }
 
-/* Brain Animation Styles */
+/* Brain Animation Styles - 3D Rotation */
 .perspective-container {
   perspective: 1000px;
 }

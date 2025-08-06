@@ -256,37 +256,33 @@ function AboutPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
             <div className="relative inline-block p-8">
-              {/* Brain Container with 3D Rotation */}
-              <div className="perspective-container">
-                <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] mx-auto cursor-pointer">
-                  <div 
-                    className={`rotate-container ${selectedBrainSide === 'right' ? 'rotated' : ''}`}
-                    onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
-                    onClick={() => setSelectedBrainSide(selectedBrainSide === 'left' ? 'right' : 'left')}
-                  >
-                    {/* Technical Brain (Front) */}
-                    <div className="brain-side" style={{ backgroundColor: '#0f172a' }}>
-                      <CloudflareImage
-                        src="brain-tekie-blue"
-                        alt="TEKKIE"
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]"
-                        style={{ transform: 'scale(0.9)' }}
-                      />
-                    </div>
+              {/* Brain Container with Simple Opacity Transition */}
+              <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] mx-auto cursor-pointer"
+                   onMouseEnter={() => !isTouchDevice && setSelectedBrainSide(prev => prev === 'left' ? 'right' : 'left')}
+                   onClick={() => setSelectedBrainSide(selectedBrainSide === 'left' ? 'right' : 'left')}>
+                <div className="brain-container">
+                  {/* Technical Brain */}
+                  <div className={`brain-image ${selectedBrainSide === 'left' ? 'visible' : 'hidden'}`}>
+                    <CloudflareImage
+                      src="brain-tekie-blue"
+                      alt="TEKKIE"
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]"
+                      style={{ transform: 'scale(0.85)' }}
+                    />
+                  </div>
 
-                    {/* Creative Brain (Back) */}
-                    <div className="brain-side brain-back" style={{ backgroundColor: '#0f172a' }}>
-                      <CloudflareImage
-                        src="brain-creative-red"
-                        alt="PANTSER"
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]"
-                        style={{ transform: 'scale(0.9)' }}
-                      />
-                    </div>
+                  {/* Creative Brain */}
+                  <div className={`brain-image ${selectedBrainSide === 'right' ? 'visible' : 'hidden'}`}>
+                    <CloudflareImage
+                      src="brain-creative-red"
+                      alt="PANTSER"
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(236,72,153,0.6)]"
+                      style={{ transform: 'scale(0.85)' }}
+                    />
                   </div>
                 </div>
               </div>

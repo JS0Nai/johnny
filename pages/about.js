@@ -688,7 +688,7 @@ function AboutPage() {
                     onClick={() => setSelectedBrainSide(selectedBrainSide === 'left' ? 'right' : 'left')}
                   >
                     {/* Technical Brain (Front) */}
-                    <div className="brain-side">
+                    <div className="brain-side" style={{ backgroundColor: '#0f172a' }}>
                       <CloudflareImage
                         src="brain-tekie-blue"
                         alt="TEKKIE"
@@ -699,15 +699,15 @@ function AboutPage() {
                       />
                     </div>
 
-                    {/* Creative Brain (Back - flipped) */}
-                    <div className="brain-side brain-back">
+                    {/* Creative Brain (Back) */}
+                    <div className="brain-side brain-back" style={{ backgroundColor: '#0f172a' }}>
                       <CloudflareImage
-                        src="brain-creative-pink"
+                        src="brain-creative-red"
                         alt="PANTSER"
                         width={400}
                         height={400}
                         className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]"
-                        style={{ transform: 'scaleX(-1) scale(0.9)' }}
+                        style={{ transform: 'scale(0.9)' }}
                       />
                     </div>
                   </div>
