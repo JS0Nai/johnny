@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from "../components/Header";
 import CloudflareImage from "../components/CloudflareImage";
-import { menuItems as baseMenuItems } from "../config/menuItems";
 
 function LiteraturePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,12 +23,16 @@ function LiteraturePage() {
     return () => clearInterval(interval);
   }, []);
 
-  // Custom menu items for literature page - replace "RESOURCES" with "LITERATURE"
-  const menuItems = baseMenuItems.map(item => 
-    item.id === "resources" 
-      ? { id: "literature", label: "LITERATURE", href: "/literature", subItems: [] }
-      : item
-  );
+  const menuItems = [
+    { id: "home", label: "HOME", href: "/", subItems: [] },
+    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
+    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
+    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
+    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
+    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
+    { id: "literature", label: "LITERATURE", href: "/literature", subItems: [] },
+    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
+  ];
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
@@ -72,6 +75,22 @@ function LiteraturePage() {
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/30"></div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto text-center px-4">
+          <h1
+            className="text-7xl md:text-8xl font-extralight tracking-wide text-white mb-6"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            <span className="text-orange-200/90">Creative</span> Writing
+          </h1>
+
+          <h2
+            className="text-gray-200 text-xl md:text-2xl font-light mb-8 leading-relaxed max-w-3xl mx-auto"
+          >
+            Exploring the human experience through stories, poetry, and narratives.
+          </h2>
+        </div>
       </div>
 
       {/* Literary Projects Section */}
