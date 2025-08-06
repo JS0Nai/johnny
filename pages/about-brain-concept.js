@@ -9,7 +9,7 @@ import {
   SiAdobe, SiInstagram, SiFigma
 } from "react-icons/si";
 import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
-import { menuItems } from "../config/menuItems";
+
 
 function AboutPage() {
   const router = useRouter();
@@ -32,6 +32,17 @@ function AboutPage() {
   const [contentRef, contentInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
+
+  const menuItems = [
+    { id: "home", label: "HOME", href: "/", subItems: [] },
+    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
+    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
+    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
+    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
+    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
+    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
+    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
+  ];
 
 
   useEffect(() => {
@@ -200,12 +211,14 @@ function AboutPage() {
                       ${activeMenu === item.id ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"}`}
                   >
                     {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
-                      >
-                        {subItem}
-                      </button>
+                      <Link href={subItem.href} key={subItem.label}>
+                        <button
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full text-left text-gray-400 hover:text-white transition-colors py-1"
+                        >
+                          {subItem.label}
+                        </button>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -253,7 +266,7 @@ function AboutPage() {
                   >
                     {/* Technical Brain (Front) */}
                     <div className="brain-side">
-                      <img
+                      <CloudflareImage
                         src="brain-tekie-blue"
                         alt="TEKKIE"
                         width={400}
@@ -265,7 +278,7 @@ function AboutPage() {
 
                     {/* Creative Brain (Back - flipped) */}
                     <div className="brain-side brain-back">
-                      <img
+                      <CloudflareImage
                         src="brain-creative-pink"
                         alt="PANTSER"
                         width={400}
@@ -428,7 +441,7 @@ function AboutPage() {
           <div
             className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${skillsInView ? "fade-in" : ""}`}
           >
-            <img
+            <CloudflareImage
               src="profilepicjaison"
               alt="John Li"
               width={400}
