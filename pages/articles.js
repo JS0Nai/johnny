@@ -23,7 +23,7 @@ function ArticlesPage() {
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [articlesRef, articlesInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [articlesRef, articlesInView] = useInView({ threshold: 0, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
 
@@ -232,7 +232,7 @@ function ArticlesPage() {
       </div>
 
       {/* Featured Articles Section */}
-      <div className="py-16 bg-gray-900">
+      <div ref={articlesRef} className="py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -247,8 +247,7 @@ function ArticlesPage() {
               .map((article, index) => (
                 <div
                   key={article.id}
-                  className={`bg-gray-800/40 rounded-lg overflow-hidden shadow-lg scroll-animate ${articlesInView ? "fade-in" : ""}`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
+                  className="bg-gray-800/40 rounded-lg overflow-hidden shadow-lg"
                 >
                   <div className="p-8">
                     <div className="flex items-center gap-3 mb-4">
@@ -310,7 +309,7 @@ function ArticlesPage() {
       </div>
 
       {/* All Articles Section */}
-      <div ref={articlesRef} className="py-16">
+      <div className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -323,8 +322,7 @@ function ArticlesPage() {
             {filteredArticles.map((article, index) => (
               <div
                 key={article.id}
-                className={`bg-gray-800/40 rounded-lg p-8 scroll-animate ${articlesInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="bg-gray-800/40 rounded-lg p-8"
               >
                 <div className="flex flex-col lg:flex-row gap-8">
                   <div className="flex-1">
