@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
-import { menuItems as baseMenuItems } from "../config/menuItems";
+
 
 function ResearchPage() {
   const router = useRouter();
@@ -25,8 +25,16 @@ function ResearchPage() {
   const [researchRef, researchInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
-  // Use centralized menu items
-  const menuItems = baseMenuItems;
+  const menuItems = [
+    { id: "home", label: "HOME", href: "/", subItems: [] },
+    { id: "about", label: "ABOUT", href: "/about", subItems: [] },
+    { id: "portfolio", label: "PORTFOLIO", href: "/portfolio", subItems: [] },
+    { id: "branding", label: "BRANDING", href: "/branding", subItems: [] },
+    { id: "projects", label: "PROJECTS", href: "/projects", subItems: [] },
+    { id: "articles", label: "ARTICLES", href: "/articles", subItems: [] },
+    { id: "resources", label: "RESOURCES", href: "/resources", subItems: [] },
+    { id: "contact", label: "CONTACT", href: "/contact", subItems: [] },
+  ];
 
   useEffect(() => {
     // Only run animation timers once when component mounts

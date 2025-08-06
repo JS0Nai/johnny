@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+// Environment detection for Cloudflare images
+const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+const cloudflareAccountHash = 'afekpjgU7bwy8XYMt0lA2Q';
+const variant = 'public';
+
 const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItems }) => {
   const [isFlipping, setIsFlipping] = useState(false);
   const [showJaison, setShowJaison] = useState(false);
@@ -35,7 +40,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                 >
                   {/* Front side - original logo */}
                   <img
-                    src="/media/signature-webpagetopleft-logo.png"
+                    src={isDevelopment ? "/media/signature-webpagetopleft-logo.png" : `https://imagedelivery.net/${cloudflareAccountHash}/signature-webpagetopleft-logo/${variant}`}
                     alt="John Li Logo"
                     className="absolute w-full h-full object-contain"
                     style={{ 
@@ -46,7 +51,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, activeMenu, setActiveMenu, menuItem
                   />
                   {/* Back side - jaison image */}
                   <img
-                    src="/media/jaison.png"
+                    src={isDevelopment ? "/media/jaison.png" : `https://imagedelivery.net/${cloudflareAccountHash}/jaison/${variant}`}
                     alt="Jaison Logo"
                     className="absolute w-full h-full object-contain"
                     style={{ 
