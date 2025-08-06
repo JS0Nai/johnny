@@ -22,7 +22,7 @@ function ResearchPage() {
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [researchRef, researchInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [researchRef, researchInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   // Use centralized menu items

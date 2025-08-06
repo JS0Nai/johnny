@@ -177,11 +177,6 @@ const HeroV8 = () => {
                 YOUR 1-iANDECOUND ENNERI
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-center gap-4 sm:gap-6">
-                <Link href="/projects">
-                  <span className="px-8 py-4 bg-cyan-400 text-slate-900 font-semibold rounded-full text-lg hover:bg-cyan-300 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                    Explore Projects
-                  </span>
-                </Link>
                 <Link href="/research">
                   <span className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full text-lg hover:bg-cyan-400/10 hover:border-cyan-300 transition-all duration-300 cursor-pointer">
                     View Research
