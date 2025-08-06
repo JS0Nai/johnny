@@ -22,7 +22,7 @@ function ResearchPage() {
 
   // InView hooks
   const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [researchRef, researchInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [researchRef, researchInView] = useInView({ threshold: 0, triggerOnce: true });
   const [newsletterRef, newsletterInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const menuItems = [
@@ -226,7 +226,7 @@ function ResearchPage() {
       </div>
 
       {/* Featured Research Section */}
-      <div className="py-16 bg-gray-900">
+      <div ref={researchRef} className="py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -241,8 +241,7 @@ function ResearchPage() {
               .map((project, index) => (
                 <div
                   key={project.id}
-                  className={`bg-gray-800/40 rounded-lg overflow-hidden shadow-lg scroll-animate ${researchInView ? "fade-in" : ""}`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
+                  className="bg-gray-800/40 rounded-lg overflow-hidden shadow-lg"
                 >
                   <div className="p-8">
                     <div className="flex items-center gap-3 mb-4">
@@ -313,10 +312,10 @@ function ResearchPage() {
       </div>
 
       {/* All Research Projects Section */}
-      <div ref={researchRef} className="py-16 bg-slate-900">
+      <div className="py-16 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2
-            className={`text-4xl font-extralight mb-12 tracking-wide text-white text-center scroll-animate ${researchInView ? "fade-in" : ""}`}
+            className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             All Research <span className="text-orange-200/90">Projects</span>
@@ -326,8 +325,7 @@ function ResearchPage() {
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className={`bg-gray-800/20 border border-gray-700/30 rounded-lg p-8 scroll-animate ${researchInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="bg-gray-800/20 border border-gray-700/30 rounded-lg p-8"
               >
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                   <div className="flex-1">
@@ -448,8 +446,8 @@ function ResearchPage() {
       <style jsx global>{`
         .scroll-animate {
           opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+          transform: translateY(20px);
+          transition: all 0.3s ease-out;
         }
 
         .scroll-animate.fade-in {
