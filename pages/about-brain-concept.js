@@ -276,10 +276,10 @@ function AboutPage() {
                       />
                     </div>
 
-                    {/* Creative Brain (Back - flipped) */}
+                    {/* Creative Brain (Back) */}
                     <div className="brain-side brain-back bg-slate-900 rounded-full">
                       <CloudflareImage
-                        src="brain-creative-pink"
+                        src="brain-creative-red"
                         alt="PANTSER"
                         width={400}
                         height={400}
