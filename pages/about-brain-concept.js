@@ -442,7 +442,7 @@ function AboutPage() {
             className={`relative w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-orange-200/20 scroll-animate ${skillsInView ? "fade-in" : ""}`}
           >
             <CloudflareImage
-              src="profilepicjaison"
+              src="jaison"
               alt="John Li"
               width={400}
               height={400}
@@ -624,24 +624,6 @@ function AboutPage() {
       </footer>
 
       <style jsx>{`
-        @keyframes scrollLeft {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.33%);
-          }
-        }
-
-        @keyframes scrollRight {
-          0% {
-            transform: translateX(-33.33%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-
         @keyframes float {
           0%, 100% {
             transform: translateY(0px);
@@ -653,70 +635,6 @@ function AboutPage() {
 
         .float-animation {
           animation: float 4s ease-in-out infinite;
-        }
-
-        .animate-scroll-left {
-          animation: scrollLeft 20s linear infinite;
-        }
-
-        .animate-scroll-right {
-          animation: scrollRight 20s linear infinite;
-        }
-
-        .animate-scroll-left:hover,
-        .animate-scroll-right:hover {
-          animation-play-state: paused;
-        }
-
-        .scroll-animate {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.8s ease-out;
-        }
-
-        .scroll-animate-left {
-          opacity: 0;
-          transform: translateX(-30px);
-          transition: all 0.8s ease-out;
-        }
-
-        .scroll-animate-right {
-          opacity: 0;
-          transform: translateX(30px);
-          transition: all 0.8s ease-out;
-        }
-
-        .fade-in {
-          opacity: 1;
-          transform: translate(0);
-        }
-
-        .perspective-container {
-          perspective: 1000px;
-        }
-
-        .rotate-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .rotate-container.rotated {
-          transform: rotateY(180deg);
-        }
-
-        .brain-side {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-        }
-
-        .brain-back {
-          transform: rotateY(180deg);
         }
       `}</style>
     </div>
