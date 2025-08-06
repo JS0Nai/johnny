@@ -373,7 +373,7 @@ function AboutPage() {
       company: "University",
       image: "/media/honsBAEngCrWr.png",
       description:
-        "Completed Bachelor of Arts (Honours) in English Literature and Creative Writing, with a focus on business studies.",
+        "Completed Bachelor of Arts (Honours) in English Literature and Creative Writing, with a focus on children's psychology and research.",
       achievements: [],
     },
     {
