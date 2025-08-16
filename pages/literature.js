@@ -291,11 +291,11 @@ function LiteraturePage() {
                   {/* Project Details - Aligned to match book height */}
                   <div className="flex-1 flex flex-col justify-between h-64">
                     <div>
-                      <h3 className="text-2xl font-light text-white mb-2">Echoes in Silicon</h3>
+                      <h3 className="text-2xl font-light text-white mb-2">Bedtime Story</h3>
                       <div className="space-y-2 text-sm mb-4">
                         <div className="flex items-center gap-2">
                           <span className="text-orange-200 font-medium">Genre:</span>
-                          <span className="text-gray-300">Poetry Collection</span>
+                          <span className="text-gray-300">Poetry </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-orange-200 font-medium">Status:</span>
@@ -305,8 +305,8 @@ function LiteraturePage() {
                         </div>
                       </div>
                       <p className="text-gray-300 leading-relaxed">
-                        A contemplative collection exploring the intersection of humanity and technology, 
-                        where digital dreams meet analog hearts.
+                        This short poem was drafted, edited, completed, and inspired
+                        one random evening in 2024.
                       </p>
                     </div>
                   </div>
@@ -322,34 +322,41 @@ function LiteraturePage() {
                     <div className="h-48 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
                       <div className="text-gray-200 leading-relaxed space-y-4 font-serif text-center" style={{ fontFamily: "'Crimson Text', serif" }}>
                         <div className="text-lg italic">
-                          <p>"Code and Dreams"</p>
+                          <p>"Bedtime Story"</p>
                         </div>
+                        
                         <div className="text-base space-y-3 text-left">
-                          <p>In circuits deep and data streams,<br/>
-                          We weave our hopes, we build our dreams,<br/>
-                          Each algorithm, a heartbeat's pace,<br/>
-                          Each function call, love's warm embrace.</p>
+                          <p>Hear goodnight,<br/>
+                          Here this night,<br/> 
+                          As splashing doves<br/>
+                          Fill blackened skies.</p>
                           
                           <p className="text-gray-300">
-                          The screen reflects our searching souls,<br/>
-                          As ones and zeros play their roles,<br/>
-                          Between the human and machine,<br/>
-                          Lives poetry in the space between.</p>
+                          Dreams bestow<br/>
+                          A whispered tone,<br/>
+                          And faded words<br/>
+                          Of flake-fell snow.</p>
 
                           <p className="text-gray-300">
-                          We type in languages of logic,<br/>
-                          Yet speak in whispers, soft and magic,<br/>
-                          Each bug a lesson, each fix a prayer,<br/>
-                          In silicon gardens, we plant our care.</p>
+                          Little fawn,<br/>
+                          Where is dawn -<br/>
+                          And yawning flowers,<br/>
+                          And feathered song?</p>
 
                           <p className="text-gray-400">
-                          So let the servers hum their songs,<br/>
-                          While human hearts beat strong and long,<br/>
-                          For in this dance of code and soul,<br/>
-                          We find our truest, deepest whole.</p>
+                          Warming ears,<br/>
+                          A simmering fear,<br/>
+                          And all I love<br/>
+                          That holds you near.</p>
+
+                          <p className="text-gray-400">
+                          Hands fall<br/>
+                          Where seconds slip.<br/>
+                          As pulse rhyme<br/>
+                          Run past my lips.</p>
                         </div>
                         <div className="text-orange-200/70 text-sm italic border-l-2 border-orange-200/30 pl-4 mt-6">
-                          Explore more verses that bridge the digital and human experience...
+                          John Li
                         </div>
                       </div>
                     </div>
