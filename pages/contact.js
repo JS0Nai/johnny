@@ -139,10 +139,14 @@ function ContactPage() {
     e.preventDefault();
     setIsContactSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:3001";
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactForm),
+        body: JSON.stringify({
+          ...contactForm,
+          site: "johnny.ae" // Identify which site this is from
+        }),
       });
 
       if (response.ok) {
@@ -170,7 +174,8 @@ function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/newsletter", {
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:3001";
+      const response = await fetch(`${apiUrl}/api/newsletter`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
