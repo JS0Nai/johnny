@@ -5,9 +5,9 @@ addEventListener('fetch', event => {
 // Site configurations - add your sites here
 const SITE_CONFIGS = {
   'johnny.ae': {
-    toEmail: 'johnny@johnny.ae',
+    toEmail: ['johnny@johnny.ae', 'hi@johnny.ae'],
     fromEmail: 'johnny@johnny.ae',
-    fromName: 'Johnny Website'
+    fromName: 'Johnny.ae'
   },
   // Add more sites as needed:
   // 'example.com': {
@@ -25,7 +25,7 @@ const SITE_CONFIGS = {
 // Allowed origins - add your domains here
 const ALLOWED_ORIGINS = [
   'http://localhost:2323',
-  'http://localhost:3000',
+  'http://localhost:3001',
   'https://johnny.ae',
   // Add more domains as needed
 ]
@@ -101,7 +101,9 @@ async function handleNewsletter(request, corsHeaders) {
       },
       body: JSON.stringify({
         personalizations: [{
-          to: [{ email: config.toEmail }],
+          to: Array.isArray(config.toEmail) 
+            ? config.toEmail.map(email => ({ email }))
+            : [{ email: config.toEmail }],
         }],
         from: { 
           email: config.fromEmail,
@@ -210,7 +212,9 @@ async function handleContact(request, corsHeaders) {
       },
       body: JSON.stringify({
         personalizations: [{
-          to: [{ email: config.toEmail }],
+          to: Array.isArray(config.toEmail) 
+            ? config.toEmail.map(email => ({ email }))
+            : [{ email: config.toEmail }],
         }],
         from: { 
           email: config.fromEmail,
