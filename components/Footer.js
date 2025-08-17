@@ -31,12 +31,12 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="text-orange-200">✉</span>
-              <a
-                href="mailto:hi@johnny.ae"
+              <Link
+                href="/contact"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                hi@johnny.ae
-              </a>
+                Email Me
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-orange-200">📞</span>

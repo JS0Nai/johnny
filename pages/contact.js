@@ -97,16 +97,16 @@ function ContactPage() {
   const contactMethods = [
     {
       title: "Email",
-      value: "johnny@johnny.ae",
+      value: "Email Below",
       icon: "✉",
-      link: "mailto:johnny@johnny.ae",
+      link: "#contact-form",
       description: "For general inquiries and project discussions",
     },
     {
       title: "Phone",
       value: "Request Callback Below",
       icon: "📞",
-      link: "/contact",
+      link: "#contact-form",
       description: "Available during UAE business hours",
     },
     {
