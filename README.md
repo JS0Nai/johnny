@@ -36,16 +36,14 @@ This installs all required packages:
 - **Tailwind CSS** - Styling framework
 - **Framer Motion** - Animations
 - **React Icons** - Icon library
-- **@sendgrid/mail** - Email service
-- **node-fetch** - HTTP requests
 
 ### 2. Environment Configuration
 
-Create a `.env.local` file in the root directory:
+Create a `.env` file in the root directory:
 
 ```env
-# Required for email functionality
-SENDGRID_API_KEY=your_sendgrid_api_key_here
+# Required for Cloudflare Worker email functionality
+NEXT_PUBLIC_CONTACT_API_URL=https://your-worker-name.your-subdomain.workers.dev
 
 # Required for Cloudflare Images (optional for development)
 CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
@@ -57,14 +55,24 @@ NODE_ENV=development
 
 ## 🔧 Configuration
 
-### Email Setup (SendGrid)
+### Email Setup (Cloudflare Worker)
 
-1. Sign up at [SendGrid](https://sendgrid.com/)
-2. Create an API key with full access
-3. Add the API key to your `.env.local` file
-4. Update the email addresses in:
-   - `pages/api/contact.js:15-16`
-   - `pages/api/newsletter.js:15`
+The site uses a Cloudflare Worker to handle contact forms and newsletter subscriptions:
+
+1. **Deploy the Cloudflare Worker**:
+   - Use the provided `cloudflare-contact-worker.js` file
+   - Deploy to Cloudflare Workers
+   - Configure your SendGrid API key in the worker environment
+
+2. **Update Environment Variable**:
+   - Add your worker URL to `.env`:
+   ```env
+   NEXT_PUBLIC_CONTACT_API_URL=https://your-worker-name.your-subdomain.workers.dev
+   ```
+
+3. **Configure Multiple Sites** (optional):
+   - Update the `SITE_CONFIGS` object in the worker
+   - Add email recipients for each domain
 
 ### Image Optimization (Cloudflare Images) - Optional
 
@@ -114,7 +122,7 @@ creativeo-site/
 │   ├── about.js        # About page
 │   ├── portfolio.js    # Portfolio gallery
 │   ├── contact.js      # Contact form
-│   └── api/            # API endpoints
+│   └── literature.js   # Creative writing showcase
 ├── public/             # Static assets
 │   └── media/          # Image gallery
 ├── styles/             # Global CSS
@@ -150,6 +158,31 @@ ALL image integrations MUST follow the image integration rules outlined in 'CLOU
 3. Add navigation links where needed
 
 ## 🚀 Deployment
+
+### Cloudflare Worker Setup (Required)
+
+Before deploying the site, set up the email handling worker:
+
+1. **Create Cloudflare Worker**:
+   ```bash
+   # Copy the worker code
+   cp cloudflare-contact-worker.js to Cloudflare Workers dashboard
+   ```
+
+2. **Configure Environment Variables in Worker**:
+   ```env
+   SENDGRID_API_KEY=your_sendgrid_api_key_here
+   ```
+
+3. **Update Site Configuration**:
+   - Edit `SITE_CONFIGS` in the worker
+   - Add your domain and email recipients
+   - Configure CORS origins
+
+4. **Deploy Worker and Get URL**:
+   - Deploy in Cloudflare Workers dashboard
+   - Copy the worker URL
+   - Add to your `.env` file
 
 ### Static Export (Recommended)
 
@@ -188,9 +221,10 @@ npm install  # Reinstall dependencies
 - Images fallback to local in development
 
 **Email not working:**
-- Verify SendGrid API key in `.env.local`
-- Check email addresses in API files
-- Ensure SendGrid account is verified
+- Verify `NEXT_PUBLIC_CONTACT_API_URL` in `.env` file
+- Check that Cloudflare Worker is deployed and accessible
+- Ensure SendGrid API key is configured in worker environment
+- Verify CORS settings in worker for your domain
 
 **Build fails:**
 ```bash
@@ -218,4 +252,5 @@ This is a personal portfolio project. For questions or suggestions, use the cont
 - Development: `npm run dev` → `localhost:2323`
 - Build: `npm run build`
 - Dependencies: All handled by `npm install`
-- Environment: Copy `.env.local` template above
+- Environment: Copy `.env` template above
+- Email: Handled by Cloudflare Worker (not local API)
