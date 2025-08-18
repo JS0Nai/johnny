@@ -352,25 +352,14 @@ function ResearchPage() {
                       ))}
                     </div>
 
-                    <a
-                      href={project.link || `#research-${project.id}`}
-                      className="inline-flex items-center gap-2 text-orange-200 hover:text-white transition-colors"
-                    >
-                      <span>View Research</span>
-                      <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
+                    <div className="flex gap-4">
+                        <Link href={project.link || "#"}>
+                            <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors cursor-pointer">READ REPORT</span>
+                        </Link>
+                        <Link href="/ai">
+                            <span className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors cursor-pointer">VIEW PROJECT</span>
+                        </Link>
+                    </div>
                   </div>
                 </div>
               ))}

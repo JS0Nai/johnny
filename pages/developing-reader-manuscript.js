@@ -34,28 +34,8 @@ function DevelopingReaderManuscriptPage() {
         menuItems={menuItems}
       />
 
-      {/* Manuscript Navigation */}
-      <div className="py-4 bg-gray-800/40 backdrop-blur-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg font-medium text-white">The Developing Reader</h2>
-            <div className="flex gap-4">
-              <Link href="#">
-                <span className="text-sm text-gray-300 hover:text-orange-200 transition-colors cursor-pointer">Report Version</span>
-              </Link>
-              <Link href="/research">
-                <span className="text-sm text-gray-300 hover:text-orange-200 transition-colors cursor-pointer">Back to Research</span>
-              </Link>
-              <Link href="/ai">
-                <span className="text-sm text-gray-300 hover:text-orange-200 transition-colors cursor-pointer">Development</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Manuscript Content */}
-      <div className="py-16">
+      <div className="py-16 pt-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-300 leading-relaxed">
           <h1 className="text-4xl font-bold text-white mb-4 text-center">THE SCIENCE OF THE DEVELOPING READER</h1>
           <h2 className="text-2xl font-light text-white mb-8 text-center">The Developing Reader: An Expert Report on the Science of Reading, Learning, and Vision in Children Aged 5-15</h2>
@@ -139,6 +119,18 @@ function DevelopingReaderManuscriptPage() {
                 <li>(PDF) Insight into the impact of vision therapy on academic...</li>
               </ol>
             </div>
+          </div>
+        </div>
+        
+        {/* Action Buttons */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
+          <div className="flex justify-center gap-4">
+            <Link href="#">
+              <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-pointer">READ REPORT</span>
+            </Link>
+            <Link href="/ai">
+              <span className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-pointer">VIEW PROJECT</span>
+            </Link>
           </div>
         </div>
       </div>
