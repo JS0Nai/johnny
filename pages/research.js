@@ -41,6 +41,20 @@ function ResearchPage() {
 
   const researchProjects = [
     {
+      id: 7,
+      title: "Behavioral Computer Vision for Child Health Monitoring",
+      category: "machine-learning",
+      date: "August 1, 2024",
+      status: "Complete",
+      excerpt:
+        "An innovative computer vision system using high-contrast visual markers and AI analysis to track eating performance through icon visibility rather than direct food measurement.",
+      methodology:
+        "Built a sophisticated pixel simulation engine to generate training data without requiring thousands of real food images. Implemented a dual-layer AI system combining computer vision with Large Language Model analysis for contextual interpretation and pattern recognition.",
+      tags: ["Computer Vision", "Behavioral AI", "Child Health", "Synthetic Data"],
+      institution: "Personal R&D Project",
+      featured: true,
+    },
+    {
       id: 1,
       title: "Neural Network Optimization for Edge Computing",
       category: "machine-learning",
@@ -51,7 +65,7 @@ function ResearchPage() {
       methodology:
         "Using quantization techniques, pruning algorithms, and knowledge distillation to reduce model complexity while preserving performance metrics...",
       tags: ["Neural Networks", "Edge Computing", "Optimization", "Mobile AI"],
-      institution: "Stanford AI Lab",
+      institution: "Personal R&D Project",
       featured: true,
     },
     {
@@ -65,9 +79,37 @@ function ResearchPage() {
       methodology:
         "Implementing differential privacy mechanisms and secure multi-party computation protocols to enable privacy-preserving collaborative learning...",
       tags: ["Privacy", "Healthcare", "Federated Learning", "HIPAA"],
-      institution: "MIT CSAIL",
+      institution: "Personal R&D Project",
       featured: true,
     },
+    {
+        id: 8,
+        title: "The Developing Reader: An Expert Report on the Science of Reading, Learning, and Vision in Children Aged 5-15",
+        category: "educational-technology",
+        date: "June 15, 2024",
+        status: "Published",
+        excerpt:
+          "A comprehensive interdisciplinary study combining cognitive science, vision science, and educational research to create a holistic model for understanding how children learn to read.",
+        methodology:
+          "Synthesizes advanced eye-tracking technology data with pedagogical practice to provide evidence-based recommendations for educators, clinicians, and parents.",
+        tags: ["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"],
+        institution: "Academic Publication",
+        featured: false,
+      },
+      {
+        id: 9,
+        title: "The Architecture of Learning: A Comprehensive Review of Cognitive Mechanisms, Pedagogical Strategies, and Future-Forward Classrooms",
+        category: "educational-technology",
+        date: "May 1, 2024",
+        status: "Published",
+        excerpt:
+          "A four-part academic synthesis examining decades of peer-reviewed research from cognitive science, educational psychology, and technology studies to address the fundamental challenge of effective education in an era of technological transformation.",
+        methodology:
+          "Examines cognitive foundations of learning, evidence-based pedagogical strategies, social and environmental learning contexts, and technological transformation analysis.",
+        tags: ["Educational Technology", "Cognitive Science", "Pedagogy", "AI in Education"],
+        institution: "Academic Publication",
+        featured: false,
+      },
     {
       id: 3,
       title: "Explainable AI for Government Decision Making",
@@ -79,7 +121,7 @@ function ResearchPage() {
       methodology:
         "Developing SHAP-based explanation frameworks and causal inference models to provide clear justifications for AI-driven policy recommendations...",
       tags: ["Explainable AI", "Government", "Policy", "Transparency"],
-      institution: "Carnegie Mellon University",
+      institution: "Academic Publication",
       featured: false,
     },
     {
@@ -93,7 +135,7 @@ function ResearchPage() {
       methodology:
         "Employing adversarial training techniques, certified defenses, and ensemble methods to improve model robustness against targeted attacks...",
       tags: ["Adversarial AI", "Computer Vision", "Security", "Robustness"],
-      institution: "UC Berkeley",
+      institution: "Academic Publication",
       featured: false,
     },
     {
@@ -107,7 +149,7 @@ function ResearchPage() {
       methodology:
         "Training domain-specific transformer models on legal corpora with fine-tuning for contract clause extraction and compliance verification...",
       tags: ["NLP", "Legal Tech", "Document Analysis", "Compliance"],
-      institution: "Harvard Law School",
+      institution: "Academic Publication",
       featured: true,
     },
     {
@@ -121,7 +163,7 @@ function ResearchPage() {
       methodology:
         "Implementing variational quantum eigensolveranalysis and quantum approximate optimization algorithms (QAOA) for combinatorial optimization...",
       tags: ["Quantum Computing", "Optimization", "Hybrid Algorithms", "Logistics"],
-      institution: "IBM Quantum Research",
+      institution: "Academic Publication",
       featured: false,
     },
   ];
@@ -129,6 +171,7 @@ function ResearchPage() {
   const categories = [
     { id: "all", label: "All Research", count: researchProjects.length },
     { id: "machine-learning", label: "Machine Learning", count: researchProjects.filter(p => p.category === "machine-learning").length },
+    { id: "educational-technology", label: "Educational Technology", count: researchProjects.filter(p => p.category === "educational-technology").length },
     { id: "privacy", label: "Privacy & Security", count: researchProjects.filter(p => p.category === "privacy" || p.category === "security").length },
     { id: "explainability", label: "Explainable AI", count: researchProjects.filter(p => p.category === "explainability").length },
     { id: "nlp", label: "Natural Language", count: researchProjects.filter(p => p.category === "nlp").length },
@@ -139,7 +182,8 @@ function ResearchPage() {
     ? researchProjects 
     : researchProjects.filter(project => 
         project.category === selectedCategory || 
-        (selectedCategory === "privacy" && (project.category === "privacy" || project.category === "security"))
+        (selectedCategory === "privacy" && (project.category === "privacy" || project.category === "security")) ||
+        (selectedCategory === "educational-technology" && project.category === "educational-technology")
       );
 
   const handleCategoryChange = (category) => {
@@ -213,6 +257,29 @@ function ResearchPage() {
                 {category.label} ({category.count})
               </button>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* R&D Overview Section */}
+      <div className="py-16 bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2
+            className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            Research & Development: <span className="text-orange-200/90">AI Systems Innovation</span>
+          </h2>
+          <div className="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">
+            <p className="mb-4">
+              As an active researcher pursuing a Master of Science in Computer Science and AI, I am at the forefront of developing next-generation AI integration methodologies that bridge the gap between cutting-edge artificial intelligence capabilities and existing enterprise infrastructure.
+            </p>
+            <p className="mb-4">
+              My ongoing R&D work centers on creating <strong>intelligent middleware systems</strong> that enable seamless communication between modern AI models and legacy enterprise databases. This research addresses a critical industry challenge: how organizations can leverage advanced AI capabilities without completely rebuilding their existing data infrastructure.
+            </p>
+            <p>
+              My research is contributing to the emerging field of <strong>Enterprise AI Infrastructure Engineering</strong> - a discipline that didn't exist five years ago but is now critical for organizations seeking to modernize without disruption. Through hands-on implementation with government and educational clients, I'm developing practical frameworks that other organizations can adopt for their own AI transformation initiatives.
+            </p>
           </div>
         </div>
       </div>

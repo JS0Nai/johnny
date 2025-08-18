@@ -148,6 +148,7 @@ function AIPage() {
       image: "/assets/images/project-seymour.png",
       link: null,
       github: "/contact",
+      researchLink: "/research"
     },
     {
       id: 6,
@@ -251,26 +252,6 @@ function AIPage() {
         "Team collaboration tools",
       ],
       image: "/assets/images/project-asset-management.png",
-      link: null,
-      github: "/contact",
-    },
-    {
-      id: 11,
-      title: "The Science of Reading",
-      category: "education and research",
-      status: "In Progress",
-      year: "2025",
-      description:
-        "A research paper synthesizing findings from cognitive science, education, and vision science to create a comprehensive overview of how children aged 5-15 learn to read. It details eye movement mechanics, evidence-based teaching strategies, and examines obstacles like dyslexia, providing a holistic model for educators, clinicians, and parents.",
-      technologies: ["Cognitive Science", "Vision Science", "Educational Research", "Neuroscience"],
-      features: [
-        "Five Foundational Components: Phonemic Awareness, Phonics, Fluency, Vocabulary, Comprehension.",
-        "The Power of Vision Therapy (VT): A form of neurological rehabilitation that improves fundamental visual skills.",
-        "Vision Training Outcomes: Targeted training produces tangible benefits in academic, attentional, and motor domains.",
-        "A Holistic Model for Support: Integrates Visual-Motor, Linguistic-Cognitive, and Psycho-Environmental systems.",
-        "Critiques speed-reading myths and examines obstacles like dyslexia."
-      ],
-      image: "/assets/images/project-reading-model.png",
       link: null,
       github: "/contact",
     },
@@ -522,6 +503,13 @@ function AIPage() {
                         <span>Code</span>
                       </span>
                     </Link>
+                    {project.researchLink && (
+                        <Link href={project.researchLink}>
+                            <span className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer">
+                                <span>View Research</span>
+                            </span>
+                        </Link>
+                    )}
                   </div>
                 </div>
               </div>
