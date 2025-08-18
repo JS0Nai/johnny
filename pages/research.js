@@ -89,13 +89,10 @@ function ResearchPage() {
         category: "educational-technology",
         date: "June 15, 2024",
         status: "Published",
-        excerpt:
-          "A comprehensive interdisciplinary study combining cognitive science, vision science, and educational research to create a holistic model for understanding how children learn to read.",
-        methodology:
-          "Synthesizes advanced eye-tracking technology data with pedagogical practice to provide evidence-based recommendations for educators, clinicians, and parents.",
         tags: ["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"],
         institution: "Academic Publication",
         featured: true,
+        link: "/developing-reader-manuscript"
       },
       {
         id: 14,
@@ -356,7 +353,7 @@ function ResearchPage() {
                     </div>
 
                     <a
-                      href={`#research-${project.id}`}
+                      href={project.link || `#research-${project.id}`}
                       className="inline-flex items-center gap-2 text-orange-200 hover:text-white transition-colors"
                     >
                       <span>View Research</span>
@@ -444,7 +441,7 @@ function ResearchPage() {
 
                   <div className="lg:w-48 flex lg:flex-col gap-3">
                     <a
-                      href={`#research-${project.id}`}
+                      href={project.link || `#research-${project.id}`}
                       className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-orange-200/10 text-orange-200 rounded-lg hover:bg-orange-200/20 transition-colors text-sm"
                     >
                       <span>View Details</span>
