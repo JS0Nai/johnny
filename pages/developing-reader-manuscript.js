@@ -5,6 +5,7 @@ import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import RelatedArticles from "../components/RelatedArticles";
 import { menuItems } from "../config/menuItems";
 
 function DevelopingReaderManuscriptPage() {
@@ -137,6 +138,12 @@ function DevelopingReaderManuscriptPage() {
           </div>
         </div>
       </div>
+
+      {/* Related Articles Section */}
+      <RelatedArticles 
+        tags={["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"]}
+        category="educational-technology"
+      />
 
       <Footer />
     </div>
