@@ -80,7 +80,7 @@ function ResearchPage() {
         "Implementing differential privacy mechanisms and secure multi-party computation protocols to enable privacy-preserving collaborative learning...",
       tags: ["Privacy", "Healthcare", "Federated Learning", "HIPAA"],
       institution: "Personal R&D Project",
-      featured: true,
+      featured: false,
     },
     {
         id: 8,
@@ -94,7 +94,7 @@ function ResearchPage() {
           "Synthesizes advanced eye-tracking technology data with pedagogical practice to provide evidence-based recommendations for educators, clinicians, and parents.",
         tags: ["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"],
         institution: "Academic Publication",
-        featured: false,
+        featured: true,
       },
       {
         id: 9,
@@ -261,24 +261,21 @@ function ResearchPage() {
         </div>
       </div>
 
-      {/* R&D Overview Section */}
+      {/* New Research Blurb */}
       <div className="py-16 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Research & Development: <span className="text-orange-200/90">AI Systems Innovation</span>
+            Research Focus: <span className="text-orange-200/90">Childhood Development, Learning & Reading</span>
           </h2>
           <div className="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">
             <p className="mb-4">
-              As an active researcher pursuing a Master of Science in Computer Science and AI, I am at the forefront of developing next-generation AI integration methodologies that bridge the gap between cutting-edge artificial intelligence capabilities and existing enterprise infrastructure.
-            </p>
-            <p className="mb-4">
-              My ongoing R&D work centers on creating <strong>intelligent middleware systems</strong> that enable seamless communication between modern AI models and legacy enterprise databases. This research addresses a critical industry challenge: how organizations can leverage advanced AI capabilities without completely rebuilding their existing data infrastructure.
+              My research is dedicated to understanding the intricate processes of childhood development, with a particular focus on the cognitive and neurological foundations of learning and reading. By synthesizing findings from cognitive science, educational psychology, and vision science, my work aims to create a holistic understanding of how children learn to read and the factors that can impede this process.
             </p>
             <p>
-              My research is contributing to the emerging field of <strong>Enterprise AI Infrastructure Engineering</strong> - a discipline that didn't exist five years ago but is now critical for organizations seeking to modernize without disruption. Through hands-on implementation with government and educational clients, I'm developing practical frameworks that other organizations can adopt for their own AI transformation initiatives.
+              This research has culminated in several key publications, including "The Developing Reader," "The Architecture of Learning," and "Dopamine Dysregulation in Childhood Development." These reports provide evidence-based insights and practical recommendations for educators, clinicians, and parents to support children's educational journeys.
             </p>
           </div>
         </div>
