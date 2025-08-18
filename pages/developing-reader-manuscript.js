@@ -126,10 +126,13 @@ function DevelopingReaderManuscriptPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
           <div className="flex justify-center gap-4">
             <Link href="#">
-              <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-pointer">READ REPORT</span>
+              <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium">READ REPORT</span>
             </Link>
             <Link href="/ai">
-              <span className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-pointer">VIEW PROJECT</span>
+              <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium">VIEW PROJECT</span>
+            </Link>
+            <Link href="/research">
+              <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-gray-500/20 text-gray-300 hover:bg-gray-500/30 transition-all duration-200 cursor-pointer font-medium">BACK TO RESEARCH</span>
             </Link>
           </div>
         </div>

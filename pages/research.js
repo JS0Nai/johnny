@@ -89,6 +89,10 @@ function ResearchPage() {
         category: "educational-technology",
         date: "June 15, 2024",
         status: "Published",
+        excerpt:
+          "A comprehensive interdisciplinary study combining cognitive science, vision science, and educational research to create a holistic model for understanding how children learn to read.",
+        methodology:
+          "Synthesizes advanced eye-tracking technology data with pedagogical practice to provide evidence-based recommendations for educators, clinicians, and parents.",
         tags: ["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"],
         institution: "Academic Publication",
         featured: true,
@@ -354,10 +358,10 @@ function ResearchPage() {
 
                     <div className="flex gap-4">
                         <Link href={project.link || "#"}>
-                            <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors cursor-pointer">READ REPORT</span>
+                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium">READ REPORT</span>
                         </Link>
                         <Link href="/ai">
-                            <span className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors cursor-pointer">VIEW PROJECT</span>
+                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium">VIEW PROJECT</span>
                         </Link>
                     </div>
                   </div>
@@ -428,73 +432,18 @@ function ResearchPage() {
                     </div>
                   </div>
 
-                  <div className="lg:w-48 flex lg:flex-col gap-3">
-                    <a
-                      href={project.link || `#research-${project.id}`}
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-orange-200/10 text-orange-200 rounded-lg hover:bg-orange-200/20 transition-colors text-sm"
-                    >
-                      <span>View Details</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </a>
+                  <div className="lg:w-48 flex flex-col gap-2">
+                    <Link href={project.link || `#research-${project.id}`}>
+                      <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">READ REPORT</span>
+                    </Link>
+                    <Link href="/ai">
+                      <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">VIEW PROJECT</span>
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Newsletter Section */}
-      <div ref={newsletterRef} className="py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2
-            className={`text-4xl font-extralight mb-6 tracking-wide text-white scroll-animate ${newsletterInView ? "fade-in" : ""}`}
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            Stay Updated on <span className="text-orange-200/90">Research</span>
-          </h2>
-
-          <p
-            className={`text-xl text-gray-300 mb-8 scroll-animate ${newsletterInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "200ms" }}
-          >
-            Get notified about new research publications, findings, and updates from the lab.
-          </p>
-
-          <form
-            onSubmit={handleNewsletterSubmit}
-            className={`flex flex-col sm:flex-row gap-4 max-w-md mx-auto scroll-animate ${newsletterInView ? "fade-in" : ""}`}
-            style={{ transitionDelay: "400ms" }}
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-200"
-              required
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-6 py-3 bg-orange-200 text-gray-900 rounded-lg font-medium hover:bg-orange-100 transition-colors disabled:opacity-50"
-            >
-              {isSubmitting ? "Subscribing..." : "Subscribe"}
-            </button>
-          </form>
-
-          {submitStatus === "success" && (
-            <p className="mt-4 text-green-400">
-              Thank you for subscribing to research updates!
-            </p>
-          )}
-          {submitStatus === "error" && (
-            <p className="mt-4 text-red-400">
-              There was an error subscribing. Please try again.
-            </p>
-          )}
         </div>
       </div>
 
