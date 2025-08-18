@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { menuItems } from "../config/menuItems";
 
 
@@ -41,21 +42,21 @@ function ResearchPage() {
 
   const researchProjects = [
     {
-      id: 7,
+      id: 10,
       title: "Behavioral Computer Vision for Child Health Monitoring",
       category: "machine-learning",
-      date: "August 1, 2024",
-      status: "Complete",
+      date: "2024",
+      status: "Patent Pending",
       excerpt:
-        "An innovative computer vision system using high-contrast visual markers and AI analysis to track eating performance through icon visibility rather than direct food measurement.",
+        "An innovative, non-intrusive system to monitor children's eating behavior and automatically manage screen time based on nutritional engagement.",
       methodology:
-        "Built a sophisticated pixel simulation engine to generate training data without requiring thousands of real food images. Implemented a dual-layer AI system combining computer vision with Large Language Model analysis for contextual interpretation and pattern recognition.",
-      tags: ["Computer Vision", "Behavioral AI", "Child Health", "Synthetic Data"],
+        "This project leverages marker-based computer vision and advanced AI analysis to achieve high-accuracy behavioral monitoring without requiring complex food recognition. The system was developed using a novel synthetic data generation approach, ensuring robust performance in real-world scenarios.",
+      tags: ["Computer Vision", "Behavioral AI", "Child Health", "Patent Pending"],
       institution: "Personal R&D Project",
       featured: true,
     },
     {
-      id: 1,
+      id: 11,
       title: "Neural Network Optimization for Edge Computing",
       category: "machine-learning",
       date: "March 20, 2024",
@@ -66,10 +67,10 @@ function ResearchPage() {
         "Using quantization techniques, pruning algorithms, and knowledge distillation to reduce model complexity while preserving performance metrics...",
       tags: ["Neural Networks", "Edge Computing", "Optimization", "Mobile AI"],
       institution: "Personal R&D Project",
-      featured: true,
+      featured: false,
     },
     {
-      id: 2,
+      id: 12,
       title: "Privacy-Preserving Machine Learning in Healthcare",
       category: "privacy",
       date: "February 15, 2024",
@@ -79,11 +80,11 @@ function ResearchPage() {
       methodology:
         "Implementing differential privacy mechanisms and secure multi-party computation protocols to enable privacy-preserving collaborative learning...",
       tags: ["Privacy", "Healthcare", "Federated Learning", "HIPAA"],
-      institution: "Personal R&D Project",
+      institution: "Academic Publication",
       featured: false,
     },
     {
-        id: 8,
+        id: 13,
         title: "The Developing Reader: An Expert Report on the Science of Reading, Learning, and Vision in Children Aged 5-15",
         category: "educational-technology",
         date: "June 15, 2024",
@@ -97,7 +98,7 @@ function ResearchPage() {
         featured: true,
       },
       {
-        id: 9,
+        id: 14,
         title: "The Architecture of Learning: A Comprehensive Review of Cognitive Mechanisms, Pedagogical Strategies, and Future-Forward Classrooms",
         category: "educational-technology",
         date: "May 1, 2024",
@@ -108,10 +109,10 @@ function ResearchPage() {
           "Examines cognitive foundations of learning, evidence-based pedagogical strategies, social and environmental learning contexts, and technological transformation analysis.",
         tags: ["Educational Technology", "Cognitive Science", "Pedagogy", "AI in Education"],
         institution: "Academic Publication",
-        featured: false,
+        featured: true,
       },
     {
-      id: 3,
+      id: 15,
       title: "Explainable AI for Government Decision Making",
       category: "explainability",
       date: "January 28, 2024",
@@ -125,7 +126,7 @@ function ResearchPage() {
       featured: false,
     },
     {
-      id: 4,
+      id: 16,
       title: "Adversarial Robustness in Computer Vision Systems",
       category: "security",
       date: "January 10, 2024",
@@ -139,7 +140,7 @@ function ResearchPage() {
       featured: false,
     },
     {
-      id: 5,
+      id: 17,
       title: "Natural Language Processing for Legal Document Analysis",
       category: "nlp",
       date: "December 18, 2023",
@@ -150,10 +151,10 @@ function ResearchPage() {
         "Training domain-specific transformer models on legal corpora with fine-tuning for contract clause extraction and compliance verification...",
       tags: ["NLP", "Legal Tech", "Document Analysis", "Compliance"],
       institution: "Academic Publication",
-      featured: true,
+      featured: false,
     },
     {
-      id: 6,
+      id: 18,
       title: "Quantum-Classical Hybrid Algorithms for Optimization",
       category: "quantum",
       date: "November 30, 2023",
@@ -166,6 +167,19 @@ function ResearchPage() {
       institution: "Academic Publication",
       featured: false,
     },
+    {
+        id: 20,
+        title: "Dopamine Dysregulation in Childhood Development",
+        category: "educational-technology",
+        status: "Published",
+        date: "2024",
+        excerpt:
+          "A neurodevelopmental perspective on the impact of artificial rewards in childhood and adolescence, synthesizing evidence from neuroscience and developmental psychology to articulate the Dopamine Dysregulation Hypothesis.",
+        methodology: "This paper synthesizes evidence from neuroscience and developmental psychology to articulate the Dopamine Dysregulation Hypothesis: that chronic exposure to modern supernormal stimuli (e.g., digital media, hyper-palatable foods, consumerism) during the critical neurodevelopmental periods of childhood and adolescence dysregulates the brain's reward circuitry.",
+        tags: ["Neuroscience", "Childhood Development", "Dopamine", "Behavioral Addiction"],
+        institution: "Academic Publication",
+        featured: true,
+      },
   ];
 
   const categories = [
@@ -308,7 +322,7 @@ function ResearchPage() {
                         {project.date}
                       </span>
                       <span className="text-gray-500">•</span>
-                      <span className={`text-sm px-2 py-1 rounded-full text-xs ${
+                      <span className={`text-sm px-2 py-1 rounded-full text-xs ${ 
                         project.status === "Published" ? "bg-green-500/20 text-green-300" :
                         project.status === "In Progress" ? "bg-yellow-500/20 text-yellow-300" :
                         project.status === "Under Review" ? "bg-blue-500/20 text-blue-300" :
@@ -389,7 +403,7 @@ function ResearchPage() {
                       <span className="text-gray-400 text-sm">
                         {project.date}
                       </span>
-                      <span className={`text-sm px-2 py-1 rounded-full text-xs ${
+                      <span className={`text-sm px-2 py-1 rounded-full text-xs ${ 
                         project.status === "Published" ? "bg-green-500/20 text-green-300" :
                         project.status === "In Progress" ? "bg-yellow-500/20 text-yellow-300" :
                         project.status === "Under Review" ? "bg-blue-500/20 text-blue-300" :
@@ -498,119 +512,7 @@ function ResearchPage() {
         </div>
       </div>
 
-      {/* Footer Section */}
-      <footer className="bg-gray-900 px-8 py-16 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <div className="text-3xl text-white font-light mb-6">John Li</div>
-            <p className="text-gray-400 mt-4">
-              Portfolio, Projects, and Resources{" "}
-              <span className="italic"></span>
-            </p>
-          </div>
-
-          {/* Location Section */}
-          <div className="mb-16">
-            <h3 className="text-3xl text-white font-light mb-6">Location</h3>
-            <address className="text-gray-400 not-italic">
-              Abu Dhabi,
-              <br />
-              United Arab Emirates
-            </address>
-          </div>
-
-          {/* Contact Section */}
-          <div className="mb-16">
-            <h3 className="text-3xl text-white font-light mb-6">
-              Let's Connect.
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="text-orange-200">✉</span>
-                <a
-                  href="mailto:johnny@johnny.ae"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  johnny@johnny.ae
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-orange-200">📞</span>
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Request Callback
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-4 mb-16">
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Facebook
-            </a>
-            <span className="text-gray-600">/</span>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              X/Twitter
-            </a>
-            <span className="text-gray-600">/</span>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Instagram
-            </a>
-          </div>
-
-          {/* Footer Credits */}
-          <div className="text-center text-gray-400 text-sm">
-            <p>
-              Designed by{" "}
-              <a
-                href="#"
-                className="text-white hover:text-orange-200 transition-colors"
-              >
-                Monarkh AI Design and Build
-              </a>
-              , Powered by{" "}
-              <a
-                href="#"
-                className="text-white hover:text-orange-200 transition-colors"
-              >
-                Monarkh
-              </a>
-            </p>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors mt-2 inline-block"
-            >
-              Privacy
-            </a>
-          </div>
-        </div>
-      </footer>
-
-      {/* Global Styles */}
-      <style jsx global>{`
-        .scroll-animate {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 0.3s ease-out;
-        }
-
-        .scroll-animate.fade-in {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
+      <Footer />
     </div>
   );
 }
