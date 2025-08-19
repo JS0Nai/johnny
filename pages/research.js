@@ -96,7 +96,8 @@ function ResearchPage() {
         tags: ["Educational Technology", "Cognitive Science", "Vision Science", "Pedagogy"],
         institution: "Academic Publication",
         featured: true,
-        link: "/developing-reader-manuscript"
+        link: "/developing-reader-manuscript",
+        reportLink: "/The Developing Reader - report.pdf"
       },
       {
         id: 14,
@@ -358,10 +359,13 @@ function ResearchPage() {
 
                     <div className="flex gap-4">
                         <Link href={project.link || "#"}>
-                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium">READ REPORT</span>
+                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium">READ MANUSCRIPT</span>
                         </Link>
+                        <a href={project.reportLink || "#"} target="_blank" rel="noopener noreferrer">
+                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium">READ REPORT</span>
+                        </a>
                         <Link href="/ai">
-                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium">VIEW PROJECT</span>
+                            <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-gray-500/20 text-gray-300 hover:bg-gray-500/30 transition-all duration-200 cursor-pointer font-medium">VIEW PROJECT</span>
                         </Link>
                     </div>
                   </div>
@@ -433,11 +437,18 @@ function ResearchPage() {
                   </div>
 
                   <div className="lg:w-48 flex flex-col gap-2">
-                    <Link href={project.link || `#research-${project.id}`}>
-                      <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">READ REPORT</span>
-                    </Link>
+                    {project.link && (
+                      <Link href={project.link}>
+                        <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 hover:bg-orange-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">READ MANUSCRIPT</span>
+                      </Link>
+                    )}
+                    {project.reportLink && (
+                      <a href={project.reportLink} target="_blank" rel="noopener noreferrer">
+                        <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">READ REPORT</span>
+                      </a>
+                    )}
                     <Link href="/ai">
-                      <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">VIEW PROJECT</span>
+                      <span className="inline-block text-sm px-3 py-1.5 rounded-full bg-gray-500/20 text-gray-300 hover:bg-gray-500/30 transition-all duration-200 cursor-pointer font-medium w-full text-center">VIEW PROJECT</span>
                     </Link>
                   </div>
                 </div>
