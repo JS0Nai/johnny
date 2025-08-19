@@ -568,7 +568,7 @@ function HomePage() {
       </div>
 
       {/* Tools & Technologies Section */}
-      <div className="relative py-16 bg-gray-900">
+      <div className="relative pt-16 pb-8 bg-gray-900">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-light text-white mb-4">
             Tools & <span className="text-orange-200">Technologies</span>
@@ -688,7 +688,7 @@ function HomePage() {
       </div>
 
       {/* Portfolio Stats Section */}
-      <div ref={portfolioRef} className="bg-gray-900 py-24">
+      <div ref={portfolioRef} className="bg-gray-900 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div
             className={`text-center mb-20 scroll-animate ${portfolioInView ? "fade-in" : ""}`}
