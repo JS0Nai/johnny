@@ -955,14 +955,14 @@ function PortfolioPage() {
                     <img 
                       src={`/media/${item.name}.${item.ext}`}
                       alt={`Design ${index + 1}`}
-                      className={`absolute inset-0 w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
                       loading="lazy"
                     />
                   ) : (
                     <img 
                       src={`https://imagedelivery.net/${cloudflareAccountHash}/${item.name}/${variant}`}
                       alt={`Design ${index + 1}`}
-                      className={`absolute inset-0 w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
                       loading="lazy"
                     />
                   )}
