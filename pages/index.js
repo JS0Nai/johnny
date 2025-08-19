@@ -325,19 +325,6 @@ function HomePage() {
       {/* HeroV8 Section */}
       <HeroV8 />
 
-
-      {/* The Monarch Project Section */}
-      <div className="py-24 bg-slate-900 relative z-10 text-center">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-6xl font-light text-white mb-4">
-            The Monarch Project
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Exploring the intersection of creativity and humanity
-          </p>
-        </div>
-      </div>
-
       {/* Core Disciplines Section with Tech Stack Visualizer */}
       <div ref={coreDisciplinesRef} className="py-24 bg-slate-900 relative z-10">
         <div className="max-w-6xl mx-auto px-4">
@@ -345,7 +332,7 @@ function HomePage() {
             Core <span className="text-orange-200">Disciplines</span>
           </h2>
           <p className="text-center text-gray-400 mb-12 text-lg">
-            An innovative showcase of professional work and creative exploration
+            Innovation. Professionalism. Creative Exploration.
           </p>
           
           <div className="bento-3d-grid">
@@ -698,25 +685,6 @@ function HomePage() {
           </div>
         </div>
 
-        {/* GitHub Activity Ticker - Opposite Direction */}
-        <div className="bg-gray-800/40 border-y border-gray-700/50 py-2 overflow-hidden backdrop-blur-sm">
-          <div className="flex animate-ticker-reverse">
-            <div className="flex items-center whitespace-nowrap px-6">
-              <span className="text-green-400 text-xs mr-2">🟢</span>
-              <span className="text-gray-300 text-xs mr-8">Latest commit: <strong className="text-white">Added comprehensive AI generation feature with model selection and style transfer capabilities</strong> in portfolio-site repository • 2 hours ago</span>
-              <span className="text-orange-200 text-xs mr-2">📊</span>
-              <span className="text-gray-300 text-xs mr-8">This week: <strong className="text-white">47 commits</strong> across 5 active repositories including neural-network-experiments and data-visualization-tools</span>
-              <span className="text-red-400 text-xs mr-2">🔥</span>
-              <span className="text-gray-300 text-xs mr-8">Current development streak: <strong className="text-white">23 consecutive days</strong> of continuous coding and research</span>
-              <span className="text-yellow-400 text-xs mr-2">⭐</span>
-              <span className="text-gray-300 text-xs mr-8">New stars: <strong className="text-white">+12</strong> on Firewood machine learning framework project this week</span>
-              <span className="text-purple-400 text-xs mr-2">🚀</span>
-              <span className="text-gray-300 text-xs mr-8">Deployed: <strong className="text-white">3 new AI models</strong> to production environment on AWS infrastructure</span>
-              <span className="text-blue-400 text-xs mr-2">💡</span>
-              <span className="text-gray-300 text-xs mr-8">Research: Published findings on <strong className="text-white">transformer optimization techniques</strong> improving inference speed by 40%</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Portfolio Stats Section */}
