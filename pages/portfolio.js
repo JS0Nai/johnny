@@ -914,7 +914,7 @@ function PortfolioPage() {
           </p>
 
           {/* Design showcase grid - responsive with varied sizes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               { name: '404-page', ext: 'png' },
               { name: 'apparel-creepy', ext: 'PNG' },

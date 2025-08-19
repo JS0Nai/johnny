@@ -366,15 +366,16 @@ function ResourcesPage() {
             <span className="text-orange-200/90">Compliance Resources</span>
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {filteredResources.map((resource, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            {filteredResources && filteredResources.length > 0 ? (
+              filteredResources.map((resource, index) => (
               <div
                 key={resource.id}
-                className={`bg-gray-800/40 rounded-lg p-8 scroll-animate ${resourcesInView ? "fade-in" : ""}`}
+                className={`bg-gray-800/40 rounded-lg p-4 sm:p-6 lg:p-8 scroll-animate ${resourcesInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div>
+                  <div className="w-full">
                     <span
                       className={`px-3 py-1 text-xs rounded-full mb-3 inline-block ${
                         resource.type === "Regulation"
@@ -434,7 +435,12 @@ function ResourcesPage() {
                   </svg>
                 </a>
               </div>
-            ))}
+            ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-400">No resources available</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
