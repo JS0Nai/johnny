@@ -1301,6 +1301,45 @@ function AboutPage() {
         </div>
       </div>
 
+      {/* Navigation Links Section */}
+      <div className="bg-slate-900 py-16">
+        <div className="max-w-4xl mx-auto px-4">
+          <h3 className="text-3xl font-light text-white mb-8 text-center">
+            Explore My <span className="text-orange-200">Work</span>
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/portfolio">
+              <div className="bg-gray-800/40 hover:bg-gray-800/60 rounded-lg p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105">
+                <div className="text-3xl mb-3">🎨</div>
+                <h4 className="text-white text-lg font-medium">Portfolio</h4>
+                <p className="text-gray-400 text-sm mt-2">View my creative works</p>
+              </div>
+            </Link>
+            <Link href="/research">
+              <div className="bg-gray-800/40 hover:bg-gray-800/60 rounded-lg p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105">
+                <div className="text-3xl mb-3">🔬</div>
+                <h4 className="text-white text-lg font-medium">Research</h4>
+                <p className="text-gray-400 text-sm mt-2">Explore my studies</p>
+              </div>
+            </Link>
+            <Link href="/literature">
+              <div className="bg-gray-800/40 hover:bg-gray-800/60 rounded-lg p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105">
+                <div className="text-3xl mb-3">✍️</div>
+                <h4 className="text-white text-lg font-medium">Literature</h4>
+                <p className="text-gray-400 text-sm mt-2">Read my writings</p>
+              </div>
+            </Link>
+            <Link href="/ai">
+              <div className="bg-gray-800/40 hover:bg-gray-800/60 rounded-lg p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105">
+                <div className="text-3xl mb-3">🤖</div>
+                <h4 className="text-white text-lg font-medium">AI</h4>
+                <p className="text-gray-400 text-sm mt-2">AI applications</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Newsletter Section */}
       <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
         <div

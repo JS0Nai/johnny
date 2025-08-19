@@ -208,7 +208,7 @@ const HeroV8 = () => {
                 Bridging the gap between imagination and innovation. I build intelligent systems, design compelling user experiences, and explore the frontiers of artificial intelligence.
               </p>
               <div className="flex justify-center items-center gap-6">
-                <Link href="/projects"><span className="px-8 py-4 bg-orange-200 text-slate-900 font-semibold rounded-full text-lg hover:bg-orange-300 transition-all duration-300 transform hover:scale-105 cursor-pointer">View My Work</span></Link>
+                <Link href="/about"><span className="px-8 py-4 bg-orange-200 text-slate-900 font-semibold rounded-full text-lg hover:bg-orange-300 transition-all duration-300 transform hover:scale-105 cursor-pointer">View Profile</span></Link>
                 <Link href="/contact"><span className="px-8 py-4 border-2 border-gray-500 text-white font-semibold rounded-full text-lg hover:bg-gray-800 hover:border-gray-700 transition-all duration-300 cursor-pointer">Get In Touch</span></Link>
               </div>
               <div className="flex justify-center gap-8 mt-16">

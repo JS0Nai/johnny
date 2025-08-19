@@ -337,7 +337,7 @@ function HomePage() {
           
           <div className="bento-3d-grid">
             {/* Regular Discipline Boxes */}
-            <Link href="/projects">
+            <Link href="/ai">
               <div className={`box-3d scroll-animate ${coreDisciplinesInView ? "fade-in" : ""}`} style={{ transitionDelay: '100ms' }}>
                 <div className="box-overlay"></div>
                 <div className="box-content">
