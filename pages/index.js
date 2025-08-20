@@ -328,7 +328,7 @@ function HomePage() {
       <HeroV8 />
 
       {/* Core Disciplines Section with Tech Stack Visualizer */}
-      <div ref={coreDisciplinesRef} className="py-24 bg-slate-900 relative z-10">
+      <div ref={coreDisciplinesRef} className="py-24 relative z-10">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-5xl font-light text-white mb-4 text-center">
             Core <span className="text-orange-200">Disciplines</span>
@@ -409,7 +409,7 @@ function HomePage() {
       </div>
 
       {/* Portfolio Showcase Section */}
-      <div ref={portfolioSliderRef} className="relative bg-gray-900 py-24 overflow-hidden">
+      <div ref={portfolioSliderRef} className="relative py-24 overflow-hidden">
         <div className="text-center mb-16">
           <h2
             className="text-7xl font-extralight mb-4 tracking-wide text-white dark:text-gray-200 font-garamond"
@@ -570,7 +570,7 @@ function HomePage() {
       </div>
 
       {/* Tools & Technologies Section */}
-      <div className="relative pt-16 pb-8 bg-gray-900">
+      <div className="relative pt-16 pb-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-light text-white mb-4">
             Tools & <span className="text-orange-200">Technologies</span>
