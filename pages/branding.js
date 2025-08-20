@@ -339,7 +339,7 @@ function BrandingPage() {
           </p>
 
           {/* Design showcase grid - responsive with varied sizes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
             {[
               { name: '404-page', ext: 'png' },
               { name: 'apparel-creepy', ext: 'PNG' },
@@ -375,8 +375,8 @@ function BrandingPage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className={`${item.fullWidth ? 'col-span-full flex justify-center' : ''} bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group scroll-animate ${designInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${Math.min(index * 30, 800)}ms` }}
+                className={`${item.fullWidth ? 'col-span-full flex justify-center' : ''} bg-gray-800 rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group opacity-100`}
+                style={{ minHeight: '150px' }}
               >
                 <div className={`relative w-full ${item.fullWidth ? 'aspect-[8/3] max-w-4xl mx-auto' : 'aspect-[4/3]'}`}>
                   {isDevelopment ? (
@@ -384,12 +384,16 @@ function BrandingPage() {
                       src={`/media/${item.name}.${item.ext}`}
                       alt={`Design ${index + 1}`}
                       className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      loading="lazy"
+                      onError={(e) => e.target.style.display = 'none'}
                     />
                   ) : (
                     <img 
                       src={`https://imagedelivery.net/${cloudflareAccountHash}/${item.name}/${variant}`}
                       alt={`Design ${index + 1}`}
                       className={`w-full h-full ${item.fullWidth ? 'object-cover' : 'object-contain'}`}
+                      loading="lazy"
+                      onError={(e) => e.target.style.display = 'none'}
                     />
                   )}
                 </div>
