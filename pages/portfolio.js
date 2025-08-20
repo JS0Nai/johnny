@@ -906,10 +906,10 @@ function PortfolioPage() {
       {/* Design Portfolio Section */}
       <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${designInView ? "fade-in" : ""}`}>
+          <h2 className="text-5xl font-light text-white mb-4 text-center animate-fade-in-up">
             Design <span className="text-orange-200">Portfolio</span>
           </h2>
-          <p className={`text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto scroll-animate ${designInView ? "fade-in" : ""}`} style={{ transitionDelay: '200ms' }}>
+          <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Apparel, merchandise, websites, web and mobile apps, social media, advertising, custom and conceptual art.
           </p>
 
@@ -1256,6 +1256,21 @@ function PortfolioPage() {
       <Footer />
 
       <style jsx>{`
+        @keyframes fade-in-up {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+        }
+
         @keyframes scrollLeft {
           0% {
             transform: translateX(0);
