@@ -447,16 +447,16 @@ function AboutPage() {
       {/* Hero Section */}
       <div ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background image */}
-        <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0">
           <CloudflareImage
             src="profile---header"
             alt="Profile header"
             width={1920}
             height={1080}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
         </div>
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         
         <div className="relative flex flex-col items-center justify-center text-center h-full z-10 px-4">
           <h1
