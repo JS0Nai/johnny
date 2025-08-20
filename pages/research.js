@@ -280,7 +280,7 @@ function ResearchPage() {
       </div>
 
       {/* New Research Blurb */}
-      <div className="py-16 bg-slate-900">
+      <div className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -300,7 +300,7 @@ function ResearchPage() {
       </div>
 
       {/* Featured Research Section */}
-      <div ref={researchRef} className="py-16 bg-gray-900">
+      <div ref={researchRef} className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -378,7 +378,7 @@ function ResearchPage() {
       </div>
 
       {/* All Research Projects Section */}
-      <div className="py-16 bg-slate-900">
+      <div className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"

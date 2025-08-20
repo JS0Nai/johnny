@@ -239,7 +239,7 @@ function BrandingPage() {
       </div>
 
       {/* Services Section */}
-      <div ref={servicesRef} id="services" className="py-24 bg-slate-900 relative z-20">
+      <div ref={servicesRef} id="services" className="py-24 relative z-20">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${servicesInView ? "fade-in" : ""}`}>
             Branding <span className="text-orange-200">Services</span>
@@ -296,7 +296,7 @@ function BrandingPage() {
       </div>
 
       {/* Portfolio Section */}
-      <div ref={portfolioRef} className="py-24 bg-gray-900 relative z-20">
+      <div ref={portfolioRef} className="py-24 relative z-20">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${portfolioInView ? "fade-in" : ""}`}>
             Brand <span className="text-orange-200">Portfolio</span>
@@ -331,7 +331,7 @@ function BrandingPage() {
       </div>
 
       {/* Design Section */}
-      <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
+      <div ref={designRef} className="py-24 relative z-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-light text-white mb-4 text-center animate-fade-in-up">
             Design <span className="text-orange-200">Portfolio</span>
@@ -409,7 +409,7 @@ function BrandingPage() {
       </div>
 
       {/* Contact CTA Section */}
-      <div className="bg-slate-900 py-24 text-center relative z-20 border-t border-gray-800">
+      <div className="py-24 text-center relative z-20 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-12">
             Ready to <span className="text-orange-200">Build</span>?

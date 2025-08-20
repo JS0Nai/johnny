@@ -390,7 +390,7 @@ function AIPage() {
       </div>
 
       {/* R&D Overview Section */}
-      <div className="py-16 bg-slate-900">
+      <div className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2
             className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
@@ -546,7 +546,7 @@ function AIPage() {
       
 
       {/* Newsletter Section */}
-      <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
+      <div ref={newsletterRef} className="p-16 text-center">
         <div
           className={`mb-8 scroll-animate ${newsletterInView ? "fade-in" : ""}`}
         >

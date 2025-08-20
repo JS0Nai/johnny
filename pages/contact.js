@@ -240,7 +240,7 @@ function ContactPage() {
       </div>
 
       {/* Contact Methods Section */}
-      <div className="py-16 bg-gray-900">
+      <div className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactMethods.map((method, index) => (
@@ -422,7 +422,7 @@ function ContactPage() {
       
 
       {/* Newsletter Section */}
-      <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
+      <div ref={newsletterRef} className="p-16 text-center">
         <div
           className={`mb-8 scroll-animate ${newsletterInView ? "fade-in" : ""}`}
         >

@@ -97,7 +97,7 @@ function LiteraturePage() {
       </div>
 
       {/* Literary Projects Section */}
-      <div className="py-24 bg-slate-900">
+      <div className="py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 

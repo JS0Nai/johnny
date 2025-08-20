@@ -908,7 +908,7 @@ function PortfolioPage() {
       </div>
 
       {/* Design Portfolio Section */}
-      <div ref={designRef} className="py-24 bg-slate-900 relative z-20">
+      <div ref={designRef} className="py-24 relative z-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-light text-white mb-4 text-center animate-fade-in-up">
             Design <span className="text-orange-200">Portfolio</span>
@@ -986,7 +986,7 @@ function PortfolioPage() {
       </div>
 
       {/* Digital Painting Section */}
-      <div className="py-20 bg-gray-900/50">
+      <div className="py-20">
         <div className="max-w-6xl mx-auto px-4 text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-extralight tracking-wide text-white mb-8"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}>
@@ -1044,7 +1044,7 @@ function PortfolioPage() {
       </div>
 
       {/* Newsletter Section */}
-      <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
+      <div ref={newsletterRef} className="p-16 text-center">
         <div
           className={`mb-8 scroll-animate ${newsletterInView ? "fade-in" : ""}`}
         >

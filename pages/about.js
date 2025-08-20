@@ -445,7 +445,7 @@ function AboutPage() {
       />
 
       {/* Hero Section */}
-      <div ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
+      <div ref={heroRef} className="h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 bg-black">
           <CloudflareImage
@@ -482,7 +482,7 @@ function AboutPage() {
       </div>
 
       {/* Profile Image Section with Spinning Coin */}
-      <div id="spinner-section" className="py-16 bg-gray-900 relative">
+      <div id="spinner-section" className="py-16 relative">
         <div className="max-w-4xl mx-auto px-4">
           <div className={`flex items-center justify-center scroll-animate ${heroInView ? "fade-in" : ""}`}
                style={{ transitionDelay: "600ms" }}>
@@ -532,7 +532,7 @@ function AboutPage() {
       </div>
 
       {/* Story Section */}
-      <div ref={storyRef} className="py-24 bg-gray-900">
+      <div ref={storyRef} className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -679,7 +679,7 @@ function AboutPage() {
       </div>
 
       {/* Interactive Brain Section */}
-      <div ref={brainRef} id="brain-section" className="py-16 bg-slate-900 relative">
+      <div ref={brainRef} id="brain-section" className="py-16 relative">
         <div className="max-w-6xl mx-auto px-4">
           <div className={`text-center mb-16 scroll-animate ${brainInView ? "fade-in" : ""}`}>
             <div className="relative inline-block p-8">
@@ -854,7 +854,7 @@ function AboutPage() {
       </div>
 
       {/* Core Expertise Section */}
-      <div ref={expertiseRef} className="py-24 bg-slate-900">
+      <div ref={expertiseRef} className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className={`text-3xl md:text-5xl font-extralight mb-4 tracking-wide text-white scroll-animate ${expertiseInView ? "fade-in" : ""}`}
@@ -1091,7 +1091,7 @@ function AboutPage() {
       </div>
 
       {/* Experience Section */}
-      <div ref={experienceRef} className="py-12 lg:py-24 bg-gray-900">
+      <div ref={experienceRef} className="py-12 lg:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2
@@ -1225,7 +1225,7 @@ function AboutPage() {
       </div>
 
       {/* Tools & Technologies Banner */}
-      <div className="relative py-16 bg-gray-900">
+      <div className="relative py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-light text-white mb-4">
             Tools & <span className="text-orange-200">Technologies</span>
@@ -1304,7 +1304,7 @@ function AboutPage() {
       </div>
 
       {/* Navigation Links Section */}
-      <div className="bg-slate-900 py-16">
+      <div className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <h3 className="text-3xl font-light text-white mb-8 text-center">
             Explore My <span className="text-orange-200">Work</span>
@@ -1343,7 +1343,7 @@ function AboutPage() {
       </div>
 
       {/* Newsletter Section */}
-      <div ref={newsletterRef} className="bg-gray-900 p-16 text-center">
+      <div ref={newsletterRef} className="p-16 text-center">
         <div
           className={`mb-8 scroll-animate ${newsletterInView ? "fade-in" : ""}`}
         >
