@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import QuantumBackground from "../components/QuantumBackground";
 import { menuItems } from "../config/menuItems";
 
 // Environment detection
@@ -342,6 +343,9 @@ function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
+      {/* Quantum Background Animation */}
+      <QuantumBackground />
+      
       {/* Header */}
       <Header 
         isMenuOpen={isMenuOpen}

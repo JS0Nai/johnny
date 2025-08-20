@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CloudflareImage from "../components/CloudflareImage";
+import QuantumBackground from "../components/QuantumBackground";
 
 function LiteraturePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,6 +38,7 @@ function LiteraturePage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
+      <QuantumBackground />
       {/* Header */}
       <Header 
         isMenuOpen={isMenuOpen}

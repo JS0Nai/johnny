@@ -7,6 +7,7 @@ import CloudflareImage from "../components/CloudflareImage";
 import HeroV8 from "../components/HeroV8";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import QuantumBackground from "../components/QuantumBackground";
 import { menuItems } from "../config/menuItems";
 import { SiAdobe } from "react-icons/si";
 import { SiGoogle } from "react-icons/si";
@@ -313,6 +314,7 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
+      <QuantumBackground />
       {/* Header */}
       <Header 
         isMenuOpen={isMenuOpen}

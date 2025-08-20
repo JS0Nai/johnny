@@ -6,6 +6,7 @@ import CloudflareImage from "../components/CloudflareImage";
 import { SiGithub } from "react-icons/si";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import QuantumBackground from "../components/QuantumBackground";
 import { menuItems } from "../config/menuItems";
 
 function AIPage() {
@@ -315,6 +316,7 @@ function AIPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
+      <QuantumBackground />
       <Header 
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}

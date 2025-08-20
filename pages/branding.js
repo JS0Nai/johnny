@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useInView } from "../hooks/useInView";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import QuantumBackground from "../components/QuantumBackground";
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import CloudflareImage from "../components/CloudflareImage";
@@ -199,6 +200,7 @@ function BrandingPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
+      <QuantumBackground />
       {/* Header */}
       <Header
         isMenuOpen={isMenuOpen}

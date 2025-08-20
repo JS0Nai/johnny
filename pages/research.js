@@ -5,6 +5,7 @@ import { useInView } from "../hooks/useInView";
 import CloudflareImage from "../components/CloudflareImage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import QuantumBackground from "../components/QuantumBackground";
 import { menuItems } from "../config/menuItems";
 
 
@@ -235,6 +236,7 @@ function ResearchPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 relative w-full overflow-x-hidden">
+      <QuantumBackground />
       <Header
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
