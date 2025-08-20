@@ -408,6 +408,43 @@ function BrandingPage() {
         </div>
       </div>
 
+      {/* Mobile Leggings Slider - Mobile Only */}
+      <div className="md:hidden py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <h3 className="text-3xl font-light text-white mb-8 text-center">
+            Apparel <span className="text-orange-200">Design</span>
+          </h3>
+          
+          {/* Slow Moving Slider */}
+          <div className="relative overflow-hidden rounded-lg bg-gray-800/60 backdrop-blur-sm">
+            <div className="flex animate-scroll-slow">
+              {/* Repeat the leggings image multiple times for continuous scroll */}
+              {[...Array(6)].map((_, index) => (
+                <div key={index} className="flex-shrink-0 mx-4">
+                  <div className="aspect-[8/3] w-80 relative">
+                    {isDevelopment ? (
+                      <img 
+                        src="/media/leggings.png"
+                        alt="Leggings Design"
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    ) : (
+                      <CloudflareImage
+                        src="leggings"
+                        alt="Leggings Design"
+                        width={320}
+                        height={120}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact CTA Section */}
       <div className="py-24 text-center relative z-20 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-4">
@@ -450,6 +487,24 @@ function BrandingPage() {
         .scroll-animate.fade-in {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        /* Slow moving slider animation */
+        @keyframes scroll-slow {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-scroll-slow {
+          animation: scroll-slow 30s linear infinite;
+        }
+
+        .animate-scroll-slow:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </div>
