@@ -217,9 +217,21 @@ function BrandingPage() {
           className="absolute inset-0 w-full h-full"
           style={{ position: "fixed", top: 0, left: 0, zIndex: 0 }}
         />
+        
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-transparent to-slate-900/40 pointer-events-none" />
+        
+        {/* Subtle pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-5 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(251, 191, 36, 0.3) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
 
         {/* Hero Text Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black bg-opacity-5 pointer-events-none">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-black/5 pointer-events-none">
           <div className={`pointer-events-auto scroll-animate ${heroInView ? "fade-in" : ""}`}>
             <h1 className="text-5xl font-light tracking-tight text-white md:text-7xl lg:text-8xl mb-4">
               Branding <span className="text-orange-200">& Design</span>
@@ -239,8 +251,24 @@ function BrandingPage() {
       </div>
 
       {/* Services Section */}
-      <div ref={servicesRef} id="services" className="py-24 relative z-20">
-        <div className="max-w-6xl mx-auto px-4">
+      <div ref={servicesRef} id="services" className="py-24 relative z-20 overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Gradient orbs */}
+          <div className="absolute top-20 left-10 w-96 h-96 bg-orange-200/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+          
+          {/* Grid pattern */}
+          <div 
+            className="absolute inset-0 opacity-[0.02]"
+            style={{
+              backgroundImage: `linear-gradient(rgba(251, 191, 36, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(251, 191, 36, 0.1) 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }}
+          />
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 relative">
           <h2 className={`text-5xl font-light text-white mb-4 text-center scroll-animate ${servicesInView ? "fade-in" : ""}`}>
             Branding <span className="text-orange-200">Services</span>
           </h2>
@@ -283,9 +311,11 @@ function BrandingPage() {
             ].map((service, index) => (
               <div
                 key={index}
-                className={`bg-gray-800/40 rounded-2xl p-8 border border-gray-700/50 hover:border-orange-200/50 transition-all duration-300 scroll-animate ${servicesInView ? "fade-in" : ""}`}
+                className={`bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-orange-200/50 transition-all duration-300 scroll-animate relative overflow-hidden group ${servicesInView ? "fade-in" : ""}`}
                 style={{ transitionDelay: `${(index + 2) * 100}ms` }}
               >
+                {/* Card background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-200/0 to-orange-200/0 group-hover:from-orange-200/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
                 <div className="text-4xl mb-4">{service.icon}</div>
                 <h3 className="text-2xl font-light text-white mb-4">{service.title}</h3>
                 <p className="text-gray-400">{service.description}</p>
