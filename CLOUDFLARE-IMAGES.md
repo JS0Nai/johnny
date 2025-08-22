@@ -198,8 +198,26 @@ Examples of INCORRECT names that WILL FAIL in production:
    **IMPORTANT**: The physical folder is `/public/media/` but in your code you'll reference them as `/media/`
 
 2. Upload to Cloudflare:
+   
+   **Upload all new/modified images:**
    ```bash
-   npm run upload-images or node scripts/upload-images.js
+   npm run upload-images
+   # or
+   node scripts/upload-images.js
+   ```
+   
+   **Upload a single image:**
+   ```bash
+   node scripts/upload-single-image.js <image-filename>
+   # Example:
+   node scripts/upload-single-image.js monarch-butterfly.jpg
+   ```
+   Note: Just provide the filename, not the full path. The script looks in `/public/media/` automatically.
+   
+   **Image size limits:** Cloudflare has a maximum dimension limit. If you get an error about image being too large, resize it first:
+   ```bash
+   # Resize image to max 8000px (maintains aspect ratio)
+   sips -Z 8000 public/media/your-image.jpg
    ```
 
 3. Use in your components following the STRICT RULES above
