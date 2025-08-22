@@ -949,10 +949,10 @@ function PortfolioPage() {
               { name: 'book-page', ext: 'png' },
               { name: 'night-sky', ext: 'png' },
               { name: 'blackwolf-forest', ext: 'png' },
-              { name: 'ALIEN-dinner', ext: 'png' },
-              { name: 'GLASS-apple', ext: 'png' },
-              { name: 'MONARCH-butterfly', ext: 'jpg' },
-              { name: 'TREE-path', ext: 'png' },
+              { name: 'alien-dinner', ext: 'png' },
+              { name: 'glass-apple', ext: 'png' },
+              { name: 'monarch-butterfly', ext: 'jpg' },
+              { name: 'tree-path', ext: 'png' },
               { name: 'leggings', ext: 'png', fullWidth: true },
             ].map((item, index) => (
               <div
