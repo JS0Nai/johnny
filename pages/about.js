@@ -456,7 +456,7 @@ function AboutPage() {
             className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
         </div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
         
         <div className="relative flex flex-col items-center justify-center text-center h-full z-10 px-4">
           <h1
