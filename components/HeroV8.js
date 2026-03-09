@@ -12,11 +12,10 @@ const HeroV8 = () => {
   const videoRef = useRef(null);
   const [heroRef, heroInView] = useInView({ threshold: 0.3, triggerOnce: true });
 
-  const nextSlide = () => setCurrentSlide(prev => (prev === 3 ? 0 : prev + 1));
-  const prevSlide = () => setCurrentSlide(prev => (prev === 0 ? 3 : prev - 1));
+  const nextSlide = () => setCurrentSlide(prev => (prev === 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrentSlide(prev => (prev === 0 ? 1 : prev - 1));
 
   useEffect(() => {
-    // Use 5.16 seconds (5160ms) for video slide, 8 seconds for others
     const duration = currentSlide === 0 ? 5160 : 8000;
     const timer = setTimeout(nextSlide, duration);
     return () => clearTimeout(timer);
@@ -115,79 +114,8 @@ const HeroV8 = () => {
             </div>
           </div>
 
-          {/* Slide 2: Article */}
+          {/* Slide 2: Profile */}
           <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${currentSlide === 1 ? 'opacity-100' : 'opacity-0'}`}>
-            {/* Background image */}
-            <div className="absolute inset-0 bg-black">
-              <CloudflareImage
-                src="tech-runner-blue"
-                alt="Tech runner"
-                width={1920}
-                height={1080}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-black/20"></div>
-            
-            <div className="relative flex flex-col items-center justify-center text-center h-full z-10">
-              <span className="text-sm font-bold uppercase text-orange-200 tracking-widest mb-4">FEATURED ARTICLE</span>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight tracking-wide text-orange-200/90 mb-6"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                The Future of AI in Creative Industries
-              </h2>
-              <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-                Exploring how artificial intelligence is transforming creative workflows and opening new possibilities for artists and designers worldwide.
-              </p>
-              <Link href="/articles">
-                <span className="px-8 py-4 bg-orange-200 text-slate-900 font-semibold rounded-full text-lg hover:bg-orange-300 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                  Read Article
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Slide 3: Project */}
-          <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${currentSlide === 2 ? 'opacity-100' : 'opacity-0'}`}>
-            {/* Background image */}
-            <div className="absolute inset-0 bg-black">
-              <CloudflareImage
-                src="girl-reading"
-                alt="Girl reading"
-                width={1920}
-                height={1080}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-black/20"></div>
-            
-            <div className="relative flex flex-col items-start justify-center text-left h-full z-10 pl-16 md:pl-32 lg:pl-40">
-              <span className="text-sm font-bold uppercase text-orange-200 tracking-widest mb-4">RESEARCH & DEVELOPMENT</span>
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-cyan-300 mb-6"
-                  style={{ fontFamily: "'Arial', sans-serif" }}>
-                The Science of Reading
-              </h2>
-              <p className="text-base md:text-lg text-white max-w-2xl mb-8 leading-relaxed">
-                From investigating vanishing eleosoing op oasing applications programming 
-                saeteccagic od when ts we losly. fecernations ac noting iphects.
-                <br /><br />
-                od asnoanny to sea ctyrtorn-checages neom or doectinvo loyion leots 
-                cosenrasbon he tranelsing ceation fo bid: on drfrlary our how?
-              </p>
-              <div className="text-orange-300 font-bold mb-6">
-                YOUR 1-iANDECOUND ENNERI
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-center gap-4 sm:gap-6">
-                <Link href="/research">
-                  <span className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full text-lg hover:bg-cyan-400/10 hover:border-cyan-300 transition-all duration-300 cursor-pointer">
-                    View Research
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Slide 4: HeroV1 content with profile header background */}
-          <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${currentSlide === 3 ? 'opacity-100' : 'opacity-0'}`}>
             {/* Background profile header image */}
             <div className="absolute inset-0 bg-black">
               <CloudflareImage
@@ -244,7 +172,7 @@ const HeroV8 = () => {
 
       {/* Navigation dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {[0, 1, 2, 3].map((index) => (
+        {[0, 1].map((index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
