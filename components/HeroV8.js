@@ -103,15 +103,7 @@ const HeroV8 = () => {
               )}
             </button>
             
-            <div className="relative flex flex-col items-center justify-center text-center h-full z-10" style={{ marginTop: '-200px' }}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wider text-orange-200/90"
-                  style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}>
-                The Monarkh Project
-              </h1>
-              <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
-                Exploring the intersection of AI, creativity, and human experience
-              </p>
-            </div>
+            {/* Text removed — video-only slide */}
           </div>
 
           {/* Slide 2: Profile */}
