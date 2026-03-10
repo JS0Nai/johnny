@@ -29,7 +29,7 @@ import { SiTailwindcss } from "react-icons/si";
 import { SiNodedotjs } from "react-icons/si";
 import { SiPython } from "react-icons/si";
 import { SiJavascript } from "react-icons/si";
-import { TbBrain, TbCode, TbPalette } from "react-icons/tb";
+import { TbBrain, TbCode, TbPalette, TbCertificate } from "react-icons/tb";
 import { FaRobot, FaCloud, FaShieldAlt, FaLightbulb, FaHandshake, FaBrain, FaCode, FaServer, FaDatabase, FaPaintBrush, FaPencilAlt, FaCubes, FaGraduationCap, FaBookOpen, FaFlask, FaMicroscope, FaChartLine, FaCogs, FaNetworkWired, FaUserShield, FaDumbbell, FaPalette, FaRunning } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -313,7 +313,7 @@ function AboutPage() {
       period: "May 2021",
       title: "Meta Social Media Marketing Certificate",
       company: "Meta",
-      image: "/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png",
+      Icon: TbCertificate,
       description:
         "Completed the Meta Social Media Marketing Certificate, consisting of 6 courses.",
       achievements: [],
@@ -321,42 +321,42 @@ function AboutPage() {
     {
       period: "2021-2022",
       title: "Introduction to Intellectual Property",
-      image: "/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png",
+      Icon: TbCertificate,
       description: "Foundation course in intellectual property fundamentals.",
       achievements: [],
     },
     {
       period: "2021-2022",
       title: "Copyright Law",
-      image: "/media/Copyright-Law-PBM9KWDYVQBS.png",
+      Icon: TbCertificate,
       description: "Understanding copyright law principles and applications.",
       achievements: [],
     },
     {
       period: "2021-2022",
       title: "Patent Law",
-      image: "/media/Patent-Law-TLAMXN9739GY.png",
+      Icon: TbCertificate,
       description: "Patent law fundamentals and practical applications.",
       achievements: [],
     },
     {
       period: "2021-2022",
       title: "Trademark Law",
-      image: "/media/Trademark-Law-QE76LA26BZSW.png",
+      Icon: TbCertificate,
       description: "Trademark law principles and brand protection.",
       achievements: [],
     },
     {
       period: "2021-2022",
       title: "Brand Management",
-      image: "/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png",
+      Icon: TbCertificate,
       description: "Aligning business brand and behaviour strategies.",
       achievements: [],
     },
     {
       period: "2021-2022",
       title: "Bookkeeping Basics",
-      image: "/media/Bookkeeping-Basics-ULPP2KDXC9VG.png",
+      Icon: TbCertificate,
       description: "Fundamental bookkeeping principles and practices.",
       achievements: [],
     },
@@ -364,7 +364,7 @@ function AboutPage() {
       period: "March 2024",
       title: "IBM AI Engineering Professional Certificate",
       company: "IBM",
-      image: "/media/IBM-AI-Engineering-.png",
+      Icon: TbCertificate,
       description:
         "• Machine Learning with Python\n• Deep Learning & Neural Networks\n• AI-Powered Chatbots\n• Computer Vision & Image Processing\n• PyTorch & TensorFlow Deep Learning\n• AI Capstone Project",
       achievements: [],
@@ -382,7 +382,7 @@ function AboutPage() {
       period: "August 2024",
       title: "IBM DevOps and Software Engineering Professional Certificate",
       company: "IBM",
-      image: "/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png",
+      Icon: TbCertificate,
       description:
         "Completed the IBM DevOps and Software Engineering Professional Certificate, a comprehensive program of 14 courses.",
       achievements: [],
@@ -391,7 +391,7 @@ function AboutPage() {
       period: "January 2025",
       title: "Google Cloud Cybersecurity Professional Certificate",
       company: "Google",
-      image: "/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png",
+      Icon: TbCertificate,
       description:
         "• Security Command Center (SCC)\n• Identity and Access Management (IAM)\n• Cloud Logging and Storage\n• Compute Engine\n• Google Compute Engine\n• Cloud Firewall and Shell\n• Generative AI in Cybersecurity",
       achievements: [],
@@ -1113,7 +1113,10 @@ function AboutPage() {
                 <div className="w-full lg:w-1/3 flex justify-center">
                   {exp.Icon && !exp.image && (
                     <div className="relative z-10 w-48 h-48 flex items-center justify-center">
-                      <exp.Icon className={`${exp.Icon === FaBrain && exp.title.includes('MSCS') ? 'text-8xl animate-pulse' : 'text-6xl'} text-orange-200`} />
+                      <exp.Icon
+                        className={`${exp.Icon === FaBrain && exp.title.includes('MSCS') ? 'text-8xl animate-pulse' : 'text-6xl'} ${exp.Icon === TbCertificate ? '' : 'text-orange-200'}`}
+                        style={exp.Icon === TbCertificate ? { color: '#c7d8f0', filter: 'drop-shadow(0 0 3px rgba(186, 210, 255, 0.25))' } : {}}
+                      />
                     </div>
                   )}
                   {exp.image && (
@@ -1122,46 +1125,26 @@ function AboutPage() {
                         src={exp.image}
                         alt={exp.title}
                         width={
-                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 141 :  // 50% larger
-                          exp.image === '/media/IBM-AI-Engineering-.png' ? 141 :  // 50% larger
-                          exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 141 :  // 50% larger
-                          exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 141 :  // 50% larger
-                          exp.image === '/media/honsBAEngCrWr.png' ? 141 :  // 50% larger
-                          exp.image === '/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png' ? 106 :  // 25% smaller than certs
-                          exp.image === '/media/Copyright-Law-PBM9KWDYVQBS.png' ? 106 :  // 25% smaller than certs
-                          exp.image === '/media/Patent-Law-TLAMXN9739GY.png' ? 106 :  // 25% smaller than certs
-                          exp.image === '/media/Trademark-Law-QE76LA26BZSW.png' ? 106 :  // 25% smaller than certs
-                          exp.image === '/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png' ? 106 :  // 25% smaller than certs
-                          exp.image === '/media/Bookkeeping-Basics-ULPP2KDXC9VG.png' ? 106 :  // 25% smaller than certs
-                          exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
-                          exp.image === 'vic20-computer' ? 225 :  // VIC-20: 20% bigger (225px)
-                          exp.image === 'commodore64-setup' ? 225 :  // Commodore 64: 20% bigger (225px)
-                          exp.image === 'desktop-computers' ? 225 :  // PC Towers: 20% bigger (225px)
-                          exp.image === 'prowrite-document' ? 225 :  // ProWrite: 50% bigger (225px)
-                          exp.imageOnly ? 75 :  // Other image-only: 50% smaller (75px)
-                          exp.image === 'ethernet-wiring' ? 150 :  // Ethernet: keep as is (150px)
-                          188  // All others: 25% larger (188px)
+                          exp.image === '/media/honsBAEngCrWr.png' ? 141 :
+                          exp.image === 'brain-tekie-blue' ? 200 :
+                          exp.image === 'vic20-computer' ? 225 :
+                          exp.image === 'commodore64-setup' ? 225 :
+                          exp.image === 'desktop-computers' ? 225 :
+                          exp.image === 'prowrite-document' ? 225 :
+                          exp.imageOnly ? 75 :
+                          exp.image === 'ethernet-wiring' ? 150 :
+                          188
                         }
                         height={
-                          exp.image === '/media/Google-Cloud-Cybersecurity-R7BXO2TQWXUF.png' ? 94 :  // 50% larger
-                          exp.image === '/media/IBM-AI-Engineering-.png' ? 94 :  // 50% larger
-                          exp.image === '/media/IBM-DevOps-and-Software-Engineering-4TC4UEGZSK8W.png' ? 94 :  // 50% larger
-                          exp.image === '/media/Meta-Social-Media-Marketing-JY7ANRL9MXP4.png' ? 94 :  // 50% larger
-                          exp.image === '/media/honsBAEngCrWr.png' ? 94 :  // 50% larger
-                          exp.image === '/media/Introduction-to-Intellectual-Property-9J28V5QFZJVD.png' ? 71 :  // 25% smaller than certs
-                          exp.image === '/media/Copyright-Law-PBM9KWDYVQBS.png' ? 71 :  // 25% smaller than certs
-                          exp.image === '/media/Patent-Law-TLAMXN9739GY.png' ? 71 :  // 25% smaller than certs
-                          exp.image === '/media/Trademark-Law-QE76LA26BZSW.png' ? 71 :  // 25% smaller than certs
-                          exp.image === '/media/Brand-Management---Aligning-Business-Brand-and-Behaviour-59GB94DMXHQT.png' ? 71 :  // 25% smaller than certs
-                          exp.image === '/media/Bookkeeping-Basics-ULPP2KDXC9VG.png' ? 71 :  // 25% smaller than certs
-                          exp.image === 'brain-tekie-blue' ? 200 :  // Brain: bigger for MSCS
-                          exp.image === 'vic20-computer' ? 150 :  // VIC-20: 20% bigger (150px)
-                          exp.image === 'commodore64-setup' ? 150 :  // Commodore 64: 20% bigger (150px)
-                          exp.image === 'desktop-computers' ? 150 :  // PC Towers: 20% bigger (150px)
-                          exp.image === 'prowrite-document' ? 150:  // ProWrite: 50% bigger (75px)
-                          exp.imageOnly ? 50 :  // Other image-only: 50% smaller (50px)
-                          exp.image === 'ethernet-wiring' ? 100 :  // Ethernet: keep as is (100px)
-                          125  // All others: 25% larger (125px)
+                          exp.image === '/media/honsBAEngCrWr.png' ? 94 :
+                          exp.image === 'brain-tekie-blue' ? 200 :
+                          exp.image === 'vic20-computer' ? 150 :
+                          exp.image === 'commodore64-setup' ? 150 :
+                          exp.image === 'desktop-computers' ? 150 :
+                          exp.image === 'prowrite-document' ? 150 :
+                          exp.imageOnly ? 50 :
+                          exp.image === 'ethernet-wiring' ? 100 :
+                          125
                         }
                         className={`rounded-lg object-cover transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover:shadow-orange-200/20 ${exp.image === 'brain-tekie-blue' ? 'animate-pulse drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]' : ''}`}
                       />
