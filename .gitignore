@@ -68,3 +68,12 @@ public/media/breeze.png
 public/media/see/
 media/
 public/media/see/see2
+
+# IDE
+.vscode/
+
+# Python virtual environment
+johnny/
+~$hn-Li-CV.docx
+John-Li-CV.docx
+John-Li-CV.pdf
