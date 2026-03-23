@@ -92,41 +92,31 @@ async function handleNewsletter(request, corsHeaders) {
     // Get site configuration
     const config = SITE_CONFIGS[site] || SITE_CONFIGS['default']
 
-    // SendGrid API request for newsletter
-    const sgResponse = await fetch('https://api.sendgrid.com/v3/mail/send', {
+    // Resend API request for newsletter
+    const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        personalizations: [{
-          to: Array.isArray(config.toEmail) 
-            ? config.toEmail.map(email => ({ email }))
-            : [{ email: config.toEmail }],
-        }],
-        from: { 
-          email: config.fromEmail,
-          name: config.fromName
-        },
+        from: `${config.fromName} <${config.fromEmail}>`,
+        to: Array.isArray(config.toEmail) ? config.toEmail : [config.toEmail],
         subject: `[${site || 'Newsletter'}] New Subscriber`,
-        content: [{
-          type: 'text/html',
-          value: `
-            <h2>New Newsletter Subscription</h2>
-            <p><strong>Site:</strong> ${site || 'Unknown'}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Subscribed at:</strong> ${new Date().toISOString()}</p>
-            <hr>
-            <p style="color: #666; font-size: 12px;">
-              This subscription was received from ${site || 'your website'}
-            </p>
-          `
-        }]
+        html: `
+          <h2>New Newsletter Subscription</h2>
+          <p><strong>Site:</strong> ${site || 'Unknown'}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subscribed at:</strong> ${new Date().toISOString()}</p>
+          <hr>
+          <p style="color: #666; font-size: 12px;">
+            This subscription was received from ${site || 'your website'}
+          </p>
+        `
       }),
     })
 
-    if (sgResponse.ok) {
+    if (resendResponse.ok) {
       return new Response(JSON.stringify({ 
         success: true,
         message: 'Successfully subscribed to newsletter!' 
@@ -138,12 +128,12 @@ async function handleNewsletter(request, corsHeaders) {
         }
       })
     } else {
-      const error = await sgResponse.text()
-      console.error('SendGrid error:', error)
-      
-      return new Response(JSON.stringify({ 
+      const error = await resendResponse.text()
+      console.error('Resend error:', error)
+
+      return new Response(JSON.stringify({
         error: 'Failed to subscribe',
-        details: error 
+        details: error
       }), {
         status: 500,
         headers: {
@@ -154,10 +144,10 @@ async function handleNewsletter(request, corsHeaders) {
     }
   } catch (error) {
     console.error('Worker error:', error)
-    
-    return new Response(JSON.stringify({ 
+
+    return new Response(JSON.stringify({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     }), {
       status: 500,
       headers: {
@@ -203,50 +193,40 @@ async function handleContact(request, corsHeaders) {
     // Get site configuration
     const config = SITE_CONFIGS[site] || SITE_CONFIGS['default']
 
-    // SendGrid API request
-    const sgResponse = await fetch('https://api.sendgrid.com/v3/mail/send', {
+    // Resend API request
+    const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        personalizations: [{
-          to: Array.isArray(config.toEmail) 
-            ? config.toEmail.map(email => ({ email }))
-            : [{ email: config.toEmail }],
-        }],
-        from: { 
-          email: config.fromEmail,
-          name: config.fromName
-        },
-        reply_to: { email: email },
+        from: `${config.fromName} <${config.fromEmail}>`,
+        to: Array.isArray(config.toEmail) ? config.toEmail : [config.toEmail],
+        reply_to: email,
         subject: `[${site || 'Contact Form'}] ${subject}`,
-        content: [{
-          type: 'text/html',
-          value: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Site:</strong> ${site || 'Unknown'}</p>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            ${projectType ? `<p><strong>Project Type:</strong> ${projectType}</p>` : ''}
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
-              ${message.replace(/\n/g, '<br>')}
-            </div>
-            <br>
-            <p><em>Reply to: ${email}</em></p>
-            <hr>
-            <p style="color: #666; font-size: 12px;">
-              Sent from ${site || 'contact form'} at ${new Date().toISOString()}
-            </p>
-          `
-        }]
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Site:</strong> ${site || 'Unknown'}</p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          ${projectType ? `<p><strong>Project Type:</strong> ${projectType}</p>` : ''}
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Message:</strong></p>
+          <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+            ${message.replace(/\n/g, '<br>')}
+          </div>
+          <br>
+          <p><em>Reply to: ${email}</em></p>
+          <hr>
+          <p style="color: #666; font-size: 12px;">
+            Sent from ${site || 'contact form'} at ${new Date().toISOString()}
+          </p>
+        `
       }),
     })
 
-    if (sgResponse.ok) {
+    if (resendResponse.ok) {
       return new Response(JSON.stringify({ 
         success: true,
         message: 'Your message has been sent successfully!' 
@@ -258,12 +238,12 @@ async function handleContact(request, corsHeaders) {
         }
       })
     } else {
-      const error = await sgResponse.text()
-      console.error('SendGrid error:', error)
-      
-      return new Response(JSON.stringify({ 
+      const error = await resendResponse.text()
+      console.error('Resend error:', error)
+
+      return new Response(JSON.stringify({
         error: 'Failed to send message',
-        details: error 
+        details: error
       }), {
         status: 500,
         headers: {
