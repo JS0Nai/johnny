@@ -44,87 +44,14 @@ function ArticlesPage() {
   const articles = [
     {
       id: 1,
-      title: "The Future of AI in Creative Industries",
-      category: "ai",
-      date: "March 15, 2024",
-      readTime: "8 min read",
-      excerpt:
-        "Exploring how artificial intelligence is transforming creative workflows and opening new possibilities for artists and designers worldwide.",
-      content:
-        "As AI technologies continue to evolve, creative professionals are discovering innovative ways to integrate these tools into their workflows...",
-      tags: ["AI", "Creative", "Technology", "Future"],
-      image: "/assets/images/article-ai-creative.png",
-      featured: true,
-    },
-    {
-      id: 2,
       title: "Building Secure AI Systems for Education",
-      category: "security",
-      date: "February 28, 2024",
-      readTime: "12 min read",
+      category: "education",
+      date: "Coming Soon",
+      readTime: "",
       excerpt:
         "A comprehensive guide to implementing AI systems in educational environments while maintaining student privacy and data security.",
-      content:
-        "Educational institutions are increasingly adopting AI technologies, but security and privacy concerns remain paramount...",
       tags: ["Security", "Education", "AI", "Privacy"],
-      image: "/assets/images/article-secure-ai.png",
-      featured: false,
-    },
-    {
-      id: 3,
-      title: "Government AI Ethics: A Framework for Responsible Implementation",
-      category: "ethics",
-      date: "February 10, 2024",
-      readTime: "15 min read",
-      excerpt:
-        "Understanding the ethical considerations and frameworks needed for responsible AI deployment in government organizations.",
-      content:
-        "Government agencies worldwide are grappling with the ethical implications of AI implementation...",
-      tags: ["Ethics", "Government", "AI", "Policy"],
-      image: "/assets/images/article-govt-ethics.png",
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Optimizing Creative Workflows with Automation",
-      category: "productivity",
-      date: "January 22, 2024",
-      readTime: "10 min read",
-      excerpt:
-        "How to streamline creative processes using automation tools and AI-powered solutions for maximum efficiency.",
-      content:
-        "Creative professionals often find themselves bogged down by repetitive tasks that could be automated...",
-      tags: ["Automation", "Productivity", "Creative", "Workflow"],
-      image: "/assets/images/article-automation.png",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "The Psychology of Human-AI Collaboration",
-      category: "research",
-      date: "January 8, 2024",
-      readTime: "14 min read",
-      excerpt:
-        "Examining the psychological aspects of working alongside AI systems and how to build effective human-AI partnerships.",
-      content:
-        "As AI becomes more prevalent in the workplace, understanding the psychological dynamics of human-AI collaboration becomes crucial...",
-      tags: ["Psychology", "Collaboration", "AI", "Research"],
-      image: "/assets/images/article-psychology.png",
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Next.js and AI: Building Intelligent Web Applications",
-      category: "development",
-      date: "December 18, 2023",
-      readTime: "11 min read",
-      excerpt:
-        "A technical deep-dive into integrating AI capabilities into Next.js applications for enhanced user experiences.",
-      content:
-        "Next.js provides an excellent foundation for building AI-powered web applications...",
-      tags: ["Next.js", "Development", "AI", "Web"],
-      image: "/assets/images/article-nextjs-ai.png",
-      featured: false,
+      comingSoon: true,
     },
   ];
 
@@ -207,6 +134,18 @@ function ArticlesPage() {
               All Articles
             </button>
             <button
+              onClick={() => handleCategoryChange("education")}
+              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "education" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
+            >
+              Education
+            </button>
+            <button
+              onClick={() => handleCategoryChange("health")}
+              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "health" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
+            >
+              Health
+            </button>
+            <button
               onClick={() => handleCategoryChange("ai")}
               className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "ai" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
             >
@@ -218,95 +157,6 @@ function ArticlesPage() {
             >
               Security
             </button>
-            <button
-              onClick={() => handleCategoryChange("ethics")}
-              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "ethics" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
-            >
-              Ethics
-            </button>
-            <button
-              onClick={() => handleCategoryChange("development")}
-              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "development" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
-            >
-              Development
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Featured Articles Section */}
-      <div ref={articlesRef} className="py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2
-            className="text-4xl font-extralight mb-12 tracking-wide text-white text-center"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            Featured <span className="text-orange-200/90">Articles</span>
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {articles
-              .filter((article) => article.featured)
-              .map((article, index) => (
-                <div
-                  key={article.id}
-                  className="bg-gray-800/40 rounded-lg overflow-hidden shadow-lg"
-                >
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="px-3 py-1 bg-orange-200/20 text-orange-200 text-xs rounded-full">
-                        FEATURED
-                      </span>
-                      <span className="text-gray-400 text-sm">
-                        {article.date}
-                      </span>
-                      <span className="text-gray-500">•</span>
-                      <span className="text-gray-400 text-sm">
-                        {article.readTime}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl font-medium text-white mb-4 hover:text-orange-200 transition-colors cursor-pointer">
-                      {article.title}
-                    </h3>
-
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      {article.excerpt}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {article.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <a
-                      href={`#article-${article.id}`}
-                      className="inline-flex items-center gap-2 text-orange-200 hover:text-white transition-colors"
-                    >
-                      <span>Read Article</span>
-                      <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              ))}
           </div>
         </div>
       </div>
@@ -331,24 +181,28 @@ function ArticlesPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                       <span
-                        className={`px-3 py-1 text-xs rounded-full ${
-                          article.featured
-                            ? "bg-orange-200/20 text-orange-200"
-                            : "bg-gray-700/50 text-gray-300"
-                        }`}
+                        className="px-3 py-1 text-xs rounded-full bg-gray-700/50 text-gray-300"
                       >
                         {article.category.toUpperCase()}
                       </span>
-                      <span className="text-gray-400 text-sm">
-                        {article.date}
-                      </span>
-                      <span className="text-gray-500">•</span>
-                      <span className="text-gray-400 text-sm">
-                        {article.readTime}
-                      </span>
+                      {article.comingSoon ? (
+                        <span className="px-3 py-1 text-xs rounded-full bg-orange-200/20 text-orange-200">
+                          COMING SOON
+                        </span>
+                      ) : (
+                        <>
+                          <span className="text-gray-400 text-sm">
+                            {article.date}
+                          </span>
+                          <span className="text-gray-500">•</span>
+                          <span className="text-gray-400 text-sm">
+                            {article.readTime}
+                          </span>
+                        </>
+                      )}
                     </div>
 
-                    <h3 className="text-2xl font-medium text-white mb-4 hover:text-orange-200 transition-colors cursor-pointer">
+                    <h3 className="text-2xl font-medium text-white mb-4">
                       {article.title}
                     </h3>
 
@@ -356,7 +210,7 @@ function ArticlesPage() {
                       {article.excerpt}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2">
                       {article.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
@@ -366,26 +220,6 @@ function ArticlesPage() {
                         </span>
                       ))}
                     </div>
-
-                    <a
-                      href={`#article-${article.id}`}
-                      className="inline-flex items-center gap-2 text-orange-200 hover:text-white transition-colors"
-                    >
-                      <span>Read Article</span>
-                      <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
                   </div>
                 </div>
               </div>
