@@ -157,6 +157,18 @@ function ArticlesPage() {
             >
               Security
             </button>
+            <button
+              onClick={() => handleCategoryChange("ethics")}
+              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "ethics" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
+            >
+              Ethics
+            </button>
+            <button
+              onClick={() => handleCategoryChange("development")}
+              className={`px-4 py-2 rounded-full text-sm ${selectedCategory === "development" ? "bg-orange-200 text-gray-900" : "bg-gray-800 text-gray-300"} transition-colors hover:bg-orange-200 hover:text-gray-900`}
+            >
+              Development
+            </button>
           </div>
         </div>
       </div>
